@@ -1,0 +1,30 @@
+{
+    "name": "chbrus/php-builder",
+    "description": "Este es un pequeño proyecto para ayudarme a construir páginas más fácil con PHP",
+    "type": "project",
+    "require": {
+        "twbs/bootstrap": "^5.3",
+        "twbs/bootstrap-icons": "^1.11",
+        "vlucas/phpdotenv": "^5.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "DB\\Core\\": "app/models/core/",
+            "Build\\": "app/views/build/",
+            "Tools\\": "app/views/tools/"
+        },
+        "files": [
+            "app/views/helper/view.php",
+            "app/views/helper/script.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "ChBrus",
+            "email": "cbruno.carrillo@gmail.com"
+        }
+    ]
+}

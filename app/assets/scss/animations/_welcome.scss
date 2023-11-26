@@ -1,0 +1,21 @@
+@keyframes welcome-anim {
+    0% {
+        border-color: shade-color($gray, 35%);
+    } 25% {
+        border-color: shade-color($red, 35%);
+    } 50% {
+        border-color: shade-color($green, 35%);
+    } 75% {
+        border-color: shade-color($blue, 35%);
+    } 100% {
+        border-color: shade-color($gray, 35%);
+    }
+}
+
+@keyframes welcome-scale {
+    from {
+        scale: 1.5;
+    } to {
+        scale: 1;
+    }
+}
