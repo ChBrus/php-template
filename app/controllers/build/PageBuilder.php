@@ -23,6 +23,11 @@
             return ob_get_clean();
         }
 
+        /**
+         * Construye el bootstrap personalizado por el desarrollador
+         *
+         * @return string
+         */
         public static function buildCustomBootstrap() {
             ob_start();
             ?>

@@ -13,12 +13,12 @@
     "autoload": {
         "psr-4": {
             "DB\\Core\\": "app/models/core/",
-            "Build\\": "app/views/build/",
-            "Tools\\": "app/views/tools/"
+            "Build\\": "app/controllers/build/",
+            "Tools\\": "app/controllers/tools/"
         },
         "files": [
-            "app/views/helper/view.php",
-            "app/views/helper/script.php"
+            "app/controllers/helper/view.php",
+            "app/controllers/helper/script.php"
         ]
     },
     "authors": [
