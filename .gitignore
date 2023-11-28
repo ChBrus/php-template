@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/dotenv,composer,phpunit,node,windows,macos,linux,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=dotenv,composer,phpunit,node,windows,macos,linux,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/windows,linux,macos,composer,visualstudiocode,git,node,phpunit,dotenv
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,macos,composer,visualstudiocode,git,node,phpunit,dotenv
 
 ### Composer ###
 composer.phar
@@ -8,6 +8,24 @@ composer.phar
 # Commit your application's lock file https://getcomposer.org/doc/01-basic-usage.md#commit-your-composer-lock-file-to-version-control
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
 # composer.lock
+
+### dotenv ###
+# .env
+
+### Git ###
+# Created by git for backups. To disable backups in Git:
+# $ git config --global mergetool.keepBackup false
+*.orig
+
+# Created by git when using merge tools for conflicts
+*.BACKUP.*
+*.BASE.*
+*.LOCAL.*
+*.REMOTE.*
+*_BACKUP_*.txt
+*_BASE_*.txt
+*_LOCAL_*.txt
+*_REMOTE_*.txt
 
 ### Linux ###
 *~
@@ -205,8 +223,8 @@ dist
 .phpunit.cache
 
 # PHPUnit
-/app/phpunit.xml
-/phpunit.xml
+# /app/phpunit.xml
+# /phpunit.xml
 
 # Build data
 /build/
@@ -256,4 +274,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/dotenv,composer,phpunit,node,windows,macos,linux,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/windows,linux,macos,composer,visualstudiocode,git,node,phpunit,dotenv

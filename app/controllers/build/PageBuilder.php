@@ -50,7 +50,7 @@
          */
         public static function view($file, $data = []) {
             // La página a la que quiero enviar datos via POST
-            $url = self::getAbsoluteProjectURL() . 'app/components/' . $file . '.php';
+            $url = self::getAbsoluteProjectURL() . 'app/views/' . $file . '.php';
 
             // url-ify los datos para POST
             $fields_string = http_build_query($data);
