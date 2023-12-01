@@ -1,5 +1,5 @@
 <?php
-    require './vendor/autoload.php';
+    require_once './vendor/autoload.php';
     use Build\PageBuilder;
     use Tools\Env;
 
