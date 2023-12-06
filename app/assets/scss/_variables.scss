@@ -12,6 +12,13 @@ $gray: #adb5bd;
 $black: #000;
 $white: #fff;
 
+// Custom colors
+$danger: $red;
+$success: $green;
+
+// Alert
+$alert-danger-heading: #f8d7da;
+
 $theme-colors: (
     "blue": $blue,
     "indigo": $indigo,
@@ -26,6 +33,9 @@ $theme-colors: (
     "gray": $gray,
     "black": $black,
     "white": $white,
+    "danger": $danger,
+    "success": $success,
+    "alert-danger-heading": $alert-danger-heading
 );
 
 $theme-colors-transform: ();

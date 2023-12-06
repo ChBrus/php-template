@@ -5,6 +5,7 @@
 
     Env::getEnv();
 
+    $database = new \Models\Core\DB();
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,0 +1,12 @@
+body:has(.query-msg) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description {
+    max-height: 5em;
+    background: rgba(255, 255, 255, 0.5);
+    overflow-x: hidden;
+    overflow-y: auto;
+}

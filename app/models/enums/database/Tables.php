@@ -1,5 +1,5 @@
 <?php
-    namespace Models\Enums\DB;
+    namespace Enums\DB;
 
     enum Tables {
         

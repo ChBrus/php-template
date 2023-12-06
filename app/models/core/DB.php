@@ -4,7 +4,7 @@
     use PDO;
     use PDOException;
     use Tools\Env;
-    use Build\PageBuilder;
+    use Build\{PageBuilder, Message};
 
     class DB extends PDO {
         protected $host;
@@ -25,7 +25,11 @@
 
                 parent::__construct("mysql:host={$this->host};dbname={$this->database}", $this->user, $this->password);
             } catch (PDOException $e) {
-                die($e);
+                $danger = new Message($e->getMessage(), 'Database error conection');
+                $danger->setAttribute('icon', true);
+                echo PageBuilder::buildCustomBootstrap();
+
+                die($danger->dangerMsg());
             }
         }
     }
