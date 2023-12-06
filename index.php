@@ -1,11 +1,13 @@
 <?php
     require_once './vendor/autoload.php';
-    use Build\PageBuilder;
+    use Build\{PageBuilder, Message};
     use Tools\Env;
 
     Env::getEnv();
 
-    $database = new \Models\Core\DB();
+    $msg = new Message('Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus distinctio, laboriosam ipsam quae magnam cum numquam dicta est impedit facilis similique deserunt deleniti quasi aspernatur, cupiditate tempora doloribus iste! Error?', 'Se recibió el mensaje');
+    $msg->setAttribute('icon', true);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +18,7 @@
     <title>Ejemplo proyecto</title>
 </head>
 <body>
-    <?= view('welcome', [
-        "project-name" => $_ENV['ProjectName']
-    ]) ?>
-    <?= script('index', true) ?>
+    <?= $msg->successMsg() ?>
+    <?= $msg->dangerMsg() ?>
 </body>
 </html>

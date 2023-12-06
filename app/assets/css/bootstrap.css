@@ -17153,11 +17153,19 @@ body:has(.query-msg) {
   align-items: center;
 }
 
+.query-msg {
+  max-width: 25rem;
+}
+
 .description {
   max-height: 5em;
   background: rgba(255, 255, 255, 0.5);
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.description::-webkit-scrollbar {
+  display: none;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

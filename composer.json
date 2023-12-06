@@ -16,7 +16,7 @@
             "Enums\\DB\\": "app/models/enums/database/",
             "Build\\": "app/controllers/build/",
             "Tools\\": "app/controllers/tools/",
-            "Enums\\Bootstrap\\": "app/models/enums/bootstrap/"
+            "Enums\\Msg\\": "app/models/enums/msg/"
         },
         "files": [
             "app/controllers/helper/view.php",
