@@ -9,6 +9,7 @@ body:has(.query-msg) {
 }
 
 .description {
+    --description-border-radius-style: 1rem;
     max-height: 5em;
     background: rgba(255, 255, 255, 0.5);
     overflow-x: hidden;
@@ -19,10 +20,28 @@ body:has(.query-msg) {
     width: 0.25rem;
 }
 
+.description::-webkit-scrollbar-thumb {
+    border-radius: var(--description-border-radius-style);
+}
+
 .alert-danger .description::-webkit-scrollbar-thumb {
     background: tint-color($danger, 50%);
+}
+
+.alert-danger .description::-webkit-scrollbar-thumb:hover {
+    border-color: shade-color($red, 100%);
 }
 
 .alert-success .description::-webkit-scrollbar-thumb {
     background: tint-color($success, 50%);
 }
+
+.alert-success .description::-webkit-scrollbar-thumb:hover {
+    border-color: shade-color($green, 100%);
+}
+
+#query-msg-btn-icon i::before {
+    animation: shake-icon .5s linear infinite;
+}
+
+@import '../animations/alert';

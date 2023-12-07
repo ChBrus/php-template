@@ -1,0 +1,1 @@
+export const btnsQueryMsg = document.querySelectorAll('#query-msg-btn-icon');

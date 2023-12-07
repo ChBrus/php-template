@@ -9,8 +9,9 @@
         <?= $_POST['msg'] ?>
     </p>
     <?php if (isset($_POST['icon'])): ?>
-        <button type="button" class="btn btn-outline-success w-100">
-            <i class="<?= $_POST['icon'] ?>"> Confirmar</i>
+        <button type="button" class="btn btn-outline-success w-100" id="query-msg-btn-icon">
+            <?= $_POST['icon'] ?>
+            <span class="btn-description">Confirmar</span>
         </button>
     <?php endif; ?>
 </div>

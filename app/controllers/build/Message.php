@@ -34,7 +34,7 @@
         }
 
         /**
-         * Muestra un mensaje de error con estilos de Bootstrap
+         * Muestra un mensaje de éxito con estilos de Bootstrap
          *
          * @param Icons $icon
          * @return string
@@ -45,7 +45,8 @@
 
         private function msg(Type $type, Icons $icon) {
             $data = [
-                'msg' => $this->msg
+                'msg' => $this->msg,
+                'location' => $this->location
             ];
 
             if (strlen($this->header) !== 0) {

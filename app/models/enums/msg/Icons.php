@@ -4,11 +4,13 @@
     enum Icons {
         case Danger;
         case Success;
+        case Config;
 
         public function print() {
             return match($this) {
-                Icons::Danger => 'bi bi-exclamation-circle-fill',
-                Icons::Success => 'bi bi-check-circle-fill'
+                self::Danger => '<i class="bi bi-exclamation-circle-fill"></i>',
+                self::Success => '<i class="bi bi-check-circle-fill"></i>',
+                self::Config => '<i class="bi bi-gear-fill"></i>',
             };
         }
     }

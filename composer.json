@@ -13,9 +13,10 @@
     "autoload": {
         "psr-4": {
             "Models\\Core\\": "app/models/core/",
-            "Enums\\DB\\": "app/models/enums/database/",
             "Build\\": "app/controllers/build/",
             "Tools\\": "app/controllers/tools/",
+            "Tools\\Commands\\": "app/controllers/tools/commands",
+            "Enums\\DB\\": "app/models/enums/database/",
             "Enums\\Msg\\": "app/models/enums/msg/"
         },
         "files": [

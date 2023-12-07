@@ -16,9 +16,6 @@ $white: #fff;
 $danger: $red;
 $success: $green;
 
-// Alert
-$alert-danger-heading: #f8d7da;
-
 $theme-colors: (
     "blue": $blue,
     "indigo": $indigo,
@@ -35,7 +32,6 @@ $theme-colors: (
     "white": $white,
     "danger": $danger,
     "success": $success,
-    "alert-danger-heading": $alert-danger-heading
 );
 
 $theme-colors-transform: ();

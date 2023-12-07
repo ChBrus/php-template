@@ -1,13 +1,9 @@
 <?php
     require_once './vendor/autoload.php';
-    use Build\{PageBuilder, Message};
+    use Build\PageBuilder;
     use Tools\Env;
 
     Env::getEnv();
-
-    $msg = new Message('Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus distinctio, laboriosam ipsam quae magnam cum numquam dicta est impedit facilis similique deserunt deleniti quasi aspernatur, cupiditate tempora doloribus iste! Error?', 'Se recibió el mensaje');
-    $msg->setAttribute('icon', true);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +14,6 @@
     <title>Ejemplo proyecto</title>
 </head>
 <body>
-    <?= $msg->successMsg() ?>
-    <?= $msg->dangerMsg() ?>
+
 </body>
 </html>
