@@ -1,0 +1,8 @@
+@keyframes shakeIcon {
+    0% {
+        transform: skew(0deg, 0deg);
+    }
+    25% {
+        transform: skew(25deg, 0deg);
+    }
+}

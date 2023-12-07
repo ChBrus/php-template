@@ -16,5 +16,13 @@ body:has(.query-msg) {
 }
 
 .description::-webkit-scrollbar {
-    display: none;
+    width: 0.25rem;
+}
+
+.alert-danger .description::-webkit-scrollbar-thumb {
+    background: tint-color($danger, 50%);
+}
+
+.alert-success .description::-webkit-scrollbar-thumb {
+    background: tint-color($success, 50%);
 }

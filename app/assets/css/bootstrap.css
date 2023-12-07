@@ -17101,52 +17101,6 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-body:has(.welcome) {
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  place-items: center;
-}
-
-.welcome {
-  background: #d6dade;
-  border: 2px solid #70767b;
-  border-radius: 1rem 1rem 1rem 1rem;
-  scale: 1.5;
-  animation: welcome-scale 0.5s ease-in forwards, welcome-anim 1s linear infinite;
-}
-
-.welcome .container-fluid, .welcome .container-sm, .welcome .container-md, .welcome .container-lg, .welcome .container-xl, .welcome .container-xxl {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-@keyframes welcome-anim {
-  0% {
-    border-color: #70767b;
-  }
-  25% {
-    border-color: #8f222d;
-  }
-  50% {
-    border-color: #105837;
-  }
-  75% {
-    border-color: #0848a4;
-  }
-  100% {
-    border-color: #70767b;
-  }
-}
-@keyframes welcome-scale {
-  from {
-    scale: 1.5;
-  }
-  to {
-    scale: 1;
-  }
-}
 body:has(.query-msg) {
   display: flex;
   justify-content: center;
@@ -17165,7 +17119,15 @@ body:has(.query-msg) {
 }
 
 .description::-webkit-scrollbar {
-  display: none;
+  width: 0.25rem;
+}
+
+.alert-danger .description::-webkit-scrollbar-thumb {
+  background: #ee9aa2;
+}
+
+.alert-success .description::-webkit-scrollbar-thumb {
+  background: #8cc3aa;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
