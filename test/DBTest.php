@@ -1,6 +1,6 @@
 <?php
     use PHPUnit\Framework\TestCase;
-    use Models\Core\DB;
+    use Core\DB;
 
     class DBTest extends TestCase {
         public function testEnv() {

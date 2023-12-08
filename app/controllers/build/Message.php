@@ -1,7 +1,8 @@
 <?php
     namespace Build;
 
-    use Enums\Msg\{Icons, Type, Properties};
+    use Enums\Msg\{Type, Properties};
+    use Enums\Icons;
     use Build\PageBuilder;
 
     class Message {
@@ -56,14 +57,14 @@
          */
         private function msg(Type $type, Icons $icon) {
             $data = [
-                'msg' => $this->msg,
-                'location' => $this->location
+                'msg' => $this->msg
             ];
 
             if (strlen($this->header) !== 0) {
                 $data['header'] = $this->header;
             } if ($this->icon) {
                 $data['icon'] = $icon->print();
+                $data['location'] = $this->location;
             } if (strlen($this->location) === 0) {
                 $data['location'] = 'null';
             } if ($this->buildStyles) {
@@ -89,7 +90,7 @@
         public function setAttribute(Properties | string $propertyName, $value) {
             $name = $propertyName;
 
-            if (gettype($propertyName) === 'object') $name = $propertyName->getValue();
+            if ($propertyName instanceof Properties) $name = $propertyName->getValue();
 
             if (property_exists($this, $name)) {
                 $this->$name = $value;

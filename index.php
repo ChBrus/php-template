@@ -1,6 +1,6 @@
 <?php
     require_once './vendor/autoload.php';
-    use Build\PageBuilder;
+    use Build\{PageBuilder, DataTable};
     use Tools\Env;
 
     Env::getEnv();
@@ -14,6 +14,6 @@
     <title>Ejemplo proyecto</title>
 </head>
 <body>
-
+    <?= script('data-table/index', true) ?>
 </body>
 </html>

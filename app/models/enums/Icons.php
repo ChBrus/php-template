@@ -1,5 +1,5 @@
 <?php
-    namespace Enums\Msg;
+    namespace Enums;
 
     enum Icons {
         case Danger;

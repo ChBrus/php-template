@@ -38,6 +38,26 @@
             return ob_get_clean();
         }
 
+        /**
+         * Imprime una imagen en pantalla
+         *
+         * @param string $location
+         * Ubicación de la imagen, en la cual debes de basarte como ubicación principal la carpeta app/assets/img
+         * @param string $alt
+         * El nombre que aparecerá en tu imagen cuando no cargue
+         * @param string $width
+         * El ancho de tu imagen dado con cantidad y el tipo de magnitud CSS juntos
+         * @param string $height
+         * El alto de tu imagen dado con cantidad y el tipo de magnitud CSS juntos
+         * @return string
+         */
+        public static function builImage(string $location, $alt = 'img-built', $width = '100px', $height = '100px') {
+            ob_start();
+            ?>
+                <img src="<?= self::getProjectURL() . 'app/assets/img/' . $location ?>" alt="<?= $alt ?>">
+            <?php
+            return ob_get_clean();
+        }
 
         /**
          * Imprime en la página cualquier componente dado y le enviamos datos por medio de un método POST
