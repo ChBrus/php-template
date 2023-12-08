@@ -5,6 +5,7 @@
     use PDOException;
     use Tools\Env;
     use Build\{PageBuilder, Message};
+    use Enums\Msg\Properties;
 
     class DB extends PDO {
         protected $host;
@@ -26,8 +27,7 @@
                 parent::__construct("mysql:host={$this->host};dbname={$this->database}", $this->user, $this->password);
             } catch (PDOException $e) {
                 $danger = new Message($e->getMessage(), 'Database error conection');
-                $danger->setAttribute('icon', true);
-                echo PageBuilder::buildCustomBootstrap();
+                $danger->setAttribute(Properties::buildStyles, true);
 
                 die($danger->dangerMsg());
             }

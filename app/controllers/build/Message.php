@@ -1,7 +1,7 @@
 <?php
     namespace Build;
 
-    use Enums\Msg\{Icons, Type};
+    use Enums\Msg\{Icons, Type, Properties};
     use Build\PageBuilder;
 
     class Message {
@@ -9,6 +9,7 @@
         protected string $header;
         private bool $icon;
         private string $location;
+        private bool $buildStyles;
 
         /**
          * Message es una clase para crear alertas con mensajes personalizados
@@ -19,8 +20,9 @@
         public function __construct($msg, $header = "") {
             $this->msg = $msg;
             $this->header = $header;
-            $this->icon = false;
+            $this->icon = true;
             $this->location = PageBuilder::getProjectURL();
+            $this->buildStyles = false;
         }
 
         /**
@@ -53,6 +55,13 @@
                 $data['header'] = $this->header;
             } if ($this->icon) {
                 $data['icon'] = $icon->print();
+            } if (strlen($this->location) === 0) {
+                $data['location'] = 'null';
+            } if ($this->buildStyles) {
+                $data['webpage-styles'] = [
+                    'header' => PageBuilder::buildCustomBootstrap(),
+                    'script' => script('message/index', true)
+                ];
             }
 
             return match($type) {
@@ -64,11 +73,15 @@
         /**
          * Pone un valor a una propiedad de la clase
          *
-         * @param string $name
+         * @param Properties | string $propertyName
          * @param mixed $value
          * @return void
          */
-        public function setAttribute(string $name, $value) {
+        public function setAttribute(Properties | string $propertyName, $value) {
+            $name = $propertyName;
+
+            if (gettype($propertyName) === 'object') $name = $propertyName->getValue();
+
             if (property_exists($this, $name)) {
                 $this->$name = $value;
             }
