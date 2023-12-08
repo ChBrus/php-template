@@ -2,8 +2,8 @@
 Este proyecto fue hecho con la finalidad de tener una estructura base con la que apoyarme al hacer mis proyectos en mis prácticas profesionales.
 ## Índice
 - [Empezar](#Empezar)
- - [Requerimientos](#1. Requerimientos)
- - [Instalación](#2. Instalación)
+ - [Requerimientos](#1.-Requerimientos)
+ - [Instalación](#2.-Instalación)
 
 ## Empezar
 Para comenzar a usar este proyecto, primero tienes que ver si cumples con los requerimientos y luego ya puedes seguir con el proceso de instalación.
