@@ -15,7 +15,9 @@
          * Message es una clase para crear alertas con mensajes personalizados
          *
          * @param string $msg
+         * El mensaje a mostrar en la alerta
          * @param string $header
+         * El título que vendrá en el mensaje
          */
         public function __construct($msg, $header = "") {
             $this->msg = $msg;
@@ -45,6 +47,13 @@
             return $this->msg(Type::Success, $icon);
         }
 
+        /**
+         * Una función para imprimir un mensaje, sea de peligro o de éxito en alguna acción
+         *
+         * @param Type $type
+         * @param Icons $icon
+         * @return string
+         */
         private function msg(Type $type, Icons $icon) {
             $data = [
                 'msg' => $this->msg,
