@@ -2,12 +2,12 @@
 Este proyecto fue hecho con la finalidad de tener una estructura base con la que apoyarme al hacer mis proyectos en mis prácticas profesionales.
 ## Índice
 - [Empezar](#Empezar)
- - [Requerimientos](#1.-Requerimientos)
- - [Instalación](#2.-Instalación)
+ - [Requerimientos](#Requerimientos)
+ - [Instalación](#Instalación)
 
 ## Empezar
 Para comenzar a usar este proyecto, primero tienes que ver si cumples con los requerimientos y luego ya puedes seguir con el proceso de instalación.
-### 1. Requerimientos
+### Requerimientos
 Como ya leíste, usted necesita cumplir con los siguientes requerimientos para usar PHP-Builder:
 - PHP en su versión 8.2
 - Tener instalado el manejador de paquetes Composer
@@ -16,7 +16,7 @@ Como ya leíste, usted necesita cumplir con los siguientes requerimientos para u
 - Usar servicios de base de datos MySQL
 - Tener conocimiento de POO
 
-### 2. Instalación
+### Instalación
 El primer paso para comenzar a usar PHP-Builder, es obtener el repositorio en tu local. Como ya sabemos, primero tienes que ir a tu terminal de confianza, y obviamente con git instalado, y vas a insertar el siguiente comando:
 ```bash
 git clone https://github.com/ChBrus/php-builder.git
