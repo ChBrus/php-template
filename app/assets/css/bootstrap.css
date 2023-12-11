@@ -16788,5 +16788,157 @@ body:has(.query-msg) {
     transform: scale(1);
   }
 }
+.data-table {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.data-table .header, .data-table .body .dataRow {
+  display: grid;
+}
+
+.header.columns-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.body.columns-1 .dataRow {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.header.columns-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.body.columns-2 .dataRow {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.header.columns-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.body.columns-3 .dataRow {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.header.columns-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.body.columns-4 .dataRow {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.header.columns-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.body.columns-5 .dataRow {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.header.columns-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.body.columns-6 .dataRow {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.header.columns-7 {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.body.columns-7 .dataRow {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.header.columns-8 {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.body.columns-8 .dataRow {
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.header.columns-9 {
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.body.columns-9 .dataRow {
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.header.columns-10 {
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.body.columns-10 .dataRow {
+  grid-template-columns: repeat(10, 1fr);
+}
+
+.data-table .header,
+.data-table .body {
+  border: 1px solid #000;
+}
+
+.data-table .header {
+  border-bottom: none;
+}
+
+.data-table .header .h-col {
+  display: grid;
+  place-items: center;
+  border-right: 1px solid #000;
+}
+
+.data-table .header .h-col:last-child {
+  border-right: none;
+}
+
+.data-table .body {
+  --body-height: calc(2.5rem * 10);
+  position: relative;
+  display: grid;
+  height: auto;
+  max-height: var(--body-height);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.data-table .body::-webkit-scrollbar {
+  display: none;
+}
+
+.data-table .body:has(.loading) {
+  height: 100%;
+  max-height: auto;
+}
+
+.data-table .body .loading {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.data-table .body .dataRow {
+  height: calc(var(--body-height) / 10);
+  border-bottom: 1px solid #000;
+}
+
+.data-table .body .dataRow:last-child {
+  border-bottom: none;
+}
+
+.data-table .body .dataRow .d-col {
+  padding: 0.5rem;
+  border-right: 1px solid #000;
+}
+
+.data-table .body .dataRow .d-col:last-child {
+  border-right: none;
+}
 
 /*# sourceMappingURL=bootstrap.css.map */

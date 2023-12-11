@@ -1,6 +1,6 @@
 <?php
     require_once './vendor/autoload.php';
-    use Build\{PageBuilder, DataTable};
+    use Build\{PageBuilder};
     use Tools\Env;
 
     Env::getEnv();
@@ -14,6 +14,11 @@
     <title>Ejemplo proyecto</title>
 </head>
 <body>
+    <?= view('data-table/table', [
+        'header' => 2,
+        'maxRows' => $_ENV['maxRows'],
+        'globalLocation' => PageBuilder::getProjectURL(),
+    ]) ?>
     <?= script('data-table/index', true) ?>
 </body>
 </html>

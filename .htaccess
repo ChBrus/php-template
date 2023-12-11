@@ -1,0 +1,16 @@
+Options All -Indexes
+Options -MultiViews
+
+RewriteEngine On
+RewriteBase /php-builder/
+
+DirectoryIndex index.php
+
+# Protect the htaccess file
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+# Protect secret files, like .gitignore
+RedirectMatch 403 /\..*$
