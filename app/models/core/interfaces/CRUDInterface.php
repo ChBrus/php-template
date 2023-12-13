@@ -14,10 +14,16 @@
          *
          * @param array | string $columns
          * @param int $table
-         * @param string $conditions
+         * @param array $conditions
+         * Ejemplo de como hacer estas condiciones:
+         * @code
+         * [
+         *  "name = 'Nombre'",
+         * "last_name = 'Apellido'"
+         * ]
          * @return array
          */
-        public function select($columns = '*', $table = 0, $conditions = '') : array;
+        public function select($columns = '*', $table = 0, $conditions = []) : array;
 
         /**
          * Método para hacer peticiones de actualizaciones de datos en una tabla de la base de datos

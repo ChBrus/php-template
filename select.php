@@ -14,5 +14,10 @@
         "response" => $response
     ) = $user->select('name,last_name');
 
-    echo json_encode($response->fetchAll(DB::FETCH_ASSOC));
+    if ($status === 500) die(json_encode(['status'=> $status,'response'=> $response]));
+
+    echo json_encode([
+        "status" => $status,
+        "response" => $response->fetchAll(DB::FETCH_ASSOC)
+    ]);
 ?>

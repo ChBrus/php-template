@@ -3,6 +3,7 @@
 
     use Core\DB;
     use Core\Exception\DatabaseException;
+    use PDOException;
     use Core\Interfaces\CRUDInterface;
     use Tools\Env;
 
@@ -45,7 +46,7 @@
 
         public function delete($table = 0) : array {return [];}
 
-        public function select($columns = '*', $table = 0, $conditions = '') : array {
+        public function select($columns = '*', $table = 0, $conditions = []) : array {
             try {
                 if (empty($columns)) throw new DatabaseException('No se especificó ninguna columna');
 
@@ -56,7 +57,14 @@
                 if (!empty($array_diff_columns_attributes)) throw new DatabaseException('No existe la columna / las columnas: ' . implode(', ', $array_diff_columns_attributes));
 
                 $query = $this->database->prepare(
-                    "SELECT {$columns} FROM `{$_ENV['DB']}`.`{$this->tables[$table]}` {$conditions};"
+                    "SELECT {$columns} FROM `{$_ENV['DB']}`.`{$this->tables[$table]}`" .
+                    (!empty($conditions) ?
+                    " WHERE " . rtrim(
+                        array_reduce($conditions, function($carry, $item) {
+                            return $carry . " (" . $item . ") AND";
+                        }), ' AND'
+                    ) : '') .
+                    ";"
                 );
 
                 $response = $query->execute();
@@ -73,6 +81,13 @@
                 return [
                     "status" => 500,
                     "response" => $e->show()
+                ];
+            } catch(PDOException $e) {
+                $pdoException = new DatabaseException($e->getMessage());
+
+                return [
+                    "status"=> 500,
+                    "response"=> $pdoException->show()
                 ];
             }
         }

@@ -33,10 +33,11 @@
                 $pdoException = new DatabaseException($e->getMessage());
 
                 $alertHeader = match($e->getCode()) {
-                    1045 => 'No tienes permisos para conectarte a la base de datos'
+                    1045 => 'No tienes permisos para conectarte a la base de datos',
+                    default => 'Error con la conexión PDO'
                 };
 
-                $pdoException->setAttribute(\Enums\DB\Properties::alertHeader, (strlen($alertHeader) > 0 ? $alertHeader : "Error con la conexion PDO"));
+                $pdoException->setAttribute(\Enums\DB\Properties::alertHeader, $alertHeader);
 
                 die($pdoException->show());
             }

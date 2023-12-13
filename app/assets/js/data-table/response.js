@@ -1,8 +1,12 @@
 import { Data } from "./consts.js";
 
 export async function getSelect(locationURL) {
+    let page = localStorage.getItem('page') ?? 0;
+    if(page === 0) {
+        null
+    };
     const response = await fetch(locationURL + 'select.php', Data.POST({
-        Msg: "Hi"
+        Page: page
     }));
 
     if (!response.ok) {
@@ -11,9 +15,9 @@ export async function getSelect(locationURL) {
 
     const data = await response.json();
 
-    if (data.status !== 500) {
-        console.log(data);
-    } else {
-        console.warn('We found an error looking for your data');
-    }
+    return {
+        type: 'select',
+        status: data.status,
+        response: data.response
+    };
 }
