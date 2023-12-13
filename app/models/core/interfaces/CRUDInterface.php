@@ -11,9 +11,8 @@
 
         /**
          * Método para hacer peticiones de datos que quiera de una tabla de la base de datos
-         *
+         * 
          * @param array | string $columns
-         * @param int $table
          * @param array $conditions
          * Ejemplo de como hacer estas condiciones:
          * @code
@@ -21,9 +20,11 @@
          *  "name = 'Nombre'",
          * "last_name = 'Apellido'"
          * ]
+         * @param bool $isView
+         * @param int $table_or_view
          * @return array
          */
-        public function select($columns = '*', $table = 0, $conditions = []) : array;
+        public function select($columns = '*', $conditions = [], $isView = false, $table_or_view = 0) : array;
 
         /**
          * Método para hacer peticiones de actualizaciones de datos en una tabla de la base de datos
@@ -38,5 +39,13 @@
          * @return array
          */
         public function delete($table = 0) : array;
+
+        /**
+         * Retorna alguna propiedad de la clase
+         *
+         * @param string $property
+         * @return mixed
+         */
+        public function __get($property) : mixed;
     }
 ?>

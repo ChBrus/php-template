@@ -3,10 +3,12 @@
 
     enum Properties {
         case alertHeader;
+        case alert;
 
         public function getValue() {
             return match($this) {
-                self::alertHeader => "alertHeader"
+                self::alertHeader => "alertHeader",
+                self::alert => "alert"
             };
         }
     }

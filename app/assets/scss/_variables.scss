@@ -47,6 +47,6 @@ $theme-colors-transform: ();
 $theme-colors: map-merge($theme-colors, $theme-colors-transform);
 
 // Table view
-$total-table-cols: 10;
+$total-table-cols: 100;
 $data-table-border-color: $black;
 $data-table-border: 1px solid $data-table-border-color;

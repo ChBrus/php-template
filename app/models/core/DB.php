@@ -28,7 +28,12 @@
 
                 parent::__construct("mysql:host={$this->host};dbname={$this->database};charset={$this->charset}", $this->user, $this->password);
             } catch (DatabaseException $e) {
-                die($e->show());
+                die(
+                    json_encode([
+                        'status' => 500,
+                        'response' => $e->show()
+                    ])
+                );
             } catch (PDOException $e) {
                 $pdoException = new DatabaseException($e->getMessage());
 
@@ -39,7 +44,12 @@
 
                 $pdoException->setAttribute(\Enums\DB\Properties::alertHeader, $alertHeader);
 
-                die($pdoException->show());
+                die(
+                    json_encode([
+                        "status" => 500,
+                        "response" => $pdoException->show()
+                    ])
+                );
             }
         }
     }

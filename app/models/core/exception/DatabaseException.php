@@ -35,15 +35,13 @@
         public function show()
         {
             $this->alert->setAttribute(MsgProperties::header, $this->alertHeader);
-            $this->alert->setAttribute(MsgProperties::buildStyles, true);
-
-            return $this->alert->dangerMsg();
+            return htmlentities($this->alert->dangerMsg());
         }
 
         /**
          * Pone un valor a una propiedad de la clase
          *
-         * @param Properties | string $propertyName
+         * @param Properties $propertyName
          * @param mixed $value
          * @return void
          */
@@ -52,6 +50,29 @@
 
             if (property_exists($this, $name)) {
                 $this->$name = $value;
+            }
+        }
+
+        /**
+         * Configura los atributos de la alerta
+         *
+         * @param MsgProperties $propertyName
+         * @param mixed $value
+         * @return void
+         */
+        public function configAlert(MsgProperties $propertyName, $value) {
+            $this->alert->setAttribute($propertyName, $value);
+        }
+
+        /**
+         * Regresa el valor de cualquier atributo en el objeto
+         *
+         * @param string $name
+         * @return mixed
+         */
+        public function __get($name) {
+            if (property_exists($this, $name)) {
+                return $this->$name;
             }
         }
     }

@@ -1,12 +1,11 @@
-import { Data } from "./consts.js";
+import { Data, Page } from "./consts.js";
 
 export async function getSelect(locationURL) {
-    let page = localStorage.getItem('page') ?? 0;
-    if(page === 0) {
-        null
-    };
+    Page.__update();
+    let page = Page.__get();
     const response = await fetch(locationURL + 'select.php', Data.POST({
-        Page: page
+        password: 'javascript-async-fetch',
+        page: page
     }));
 
     if (!response.ok) {

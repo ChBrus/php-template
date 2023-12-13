@@ -6,15 +6,23 @@
 
     JSON::decode();
 
+    if ($_POST['password'] !== 'javascript-async-fetch') header('location: ./');
+
     $user = new User(2, 'Bruno', 'Carrillo');
     $user->addTable('users');
+    $user->startIndex = ((int) $_POST['page']) * ((int) $user->__get('limitQuery'));
 
     list(
         "status" => $status,
         "response" => $response
-    ) = $user->select('name,last_name');
+    ) = $user->select();
 
-    if ($status === 500) die(json_encode(['status'=> $status,'response'=> $response]));
+    if ($status === 500) {
+        die(json_encode([
+            'status'=> $status,
+            'response' => $response
+        ]));
+    }
 
     echo json_encode([
         "status" => $status,

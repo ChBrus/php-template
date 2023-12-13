@@ -16793,6 +16793,7 @@ body:has(.query-msg) {
   height: 100%;
   flex-direction: column;
   padding: 0.5rem;
+  overflow-x: auto;
 }
 
 .data-table .header, .data-table .body .dataRow {
@@ -16801,6 +16802,7 @@ body:has(.query-msg) {
 
 .header.columns-1 {
   grid-template-columns: repeat(1, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-1 .dataRow {
@@ -16809,6 +16811,7 @@ body:has(.query-msg) {
 
 .header.columns-2 {
   grid-template-columns: repeat(2, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-2 .dataRow {
@@ -16817,6 +16820,7 @@ body:has(.query-msg) {
 
 .header.columns-3 {
   grid-template-columns: repeat(3, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-3 .dataRow {
@@ -16825,6 +16829,7 @@ body:has(.query-msg) {
 
 .header.columns-4 {
   grid-template-columns: repeat(4, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-4 .dataRow {
@@ -16833,50 +16838,1250 @@ body:has(.query-msg) {
 
 .header.columns-5 {
   grid-template-columns: repeat(5, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-5 .dataRow {
   grid-template-columns: repeat(5, 1fr);
 }
 
+.header.columns-5, .body.columns-5 {
+  width: 150%;
+}
+
 .header.columns-6 {
   grid-template-columns: repeat(6, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-6 .dataRow {
   grid-template-columns: repeat(6, 1fr);
 }
 
+.header.columns-6, .body.columns-6 {
+  width: 150%;
+}
+
 .header.columns-7 {
   grid-template-columns: repeat(7, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-7 .dataRow {
   grid-template-columns: repeat(7, 1fr);
 }
 
+.header.columns-7, .body.columns-7 {
+  width: 200%;
+}
+
 .header.columns-8 {
   grid-template-columns: repeat(8, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-8 .dataRow {
   grid-template-columns: repeat(8, 1fr);
 }
 
+.header.columns-8, .body.columns-8 {
+  width: 200%;
+}
+
 .header.columns-9 {
   grid-template-columns: repeat(9, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-9 .dataRow {
   grid-template-columns: repeat(9, 1fr);
 }
 
+.header.columns-9, .body.columns-9 {
+  width: 250%;
+}
+
 .header.columns-10 {
   grid-template-columns: repeat(10, 1fr);
+  font-weight: 500;
 }
 
 .body.columns-10 .dataRow {
   grid-template-columns: repeat(10, 1fr);
+}
+
+.header.columns-10, .body.columns-10 {
+  width: 250%;
+}
+
+.header.columns-11 {
+  grid-template-columns: repeat(11, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-11 .dataRow {
+  grid-template-columns: repeat(11, 1fr);
+}
+
+.header.columns-11, .body.columns-11 {
+  width: 300%;
+}
+
+.header.columns-12 {
+  grid-template-columns: repeat(12, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-12 .dataRow {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.header.columns-12, .body.columns-12 {
+  width: 300%;
+}
+
+.header.columns-13 {
+  grid-template-columns: repeat(13, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-13 .dataRow {
+  grid-template-columns: repeat(13, 1fr);
+}
+
+.header.columns-13, .body.columns-13 {
+  width: 350%;
+}
+
+.header.columns-14 {
+  grid-template-columns: repeat(14, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-14 .dataRow {
+  grid-template-columns: repeat(14, 1fr);
+}
+
+.header.columns-14, .body.columns-14 {
+  width: 350%;
+}
+
+.header.columns-15 {
+  grid-template-columns: repeat(15, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-15 .dataRow {
+  grid-template-columns: repeat(15, 1fr);
+}
+
+.header.columns-15, .body.columns-15 {
+  width: 400%;
+}
+
+.header.columns-16 {
+  grid-template-columns: repeat(16, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-16 .dataRow {
+  grid-template-columns: repeat(16, 1fr);
+}
+
+.header.columns-16, .body.columns-16 {
+  width: 400%;
+}
+
+.header.columns-17 {
+  grid-template-columns: repeat(17, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-17 .dataRow {
+  grid-template-columns: repeat(17, 1fr);
+}
+
+.header.columns-17, .body.columns-17 {
+  width: 450%;
+}
+
+.header.columns-18 {
+  grid-template-columns: repeat(18, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-18 .dataRow {
+  grid-template-columns: repeat(18, 1fr);
+}
+
+.header.columns-18, .body.columns-18 {
+  width: 450%;
+}
+
+.header.columns-19 {
+  grid-template-columns: repeat(19, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-19 .dataRow {
+  grid-template-columns: repeat(19, 1fr);
+}
+
+.header.columns-19, .body.columns-19 {
+  width: 500%;
+}
+
+.header.columns-20 {
+  grid-template-columns: repeat(20, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-20 .dataRow {
+  grid-template-columns: repeat(20, 1fr);
+}
+
+.header.columns-20, .body.columns-20 {
+  width: 500%;
+}
+
+.header.columns-21 {
+  grid-template-columns: repeat(21, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-21 .dataRow {
+  grid-template-columns: repeat(21, 1fr);
+}
+
+.header.columns-21, .body.columns-21 {
+  width: 550%;
+}
+
+.header.columns-22 {
+  grid-template-columns: repeat(22, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-22 .dataRow {
+  grid-template-columns: repeat(22, 1fr);
+}
+
+.header.columns-22, .body.columns-22 {
+  width: 550%;
+}
+
+.header.columns-23 {
+  grid-template-columns: repeat(23, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-23 .dataRow {
+  grid-template-columns: repeat(23, 1fr);
+}
+
+.header.columns-23, .body.columns-23 {
+  width: 600%;
+}
+
+.header.columns-24 {
+  grid-template-columns: repeat(24, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-24 .dataRow {
+  grid-template-columns: repeat(24, 1fr);
+}
+
+.header.columns-24, .body.columns-24 {
+  width: 600%;
+}
+
+.header.columns-25 {
+  grid-template-columns: repeat(25, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-25 .dataRow {
+  grid-template-columns: repeat(25, 1fr);
+}
+
+.header.columns-25, .body.columns-25 {
+  width: 650%;
+}
+
+.header.columns-26 {
+  grid-template-columns: repeat(26, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-26 .dataRow {
+  grid-template-columns: repeat(26, 1fr);
+}
+
+.header.columns-26, .body.columns-26 {
+  width: 650%;
+}
+
+.header.columns-27 {
+  grid-template-columns: repeat(27, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-27 .dataRow {
+  grid-template-columns: repeat(27, 1fr);
+}
+
+.header.columns-27, .body.columns-27 {
+  width: 700%;
+}
+
+.header.columns-28 {
+  grid-template-columns: repeat(28, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-28 .dataRow {
+  grid-template-columns: repeat(28, 1fr);
+}
+
+.header.columns-28, .body.columns-28 {
+  width: 700%;
+}
+
+.header.columns-29 {
+  grid-template-columns: repeat(29, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-29 .dataRow {
+  grid-template-columns: repeat(29, 1fr);
+}
+
+.header.columns-29, .body.columns-29 {
+  width: 750%;
+}
+
+.header.columns-30 {
+  grid-template-columns: repeat(30, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-30 .dataRow {
+  grid-template-columns: repeat(30, 1fr);
+}
+
+.header.columns-30, .body.columns-30 {
+  width: 750%;
+}
+
+.header.columns-31 {
+  grid-template-columns: repeat(31, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-31 .dataRow {
+  grid-template-columns: repeat(31, 1fr);
+}
+
+.header.columns-31, .body.columns-31 {
+  width: 800%;
+}
+
+.header.columns-32 {
+  grid-template-columns: repeat(32, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-32 .dataRow {
+  grid-template-columns: repeat(32, 1fr);
+}
+
+.header.columns-32, .body.columns-32 {
+  width: 800%;
+}
+
+.header.columns-33 {
+  grid-template-columns: repeat(33, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-33 .dataRow {
+  grid-template-columns: repeat(33, 1fr);
+}
+
+.header.columns-33, .body.columns-33 {
+  width: 850%;
+}
+
+.header.columns-34 {
+  grid-template-columns: repeat(34, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-34 .dataRow {
+  grid-template-columns: repeat(34, 1fr);
+}
+
+.header.columns-34, .body.columns-34 {
+  width: 850%;
+}
+
+.header.columns-35 {
+  grid-template-columns: repeat(35, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-35 .dataRow {
+  grid-template-columns: repeat(35, 1fr);
+}
+
+.header.columns-35, .body.columns-35 {
+  width: 900%;
+}
+
+.header.columns-36 {
+  grid-template-columns: repeat(36, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-36 .dataRow {
+  grid-template-columns: repeat(36, 1fr);
+}
+
+.header.columns-36, .body.columns-36 {
+  width: 900%;
+}
+
+.header.columns-37 {
+  grid-template-columns: repeat(37, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-37 .dataRow {
+  grid-template-columns: repeat(37, 1fr);
+}
+
+.header.columns-37, .body.columns-37 {
+  width: 950%;
+}
+
+.header.columns-38 {
+  grid-template-columns: repeat(38, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-38 .dataRow {
+  grid-template-columns: repeat(38, 1fr);
+}
+
+.header.columns-38, .body.columns-38 {
+  width: 950%;
+}
+
+.header.columns-39 {
+  grid-template-columns: repeat(39, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-39 .dataRow {
+  grid-template-columns: repeat(39, 1fr);
+}
+
+.header.columns-39, .body.columns-39 {
+  width: 1000%;
+}
+
+.header.columns-40 {
+  grid-template-columns: repeat(40, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-40 .dataRow {
+  grid-template-columns: repeat(40, 1fr);
+}
+
+.header.columns-40, .body.columns-40 {
+  width: 1000%;
+}
+
+.header.columns-41 {
+  grid-template-columns: repeat(41, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-41 .dataRow {
+  grid-template-columns: repeat(41, 1fr);
+}
+
+.header.columns-41, .body.columns-41 {
+  width: 1050%;
+}
+
+.header.columns-42 {
+  grid-template-columns: repeat(42, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-42 .dataRow {
+  grid-template-columns: repeat(42, 1fr);
+}
+
+.header.columns-42, .body.columns-42 {
+  width: 1050%;
+}
+
+.header.columns-43 {
+  grid-template-columns: repeat(43, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-43 .dataRow {
+  grid-template-columns: repeat(43, 1fr);
+}
+
+.header.columns-43, .body.columns-43 {
+  width: 1100%;
+}
+
+.header.columns-44 {
+  grid-template-columns: repeat(44, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-44 .dataRow {
+  grid-template-columns: repeat(44, 1fr);
+}
+
+.header.columns-44, .body.columns-44 {
+  width: 1100%;
+}
+
+.header.columns-45 {
+  grid-template-columns: repeat(45, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-45 .dataRow {
+  grid-template-columns: repeat(45, 1fr);
+}
+
+.header.columns-45, .body.columns-45 {
+  width: 1150%;
+}
+
+.header.columns-46 {
+  grid-template-columns: repeat(46, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-46 .dataRow {
+  grid-template-columns: repeat(46, 1fr);
+}
+
+.header.columns-46, .body.columns-46 {
+  width: 1150%;
+}
+
+.header.columns-47 {
+  grid-template-columns: repeat(47, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-47 .dataRow {
+  grid-template-columns: repeat(47, 1fr);
+}
+
+.header.columns-47, .body.columns-47 {
+  width: 1200%;
+}
+
+.header.columns-48 {
+  grid-template-columns: repeat(48, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-48 .dataRow {
+  grid-template-columns: repeat(48, 1fr);
+}
+
+.header.columns-48, .body.columns-48 {
+  width: 1200%;
+}
+
+.header.columns-49 {
+  grid-template-columns: repeat(49, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-49 .dataRow {
+  grid-template-columns: repeat(49, 1fr);
+}
+
+.header.columns-49, .body.columns-49 {
+  width: 1250%;
+}
+
+.header.columns-50 {
+  grid-template-columns: repeat(50, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-50 .dataRow {
+  grid-template-columns: repeat(50, 1fr);
+}
+
+.header.columns-50, .body.columns-50 {
+  width: 1250%;
+}
+
+.header.columns-51 {
+  grid-template-columns: repeat(51, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-51 .dataRow {
+  grid-template-columns: repeat(51, 1fr);
+}
+
+.header.columns-51, .body.columns-51 {
+  width: 1300%;
+}
+
+.header.columns-52 {
+  grid-template-columns: repeat(52, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-52 .dataRow {
+  grid-template-columns: repeat(52, 1fr);
+}
+
+.header.columns-52, .body.columns-52 {
+  width: 1300%;
+}
+
+.header.columns-53 {
+  grid-template-columns: repeat(53, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-53 .dataRow {
+  grid-template-columns: repeat(53, 1fr);
+}
+
+.header.columns-53, .body.columns-53 {
+  width: 1350%;
+}
+
+.header.columns-54 {
+  grid-template-columns: repeat(54, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-54 .dataRow {
+  grid-template-columns: repeat(54, 1fr);
+}
+
+.header.columns-54, .body.columns-54 {
+  width: 1350%;
+}
+
+.header.columns-55 {
+  grid-template-columns: repeat(55, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-55 .dataRow {
+  grid-template-columns: repeat(55, 1fr);
+}
+
+.header.columns-55, .body.columns-55 {
+  width: 1400%;
+}
+
+.header.columns-56 {
+  grid-template-columns: repeat(56, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-56 .dataRow {
+  grid-template-columns: repeat(56, 1fr);
+}
+
+.header.columns-56, .body.columns-56 {
+  width: 1400%;
+}
+
+.header.columns-57 {
+  grid-template-columns: repeat(57, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-57 .dataRow {
+  grid-template-columns: repeat(57, 1fr);
+}
+
+.header.columns-57, .body.columns-57 {
+  width: 1450%;
+}
+
+.header.columns-58 {
+  grid-template-columns: repeat(58, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-58 .dataRow {
+  grid-template-columns: repeat(58, 1fr);
+}
+
+.header.columns-58, .body.columns-58 {
+  width: 1450%;
+}
+
+.header.columns-59 {
+  grid-template-columns: repeat(59, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-59 .dataRow {
+  grid-template-columns: repeat(59, 1fr);
+}
+
+.header.columns-59, .body.columns-59 {
+  width: 1500%;
+}
+
+.header.columns-60 {
+  grid-template-columns: repeat(60, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-60 .dataRow {
+  grid-template-columns: repeat(60, 1fr);
+}
+
+.header.columns-60, .body.columns-60 {
+  width: 1500%;
+}
+
+.header.columns-61 {
+  grid-template-columns: repeat(61, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-61 .dataRow {
+  grid-template-columns: repeat(61, 1fr);
+}
+
+.header.columns-61, .body.columns-61 {
+  width: 1550%;
+}
+
+.header.columns-62 {
+  grid-template-columns: repeat(62, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-62 .dataRow {
+  grid-template-columns: repeat(62, 1fr);
+}
+
+.header.columns-62, .body.columns-62 {
+  width: 1550%;
+}
+
+.header.columns-63 {
+  grid-template-columns: repeat(63, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-63 .dataRow {
+  grid-template-columns: repeat(63, 1fr);
+}
+
+.header.columns-63, .body.columns-63 {
+  width: 1600%;
+}
+
+.header.columns-64 {
+  grid-template-columns: repeat(64, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-64 .dataRow {
+  grid-template-columns: repeat(64, 1fr);
+}
+
+.header.columns-64, .body.columns-64 {
+  width: 1600%;
+}
+
+.header.columns-65 {
+  grid-template-columns: repeat(65, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-65 .dataRow {
+  grid-template-columns: repeat(65, 1fr);
+}
+
+.header.columns-65, .body.columns-65 {
+  width: 1650%;
+}
+
+.header.columns-66 {
+  grid-template-columns: repeat(66, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-66 .dataRow {
+  grid-template-columns: repeat(66, 1fr);
+}
+
+.header.columns-66, .body.columns-66 {
+  width: 1650%;
+}
+
+.header.columns-67 {
+  grid-template-columns: repeat(67, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-67 .dataRow {
+  grid-template-columns: repeat(67, 1fr);
+}
+
+.header.columns-67, .body.columns-67 {
+  width: 1700%;
+}
+
+.header.columns-68 {
+  grid-template-columns: repeat(68, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-68 .dataRow {
+  grid-template-columns: repeat(68, 1fr);
+}
+
+.header.columns-68, .body.columns-68 {
+  width: 1700%;
+}
+
+.header.columns-69 {
+  grid-template-columns: repeat(69, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-69 .dataRow {
+  grid-template-columns: repeat(69, 1fr);
+}
+
+.header.columns-69, .body.columns-69 {
+  width: 1750%;
+}
+
+.header.columns-70 {
+  grid-template-columns: repeat(70, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-70 .dataRow {
+  grid-template-columns: repeat(70, 1fr);
+}
+
+.header.columns-70, .body.columns-70 {
+  width: 1750%;
+}
+
+.header.columns-71 {
+  grid-template-columns: repeat(71, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-71 .dataRow {
+  grid-template-columns: repeat(71, 1fr);
+}
+
+.header.columns-71, .body.columns-71 {
+  width: 1800%;
+}
+
+.header.columns-72 {
+  grid-template-columns: repeat(72, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-72 .dataRow {
+  grid-template-columns: repeat(72, 1fr);
+}
+
+.header.columns-72, .body.columns-72 {
+  width: 1800%;
+}
+
+.header.columns-73 {
+  grid-template-columns: repeat(73, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-73 .dataRow {
+  grid-template-columns: repeat(73, 1fr);
+}
+
+.header.columns-73, .body.columns-73 {
+  width: 1850%;
+}
+
+.header.columns-74 {
+  grid-template-columns: repeat(74, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-74 .dataRow {
+  grid-template-columns: repeat(74, 1fr);
+}
+
+.header.columns-74, .body.columns-74 {
+  width: 1850%;
+}
+
+.header.columns-75 {
+  grid-template-columns: repeat(75, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-75 .dataRow {
+  grid-template-columns: repeat(75, 1fr);
+}
+
+.header.columns-75, .body.columns-75 {
+  width: 1900%;
+}
+
+.header.columns-76 {
+  grid-template-columns: repeat(76, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-76 .dataRow {
+  grid-template-columns: repeat(76, 1fr);
+}
+
+.header.columns-76, .body.columns-76 {
+  width: 1900%;
+}
+
+.header.columns-77 {
+  grid-template-columns: repeat(77, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-77 .dataRow {
+  grid-template-columns: repeat(77, 1fr);
+}
+
+.header.columns-77, .body.columns-77 {
+  width: 1950%;
+}
+
+.header.columns-78 {
+  grid-template-columns: repeat(78, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-78 .dataRow {
+  grid-template-columns: repeat(78, 1fr);
+}
+
+.header.columns-78, .body.columns-78 {
+  width: 1950%;
+}
+
+.header.columns-79 {
+  grid-template-columns: repeat(79, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-79 .dataRow {
+  grid-template-columns: repeat(79, 1fr);
+}
+
+.header.columns-79, .body.columns-79 {
+  width: 2000%;
+}
+
+.header.columns-80 {
+  grid-template-columns: repeat(80, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-80 .dataRow {
+  grid-template-columns: repeat(80, 1fr);
+}
+
+.header.columns-80, .body.columns-80 {
+  width: 2000%;
+}
+
+.header.columns-81 {
+  grid-template-columns: repeat(81, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-81 .dataRow {
+  grid-template-columns: repeat(81, 1fr);
+}
+
+.header.columns-81, .body.columns-81 {
+  width: 2050%;
+}
+
+.header.columns-82 {
+  grid-template-columns: repeat(82, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-82 .dataRow {
+  grid-template-columns: repeat(82, 1fr);
+}
+
+.header.columns-82, .body.columns-82 {
+  width: 2050%;
+}
+
+.header.columns-83 {
+  grid-template-columns: repeat(83, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-83 .dataRow {
+  grid-template-columns: repeat(83, 1fr);
+}
+
+.header.columns-83, .body.columns-83 {
+  width: 2100%;
+}
+
+.header.columns-84 {
+  grid-template-columns: repeat(84, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-84 .dataRow {
+  grid-template-columns: repeat(84, 1fr);
+}
+
+.header.columns-84, .body.columns-84 {
+  width: 2100%;
+}
+
+.header.columns-85 {
+  grid-template-columns: repeat(85, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-85 .dataRow {
+  grid-template-columns: repeat(85, 1fr);
+}
+
+.header.columns-85, .body.columns-85 {
+  width: 2150%;
+}
+
+.header.columns-86 {
+  grid-template-columns: repeat(86, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-86 .dataRow {
+  grid-template-columns: repeat(86, 1fr);
+}
+
+.header.columns-86, .body.columns-86 {
+  width: 2150%;
+}
+
+.header.columns-87 {
+  grid-template-columns: repeat(87, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-87 .dataRow {
+  grid-template-columns: repeat(87, 1fr);
+}
+
+.header.columns-87, .body.columns-87 {
+  width: 2200%;
+}
+
+.header.columns-88 {
+  grid-template-columns: repeat(88, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-88 .dataRow {
+  grid-template-columns: repeat(88, 1fr);
+}
+
+.header.columns-88, .body.columns-88 {
+  width: 2200%;
+}
+
+.header.columns-89 {
+  grid-template-columns: repeat(89, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-89 .dataRow {
+  grid-template-columns: repeat(89, 1fr);
+}
+
+.header.columns-89, .body.columns-89 {
+  width: 2250%;
+}
+
+.header.columns-90 {
+  grid-template-columns: repeat(90, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-90 .dataRow {
+  grid-template-columns: repeat(90, 1fr);
+}
+
+.header.columns-90, .body.columns-90 {
+  width: 2250%;
+}
+
+.header.columns-91 {
+  grid-template-columns: repeat(91, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-91 .dataRow {
+  grid-template-columns: repeat(91, 1fr);
+}
+
+.header.columns-91, .body.columns-91 {
+  width: 2300%;
+}
+
+.header.columns-92 {
+  grid-template-columns: repeat(92, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-92 .dataRow {
+  grid-template-columns: repeat(92, 1fr);
+}
+
+.header.columns-92, .body.columns-92 {
+  width: 2300%;
+}
+
+.header.columns-93 {
+  grid-template-columns: repeat(93, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-93 .dataRow {
+  grid-template-columns: repeat(93, 1fr);
+}
+
+.header.columns-93, .body.columns-93 {
+  width: 2350%;
+}
+
+.header.columns-94 {
+  grid-template-columns: repeat(94, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-94 .dataRow {
+  grid-template-columns: repeat(94, 1fr);
+}
+
+.header.columns-94, .body.columns-94 {
+  width: 2350%;
+}
+
+.header.columns-95 {
+  grid-template-columns: repeat(95, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-95 .dataRow {
+  grid-template-columns: repeat(95, 1fr);
+}
+
+.header.columns-95, .body.columns-95 {
+  width: 2400%;
+}
+
+.header.columns-96 {
+  grid-template-columns: repeat(96, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-96 .dataRow {
+  grid-template-columns: repeat(96, 1fr);
+}
+
+.header.columns-96, .body.columns-96 {
+  width: 2400%;
+}
+
+.header.columns-97 {
+  grid-template-columns: repeat(97, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-97 .dataRow {
+  grid-template-columns: repeat(97, 1fr);
+}
+
+.header.columns-97, .body.columns-97 {
+  width: 2450%;
+}
+
+.header.columns-98 {
+  grid-template-columns: repeat(98, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-98 .dataRow {
+  grid-template-columns: repeat(98, 1fr);
+}
+
+.header.columns-98, .body.columns-98 {
+  width: 2450%;
+}
+
+.header.columns-99 {
+  grid-template-columns: repeat(99, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-99 .dataRow {
+  grid-template-columns: repeat(99, 1fr);
+}
+
+.header.columns-99, .body.columns-99 {
+  width: 2500%;
+}
+
+.header.columns-100 {
+  grid-template-columns: repeat(100, 1fr);
+  font-weight: 500;
+}
+
+.body.columns-100 .dataRow {
+  grid-template-columns: repeat(100, 1fr);
+}
+
+.header.columns-100, .body.columns-100 {
+  width: 2500%;
 }
 
 .data-table .header,

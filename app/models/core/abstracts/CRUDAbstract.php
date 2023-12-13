@@ -3,14 +3,17 @@
 
     use Core\DB;
     use Core\Exception\DatabaseException;
+    use Enums\DB\Properties as DBProperties;
+    use Enums\Msg\Properties;
     use PDOException;
     use Core\Interfaces\CRUDInterface;
     use Tools\Env;
 
     abstract class CRUDAbstract implements CRUDInterface {
+        public int $startIndex;
         protected array $tables;
         protected array $views;
-        protected int $maxRows;
+        protected int $limitQuery;
         private DB $database;
 
         public function __construct() {
@@ -20,7 +23,7 @@
                 if (!isset($_ENV)) throw new DatabaseException('Las variables de entorno no cargaron', 16);
 
                 $this->database = new DB();
-                $this->maxRows = (int) $_ENV['maxRows'];
+                $this->limitQuery = (int) $_ENV['maxRows'];
                 $this->tables = array();
                 $this->views = array();
             } catch (DatabaseException $e) {
@@ -46,25 +49,28 @@
 
         public function delete($table = 0) : array {return [];}
 
-        public function select($columns = '*', $table = 0, $conditions = []) : array {
+        public function select($columns = '*', $conditions = [], $isView = false, $table_or_view = 0) : array {
             try {
                 if (empty($columns)) throw new DatabaseException('No se especificó ninguna columna');
 
-                $columns_array = explode(',', $columns);
-                $attributes_array = array_keys($this->getAttributes());
-                $array_diff_columns_attributes = array_diff($columns_array, $attributes_array);
+                if ($columns !== '*') {
+                    $columns_array = explode(',', $columns);
+                    $attributes_array = array_keys($this->getAttributes());
+                    $array_diff_columns_attributes = array_diff($columns_array, $attributes_array);
+                }
 
                 if (!empty($array_diff_columns_attributes)) throw new DatabaseException('No existe la columna / las columnas: ' . implode(', ', $array_diff_columns_attributes));
 
                 $query = $this->database->prepare(
-                    "SELECT {$columns} FROM `{$_ENV['DB']}`.`{$this->tables[$table]}`" .
+                    "SELECT {$columns} FROM `{$_ENV['DB']}`.`" .
+                    ($isView ? $this->views[$table_or_view] : $this->tables[$table_or_view]) . "`" .
                     (!empty($conditions) ?
                     " WHERE " . rtrim(
                         array_reduce($conditions, function($carry, $item) {
                             return $carry . " (" . $item . ") AND";
                         }), ' AND'
                     ) : '') .
-                    ";"
+                    "LIMIT {$this->startIndex},{$this->limitQuery};"
                 );
 
                 $response = $query->execute();
@@ -86,12 +92,24 @@
                 $pdoException = new DatabaseException($e->getMessage());
 
                 return [
-                    "status"=> 500,
-                    "response"=> $pdoException->show()
+                    "status" => 500,
+                    "response" => $pdoException->show()
                 ];
             }
         }
 
+        public function __get($property) : mixed {
+            if (property_exists($this, $property)) {
+                return $this->$property;
+            }
+            return null;
+        }
+
+        /**
+         * Obtiene los atributos del objeto en un arreglo asociativo
+         *
+         * @return array
+         */
         public function getAttributes() : array {
             $jsonObject = json_encode($this);
 
@@ -100,6 +118,11 @@
             return $jsonDecode;
         }
 
+        /**
+         * Acompañado de @method array getAttributes() puedes obtener un JSON del arreglo dado
+         *
+         * @return string
+         */
         public function getJSONObject() : string {
             return json_encode($this->getAttributes());
         }

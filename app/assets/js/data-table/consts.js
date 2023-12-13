@@ -1,32 +1,50 @@
 export const dataTable = document.querySelector('.data-table'),
+    headerTable = dataTable.querySelector('.header'),
+    bodyTable = dataTable.querySelector('.body'),
+    loadingLayout = bodyTable.querySelector('.loading'),
     globalLocation = dataTable.getAttribute('global-location'),
     localLocation = dataTable.getAttribute('local-location');
 
-export const Data = {
-    POST: (postData) => {
-        return {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(postData)
-        };
-    },
-    GET: (fileName, queryParams) => {
-        // Crear un objeto URLSearchParams para construir los parámetros de la consulta
-        const params = new URLSearchParams();
+export const dataRow = document.createElement('div');
 
-        // Agregar los parámetros a la URLSearchParams
-        for (const [key, value] of Object.entries(queryParams)) {
-            params.append(key, value);
+export function initDataRow(data) {
+    dataRow.classList.add('dataRow');
+
+    let dataRows = getDataRows(data);
+
+    dataRows.forEach((element) => {
+        bodyTable.appendChild(element);
+    });
+
+    bodyTable.removeChild(loadingLayout);
+}
+
+export function getDataRows(data) {
+    const dataRows = [];
+
+    for (let i = 0; i < data.response.length; i++) {
+        let dataRowElements = getDataRowElements(),
+            dataFormatted = Object.values(data.response[i]);
+        
+        for (let j = 0; j < dataFormatted.length; j++) {
+            dataRowElements[j].textContent = dataFormatted[j];
         }
 
-        return {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            url: globalLocation + fileName + '.php' + '?' + params.toString()
-        };  
+        dataRows.push(dataRowElements);
     }
-};
+
+    return dataRows;
+}
+
+function getDataRowElements() {
+    const columns = [];
+
+    for (let i = 0; i < headerTable.childElementCount; i++) {
+        let container = document.createElement('div');
+        container.classList.add('d-col');
+
+        columns.push(container);
+    }
+
+    return columns;
+}
