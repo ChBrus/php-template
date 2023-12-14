@@ -1,8 +1,12 @@
 Options All -Indexes
 Options -MultiViews
 
-RewriteEngine On
-RewriteBase /php-builder/
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /php-builder/
+
+    RewriteRule /(vendor|app)/ - [F,L]
+</IfModule>
 
 DirectoryIndex index.php
 

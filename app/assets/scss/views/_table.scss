@@ -3,7 +3,7 @@
     height: 100%;
     flex-direction: column;
     padding: 0.5rem;
-    overflow-x: auto;
+    overflow: auto;
 }
 
 .data-table .header, .data-table .body .dataRow {
@@ -22,7 +22,7 @@
 
     @if $cols > 4 {
         .header.columns-#{$cols}, .body.columns-#{$cols} {
-            width: calc(50% * round($cols / 2));
+            width: calc(50% * round(calc($cols / 2)));
         }
     }
 }

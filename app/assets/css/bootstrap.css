@@ -16793,7 +16793,7 @@ body:has(.query-msg) {
   height: 100%;
   flex-direction: column;
   padding: 0.5rem;
-  overflow-x: auto;
+  overflow: auto;
 }
 
 .data-table .header, .data-table .body .dataRow {

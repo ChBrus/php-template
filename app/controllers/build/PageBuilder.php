@@ -54,7 +54,7 @@
         public static function builImage(string $location, $alt = 'img-built', $width = '100px', $height = '100px') {
             ob_start();
             ?>
-                <img src="<?= self::getProjectURL() . 'app/assets/img/' . $location ?>" alt="<?= $alt ?>">
+                <img src="<?= self::getProjectURL() . 'app/assets/img/' . $location ?>" alt="<?= $alt ?>" width="<?= $width ?>" height="<?= $height ?>">
             <?php
             return ob_get_clean();
         }

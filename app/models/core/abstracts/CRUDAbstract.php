@@ -3,8 +3,6 @@
 
     use Core\DB;
     use Core\Exception\DatabaseException;
-    use Enums\DB\Properties as DBProperties;
-    use Enums\Msg\Properties;
     use PDOException;
     use Core\Interfaces\CRUDInterface;
     use Tools\Env;
@@ -54,7 +52,7 @@
                 if (empty($columns)) throw new DatabaseException('No se especificó ninguna columna');
 
                 if ($columns !== '*') {
-                    $columns_array = explode(',', $columns);
+                    $columns_array = explode(', ', $columns);
                     $attributes_array = array_keys($this->getAttributes());
                     $array_diff_columns_attributes = array_diff($columns_array, $attributes_array);
                 }
@@ -173,6 +171,16 @@
             $this->views = array_filter($this->views, function($view) {
                 return $view !== view ? $view : null;
             });
+        }
+
+        /**
+         * Cambia el limite de datos que nos llevamos de cualquier tabla/vista
+         *
+         * @param int $limitQuery
+         * @return void
+         */
+        public function setLimitQuery(int $limitQuery) {
+            $this->limitQuery = $limitQuery;
         }
     }
 ?>

@@ -2,7 +2,6 @@
     namespace Core;
 
     use Core\Abstracts\CRUDAbstract;
-    use Core\Exception\DatabaseException;
 
     class User extends CRUDAbstract {
         public $id;
