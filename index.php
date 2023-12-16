@@ -15,7 +15,7 @@
 </head>
 <body>
     <?= view('data-table/table', [
-        'columns' => 3,
+        'columns' => 4,
         'maxRows' => $_ENV['maxRows'],
         'globalLocation' => PageBuilder::getProjectURL(),
     ]) ?>

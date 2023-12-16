@@ -1,7 +1,9 @@
 .data-table {
     display: flex;
+    width: auto;
     height: 100%;
     flex-direction: column;
+    justify-content: center;
     padding: 0.5rem;
     overflow: auto;
 }
@@ -20,11 +22,35 @@
         grid-template-columns: repeat($cols, 1fr);
     }
 
-    @if $cols > 4 {
-        .header.columns-#{$cols}, .body.columns-#{$cols} {
-            width: calc(50% * round(calc($cols / 2)));
+    @if $cols > 3 {
+        $default-width: calc(50% * round(calc($cols / 2)));
+
+        // Manejar tanto pares como impares
+        $accordion-width: calc($default-width / max(1, round(calc($cols / 2))));
+
+        .data-table .accordion.columns-#{$cols} {
+            // width: calc($accordion-width * round(calc($cols / 2)));
+            width: calc($accordion-width * round(calc($cols / 2)));
+        }
+
+        .header.columns-#{$cols},
+        .body.columns-#{$cols} {
+            width: $default-width;
         }
     }
+}
+
+.accordion-item:last-of-type {
+    border-radius: var(--bs-accordion-inner-border-radius) var(--bs-accordion-inner-border-radius) 0 0;
+    border-color: $black;
+}
+
+.data-table .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+    box-shadow: none;
+}
+
+.data-table .accordion .accordion-item .accordion-header .accordion-button:focus {
+    box-shadow: none;
 }
 
 .data-table .header,

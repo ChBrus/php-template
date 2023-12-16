@@ -20,11 +20,10 @@
          *  "name = 'Nombre'",
          * "last_name = 'Apellido'"
          * ]
-         * @param bool $isView
          * @param int $table_or_view
          * @return array
          */
-        public function select($columns = '*', $conditions = [], $isView = false, $table_or_view = 0) : array;
+        public function select($columns = '*', $conditions = [], $table_or_view = 0) : array;
 
         /**
          * Método para hacer peticiones de actualizaciones de datos en una tabla de la base de datos

@@ -16790,8 +16790,10 @@ body:has(.query-msg) {
 }
 .data-table {
   display: flex;
+  width: auto;
   height: 100%;
   flex-direction: column;
+  justify-content: center;
   padding: 0.5rem;
   overflow: auto;
 }
@@ -16836,6 +16838,15 @@ body:has(.query-msg) {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.data-table .accordion.columns-4 {
+  width: 100%;
+}
+
+.header.columns-4,
+.body.columns-4 {
+  width: 100%;
+}
+
 .header.columns-5 {
   grid-template-columns: repeat(5, 1fr);
   font-weight: 500;
@@ -16845,7 +16856,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(5, 1fr);
 }
 
-.header.columns-5, .body.columns-5 {
+.data-table .accordion.columns-5 {
+  width: 150%;
+}
+
+.header.columns-5,
+.body.columns-5 {
   width: 150%;
 }
 
@@ -16858,7 +16874,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(6, 1fr);
 }
 
-.header.columns-6, .body.columns-6 {
+.data-table .accordion.columns-6 {
+  width: 150%;
+}
+
+.header.columns-6,
+.body.columns-6 {
   width: 150%;
 }
 
@@ -16871,7 +16892,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(7, 1fr);
 }
 
-.header.columns-7, .body.columns-7 {
+.data-table .accordion.columns-7 {
+  width: 200%;
+}
+
+.header.columns-7,
+.body.columns-7 {
   width: 200%;
 }
 
@@ -16884,7 +16910,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(8, 1fr);
 }
 
-.header.columns-8, .body.columns-8 {
+.data-table .accordion.columns-8 {
+  width: 200%;
+}
+
+.header.columns-8,
+.body.columns-8 {
   width: 200%;
 }
 
@@ -16897,7 +16928,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(9, 1fr);
 }
 
-.header.columns-9, .body.columns-9 {
+.data-table .accordion.columns-9 {
+  width: 250%;
+}
+
+.header.columns-9,
+.body.columns-9 {
   width: 250%;
 }
 
@@ -16910,7 +16946,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(10, 1fr);
 }
 
-.header.columns-10, .body.columns-10 {
+.data-table .accordion.columns-10 {
+  width: 250%;
+}
+
+.header.columns-10,
+.body.columns-10 {
   width: 250%;
 }
 
@@ -16923,7 +16964,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(11, 1fr);
 }
 
-.header.columns-11, .body.columns-11 {
+.data-table .accordion.columns-11 {
+  width: 300%;
+}
+
+.header.columns-11,
+.body.columns-11 {
   width: 300%;
 }
 
@@ -16936,7 +16982,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(12, 1fr);
 }
 
-.header.columns-12, .body.columns-12 {
+.data-table .accordion.columns-12 {
+  width: 300%;
+}
+
+.header.columns-12,
+.body.columns-12 {
   width: 300%;
 }
 
@@ -16949,7 +17000,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(13, 1fr);
 }
 
-.header.columns-13, .body.columns-13 {
+.data-table .accordion.columns-13 {
+  width: 350%;
+}
+
+.header.columns-13,
+.body.columns-13 {
   width: 350%;
 }
 
@@ -16962,7 +17018,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(14, 1fr);
 }
 
-.header.columns-14, .body.columns-14 {
+.data-table .accordion.columns-14 {
+  width: 350%;
+}
+
+.header.columns-14,
+.body.columns-14 {
   width: 350%;
 }
 
@@ -16975,7 +17036,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(15, 1fr);
 }
 
-.header.columns-15, .body.columns-15 {
+.data-table .accordion.columns-15 {
+  width: 400%;
+}
+
+.header.columns-15,
+.body.columns-15 {
   width: 400%;
 }
 
@@ -16988,7 +17054,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(16, 1fr);
 }
 
-.header.columns-16, .body.columns-16 {
+.data-table .accordion.columns-16 {
+  width: 400%;
+}
+
+.header.columns-16,
+.body.columns-16 {
   width: 400%;
 }
 
@@ -17001,7 +17072,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(17, 1fr);
 }
 
-.header.columns-17, .body.columns-17 {
+.data-table .accordion.columns-17 {
+  width: 450%;
+}
+
+.header.columns-17,
+.body.columns-17 {
   width: 450%;
 }
 
@@ -17014,7 +17090,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(18, 1fr);
 }
 
-.header.columns-18, .body.columns-18 {
+.data-table .accordion.columns-18 {
+  width: 450%;
+}
+
+.header.columns-18,
+.body.columns-18 {
   width: 450%;
 }
 
@@ -17027,7 +17108,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(19, 1fr);
 }
 
-.header.columns-19, .body.columns-19 {
+.data-table .accordion.columns-19 {
+  width: 500%;
+}
+
+.header.columns-19,
+.body.columns-19 {
   width: 500%;
 }
 
@@ -17040,7 +17126,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(20, 1fr);
 }
 
-.header.columns-20, .body.columns-20 {
+.data-table .accordion.columns-20 {
+  width: 500%;
+}
+
+.header.columns-20,
+.body.columns-20 {
   width: 500%;
 }
 
@@ -17053,7 +17144,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(21, 1fr);
 }
 
-.header.columns-21, .body.columns-21 {
+.data-table .accordion.columns-21 {
+  width: 550%;
+}
+
+.header.columns-21,
+.body.columns-21 {
   width: 550%;
 }
 
@@ -17066,7 +17162,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(22, 1fr);
 }
 
-.header.columns-22, .body.columns-22 {
+.data-table .accordion.columns-22 {
+  width: 550%;
+}
+
+.header.columns-22,
+.body.columns-22 {
   width: 550%;
 }
 
@@ -17079,7 +17180,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(23, 1fr);
 }
 
-.header.columns-23, .body.columns-23 {
+.data-table .accordion.columns-23 {
+  width: 600%;
+}
+
+.header.columns-23,
+.body.columns-23 {
   width: 600%;
 }
 
@@ -17092,7 +17198,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(24, 1fr);
 }
 
-.header.columns-24, .body.columns-24 {
+.data-table .accordion.columns-24 {
+  width: 600%;
+}
+
+.header.columns-24,
+.body.columns-24 {
   width: 600%;
 }
 
@@ -17105,7 +17216,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(25, 1fr);
 }
 
-.header.columns-25, .body.columns-25 {
+.data-table .accordion.columns-25 {
+  width: 650%;
+}
+
+.header.columns-25,
+.body.columns-25 {
   width: 650%;
 }
 
@@ -17118,7 +17234,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(26, 1fr);
 }
 
-.header.columns-26, .body.columns-26 {
+.data-table .accordion.columns-26 {
+  width: 650%;
+}
+
+.header.columns-26,
+.body.columns-26 {
   width: 650%;
 }
 
@@ -17131,7 +17252,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(27, 1fr);
 }
 
-.header.columns-27, .body.columns-27 {
+.data-table .accordion.columns-27 {
+  width: 700%;
+}
+
+.header.columns-27,
+.body.columns-27 {
   width: 700%;
 }
 
@@ -17144,7 +17270,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(28, 1fr);
 }
 
-.header.columns-28, .body.columns-28 {
+.data-table .accordion.columns-28 {
+  width: 700%;
+}
+
+.header.columns-28,
+.body.columns-28 {
   width: 700%;
 }
 
@@ -17157,7 +17288,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(29, 1fr);
 }
 
-.header.columns-29, .body.columns-29 {
+.data-table .accordion.columns-29 {
+  width: 750%;
+}
+
+.header.columns-29,
+.body.columns-29 {
   width: 750%;
 }
 
@@ -17170,7 +17306,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(30, 1fr);
 }
 
-.header.columns-30, .body.columns-30 {
+.data-table .accordion.columns-30 {
+  width: 750%;
+}
+
+.header.columns-30,
+.body.columns-30 {
   width: 750%;
 }
 
@@ -17183,7 +17324,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(31, 1fr);
 }
 
-.header.columns-31, .body.columns-31 {
+.data-table .accordion.columns-31 {
+  width: 800%;
+}
+
+.header.columns-31,
+.body.columns-31 {
   width: 800%;
 }
 
@@ -17196,7 +17342,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(32, 1fr);
 }
 
-.header.columns-32, .body.columns-32 {
+.data-table .accordion.columns-32 {
+  width: 800%;
+}
+
+.header.columns-32,
+.body.columns-32 {
   width: 800%;
 }
 
@@ -17209,7 +17360,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(33, 1fr);
 }
 
-.header.columns-33, .body.columns-33 {
+.data-table .accordion.columns-33 {
+  width: 850%;
+}
+
+.header.columns-33,
+.body.columns-33 {
   width: 850%;
 }
 
@@ -17222,7 +17378,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(34, 1fr);
 }
 
-.header.columns-34, .body.columns-34 {
+.data-table .accordion.columns-34 {
+  width: 850%;
+}
+
+.header.columns-34,
+.body.columns-34 {
   width: 850%;
 }
 
@@ -17235,7 +17396,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(35, 1fr);
 }
 
-.header.columns-35, .body.columns-35 {
+.data-table .accordion.columns-35 {
+  width: 900%;
+}
+
+.header.columns-35,
+.body.columns-35 {
   width: 900%;
 }
 
@@ -17248,7 +17414,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(36, 1fr);
 }
 
-.header.columns-36, .body.columns-36 {
+.data-table .accordion.columns-36 {
+  width: 900%;
+}
+
+.header.columns-36,
+.body.columns-36 {
   width: 900%;
 }
 
@@ -17261,7 +17432,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(37, 1fr);
 }
 
-.header.columns-37, .body.columns-37 {
+.data-table .accordion.columns-37 {
+  width: 950%;
+}
+
+.header.columns-37,
+.body.columns-37 {
   width: 950%;
 }
 
@@ -17274,7 +17450,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(38, 1fr);
 }
 
-.header.columns-38, .body.columns-38 {
+.data-table .accordion.columns-38 {
+  width: 950%;
+}
+
+.header.columns-38,
+.body.columns-38 {
   width: 950%;
 }
 
@@ -17287,7 +17468,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(39, 1fr);
 }
 
-.header.columns-39, .body.columns-39 {
+.data-table .accordion.columns-39 {
+  width: 1000%;
+}
+
+.header.columns-39,
+.body.columns-39 {
   width: 1000%;
 }
 
@@ -17300,7 +17486,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(40, 1fr);
 }
 
-.header.columns-40, .body.columns-40 {
+.data-table .accordion.columns-40 {
+  width: 1000%;
+}
+
+.header.columns-40,
+.body.columns-40 {
   width: 1000%;
 }
 
@@ -17313,7 +17504,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(41, 1fr);
 }
 
-.header.columns-41, .body.columns-41 {
+.data-table .accordion.columns-41 {
+  width: 1050%;
+}
+
+.header.columns-41,
+.body.columns-41 {
   width: 1050%;
 }
 
@@ -17326,7 +17522,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(42, 1fr);
 }
 
-.header.columns-42, .body.columns-42 {
+.data-table .accordion.columns-42 {
+  width: 1050%;
+}
+
+.header.columns-42,
+.body.columns-42 {
   width: 1050%;
 }
 
@@ -17339,7 +17540,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(43, 1fr);
 }
 
-.header.columns-43, .body.columns-43 {
+.data-table .accordion.columns-43 {
+  width: 1100%;
+}
+
+.header.columns-43,
+.body.columns-43 {
   width: 1100%;
 }
 
@@ -17352,7 +17558,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(44, 1fr);
 }
 
-.header.columns-44, .body.columns-44 {
+.data-table .accordion.columns-44 {
+  width: 1100%;
+}
+
+.header.columns-44,
+.body.columns-44 {
   width: 1100%;
 }
 
@@ -17365,7 +17576,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(45, 1fr);
 }
 
-.header.columns-45, .body.columns-45 {
+.data-table .accordion.columns-45 {
+  width: 1150%;
+}
+
+.header.columns-45,
+.body.columns-45 {
   width: 1150%;
 }
 
@@ -17378,7 +17594,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(46, 1fr);
 }
 
-.header.columns-46, .body.columns-46 {
+.data-table .accordion.columns-46 {
+  width: 1150%;
+}
+
+.header.columns-46,
+.body.columns-46 {
   width: 1150%;
 }
 
@@ -17391,7 +17612,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(47, 1fr);
 }
 
-.header.columns-47, .body.columns-47 {
+.data-table .accordion.columns-47 {
+  width: 1200%;
+}
+
+.header.columns-47,
+.body.columns-47 {
   width: 1200%;
 }
 
@@ -17404,7 +17630,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(48, 1fr);
 }
 
-.header.columns-48, .body.columns-48 {
+.data-table .accordion.columns-48 {
+  width: 1200%;
+}
+
+.header.columns-48,
+.body.columns-48 {
   width: 1200%;
 }
 
@@ -17417,7 +17648,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(49, 1fr);
 }
 
-.header.columns-49, .body.columns-49 {
+.data-table .accordion.columns-49 {
+  width: 1250%;
+}
+
+.header.columns-49,
+.body.columns-49 {
   width: 1250%;
 }
 
@@ -17430,7 +17666,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(50, 1fr);
 }
 
-.header.columns-50, .body.columns-50 {
+.data-table .accordion.columns-50 {
+  width: 1250%;
+}
+
+.header.columns-50,
+.body.columns-50 {
   width: 1250%;
 }
 
@@ -17443,7 +17684,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(51, 1fr);
 }
 
-.header.columns-51, .body.columns-51 {
+.data-table .accordion.columns-51 {
+  width: 1300%;
+}
+
+.header.columns-51,
+.body.columns-51 {
   width: 1300%;
 }
 
@@ -17456,7 +17702,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(52, 1fr);
 }
 
-.header.columns-52, .body.columns-52 {
+.data-table .accordion.columns-52 {
+  width: 1300%;
+}
+
+.header.columns-52,
+.body.columns-52 {
   width: 1300%;
 }
 
@@ -17469,7 +17720,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(53, 1fr);
 }
 
-.header.columns-53, .body.columns-53 {
+.data-table .accordion.columns-53 {
+  width: 1350%;
+}
+
+.header.columns-53,
+.body.columns-53 {
   width: 1350%;
 }
 
@@ -17482,7 +17738,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(54, 1fr);
 }
 
-.header.columns-54, .body.columns-54 {
+.data-table .accordion.columns-54 {
+  width: 1350%;
+}
+
+.header.columns-54,
+.body.columns-54 {
   width: 1350%;
 }
 
@@ -17495,7 +17756,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(55, 1fr);
 }
 
-.header.columns-55, .body.columns-55 {
+.data-table .accordion.columns-55 {
+  width: 1400%;
+}
+
+.header.columns-55,
+.body.columns-55 {
   width: 1400%;
 }
 
@@ -17508,7 +17774,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(56, 1fr);
 }
 
-.header.columns-56, .body.columns-56 {
+.data-table .accordion.columns-56 {
+  width: 1400%;
+}
+
+.header.columns-56,
+.body.columns-56 {
   width: 1400%;
 }
 
@@ -17521,7 +17792,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(57, 1fr);
 }
 
-.header.columns-57, .body.columns-57 {
+.data-table .accordion.columns-57 {
+  width: 1450%;
+}
+
+.header.columns-57,
+.body.columns-57 {
   width: 1450%;
 }
 
@@ -17534,7 +17810,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(58, 1fr);
 }
 
-.header.columns-58, .body.columns-58 {
+.data-table .accordion.columns-58 {
+  width: 1450%;
+}
+
+.header.columns-58,
+.body.columns-58 {
   width: 1450%;
 }
 
@@ -17547,7 +17828,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(59, 1fr);
 }
 
-.header.columns-59, .body.columns-59 {
+.data-table .accordion.columns-59 {
+  width: 1500%;
+}
+
+.header.columns-59,
+.body.columns-59 {
   width: 1500%;
 }
 
@@ -17560,7 +17846,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(60, 1fr);
 }
 
-.header.columns-60, .body.columns-60 {
+.data-table .accordion.columns-60 {
+  width: 1500%;
+}
+
+.header.columns-60,
+.body.columns-60 {
   width: 1500%;
 }
 
@@ -17573,7 +17864,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(61, 1fr);
 }
 
-.header.columns-61, .body.columns-61 {
+.data-table .accordion.columns-61 {
+  width: 1550%;
+}
+
+.header.columns-61,
+.body.columns-61 {
   width: 1550%;
 }
 
@@ -17586,7 +17882,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(62, 1fr);
 }
 
-.header.columns-62, .body.columns-62 {
+.data-table .accordion.columns-62 {
+  width: 1550%;
+}
+
+.header.columns-62,
+.body.columns-62 {
   width: 1550%;
 }
 
@@ -17599,7 +17900,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(63, 1fr);
 }
 
-.header.columns-63, .body.columns-63 {
+.data-table .accordion.columns-63 {
+  width: 1600%;
+}
+
+.header.columns-63,
+.body.columns-63 {
   width: 1600%;
 }
 
@@ -17612,7 +17918,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(64, 1fr);
 }
 
-.header.columns-64, .body.columns-64 {
+.data-table .accordion.columns-64 {
+  width: 1600%;
+}
+
+.header.columns-64,
+.body.columns-64 {
   width: 1600%;
 }
 
@@ -17625,7 +17936,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(65, 1fr);
 }
 
-.header.columns-65, .body.columns-65 {
+.data-table .accordion.columns-65 {
+  width: 1650%;
+}
+
+.header.columns-65,
+.body.columns-65 {
   width: 1650%;
 }
 
@@ -17638,7 +17954,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(66, 1fr);
 }
 
-.header.columns-66, .body.columns-66 {
+.data-table .accordion.columns-66 {
+  width: 1650%;
+}
+
+.header.columns-66,
+.body.columns-66 {
   width: 1650%;
 }
 
@@ -17651,7 +17972,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(67, 1fr);
 }
 
-.header.columns-67, .body.columns-67 {
+.data-table .accordion.columns-67 {
+  width: 1700%;
+}
+
+.header.columns-67,
+.body.columns-67 {
   width: 1700%;
 }
 
@@ -17664,7 +17990,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(68, 1fr);
 }
 
-.header.columns-68, .body.columns-68 {
+.data-table .accordion.columns-68 {
+  width: 1700%;
+}
+
+.header.columns-68,
+.body.columns-68 {
   width: 1700%;
 }
 
@@ -17677,7 +18008,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(69, 1fr);
 }
 
-.header.columns-69, .body.columns-69 {
+.data-table .accordion.columns-69 {
+  width: 1750%;
+}
+
+.header.columns-69,
+.body.columns-69 {
   width: 1750%;
 }
 
@@ -17690,7 +18026,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(70, 1fr);
 }
 
-.header.columns-70, .body.columns-70 {
+.data-table .accordion.columns-70 {
+  width: 1750%;
+}
+
+.header.columns-70,
+.body.columns-70 {
   width: 1750%;
 }
 
@@ -17703,7 +18044,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(71, 1fr);
 }
 
-.header.columns-71, .body.columns-71 {
+.data-table .accordion.columns-71 {
+  width: 1800%;
+}
+
+.header.columns-71,
+.body.columns-71 {
   width: 1800%;
 }
 
@@ -17716,7 +18062,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(72, 1fr);
 }
 
-.header.columns-72, .body.columns-72 {
+.data-table .accordion.columns-72 {
+  width: 1800%;
+}
+
+.header.columns-72,
+.body.columns-72 {
   width: 1800%;
 }
 
@@ -17729,7 +18080,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(73, 1fr);
 }
 
-.header.columns-73, .body.columns-73 {
+.data-table .accordion.columns-73 {
+  width: 1850%;
+}
+
+.header.columns-73,
+.body.columns-73 {
   width: 1850%;
 }
 
@@ -17742,7 +18098,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(74, 1fr);
 }
 
-.header.columns-74, .body.columns-74 {
+.data-table .accordion.columns-74 {
+  width: 1850%;
+}
+
+.header.columns-74,
+.body.columns-74 {
   width: 1850%;
 }
 
@@ -17755,7 +18116,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(75, 1fr);
 }
 
-.header.columns-75, .body.columns-75 {
+.data-table .accordion.columns-75 {
+  width: 1900%;
+}
+
+.header.columns-75,
+.body.columns-75 {
   width: 1900%;
 }
 
@@ -17768,7 +18134,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(76, 1fr);
 }
 
-.header.columns-76, .body.columns-76 {
+.data-table .accordion.columns-76 {
+  width: 1900%;
+}
+
+.header.columns-76,
+.body.columns-76 {
   width: 1900%;
 }
 
@@ -17781,7 +18152,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(77, 1fr);
 }
 
-.header.columns-77, .body.columns-77 {
+.data-table .accordion.columns-77 {
+  width: 1950%;
+}
+
+.header.columns-77,
+.body.columns-77 {
   width: 1950%;
 }
 
@@ -17794,7 +18170,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(78, 1fr);
 }
 
-.header.columns-78, .body.columns-78 {
+.data-table .accordion.columns-78 {
+  width: 1950%;
+}
+
+.header.columns-78,
+.body.columns-78 {
   width: 1950%;
 }
 
@@ -17807,7 +18188,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(79, 1fr);
 }
 
-.header.columns-79, .body.columns-79 {
+.data-table .accordion.columns-79 {
+  width: 2000%;
+}
+
+.header.columns-79,
+.body.columns-79 {
   width: 2000%;
 }
 
@@ -17820,7 +18206,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(80, 1fr);
 }
 
-.header.columns-80, .body.columns-80 {
+.data-table .accordion.columns-80 {
+  width: 2000%;
+}
+
+.header.columns-80,
+.body.columns-80 {
   width: 2000%;
 }
 
@@ -17833,7 +18224,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(81, 1fr);
 }
 
-.header.columns-81, .body.columns-81 {
+.data-table .accordion.columns-81 {
+  width: 2050%;
+}
+
+.header.columns-81,
+.body.columns-81 {
   width: 2050%;
 }
 
@@ -17846,7 +18242,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(82, 1fr);
 }
 
-.header.columns-82, .body.columns-82 {
+.data-table .accordion.columns-82 {
+  width: 2050%;
+}
+
+.header.columns-82,
+.body.columns-82 {
   width: 2050%;
 }
 
@@ -17859,7 +18260,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(83, 1fr);
 }
 
-.header.columns-83, .body.columns-83 {
+.data-table .accordion.columns-83 {
+  width: 2100%;
+}
+
+.header.columns-83,
+.body.columns-83 {
   width: 2100%;
 }
 
@@ -17872,7 +18278,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(84, 1fr);
 }
 
-.header.columns-84, .body.columns-84 {
+.data-table .accordion.columns-84 {
+  width: 2100%;
+}
+
+.header.columns-84,
+.body.columns-84 {
   width: 2100%;
 }
 
@@ -17885,7 +18296,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(85, 1fr);
 }
 
-.header.columns-85, .body.columns-85 {
+.data-table .accordion.columns-85 {
+  width: 2150%;
+}
+
+.header.columns-85,
+.body.columns-85 {
   width: 2150%;
 }
 
@@ -17898,7 +18314,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(86, 1fr);
 }
 
-.header.columns-86, .body.columns-86 {
+.data-table .accordion.columns-86 {
+  width: 2150%;
+}
+
+.header.columns-86,
+.body.columns-86 {
   width: 2150%;
 }
 
@@ -17911,7 +18332,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(87, 1fr);
 }
 
-.header.columns-87, .body.columns-87 {
+.data-table .accordion.columns-87 {
+  width: 2200%;
+}
+
+.header.columns-87,
+.body.columns-87 {
   width: 2200%;
 }
 
@@ -17924,7 +18350,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(88, 1fr);
 }
 
-.header.columns-88, .body.columns-88 {
+.data-table .accordion.columns-88 {
+  width: 2200%;
+}
+
+.header.columns-88,
+.body.columns-88 {
   width: 2200%;
 }
 
@@ -17937,7 +18368,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(89, 1fr);
 }
 
-.header.columns-89, .body.columns-89 {
+.data-table .accordion.columns-89 {
+  width: 2250%;
+}
+
+.header.columns-89,
+.body.columns-89 {
   width: 2250%;
 }
 
@@ -17950,7 +18386,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(90, 1fr);
 }
 
-.header.columns-90, .body.columns-90 {
+.data-table .accordion.columns-90 {
+  width: 2250%;
+}
+
+.header.columns-90,
+.body.columns-90 {
   width: 2250%;
 }
 
@@ -17963,7 +18404,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(91, 1fr);
 }
 
-.header.columns-91, .body.columns-91 {
+.data-table .accordion.columns-91 {
+  width: 2300%;
+}
+
+.header.columns-91,
+.body.columns-91 {
   width: 2300%;
 }
 
@@ -17976,7 +18422,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(92, 1fr);
 }
 
-.header.columns-92, .body.columns-92 {
+.data-table .accordion.columns-92 {
+  width: 2300%;
+}
+
+.header.columns-92,
+.body.columns-92 {
   width: 2300%;
 }
 
@@ -17989,7 +18440,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(93, 1fr);
 }
 
-.header.columns-93, .body.columns-93 {
+.data-table .accordion.columns-93 {
+  width: 2350%;
+}
+
+.header.columns-93,
+.body.columns-93 {
   width: 2350%;
 }
 
@@ -18002,7 +18458,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(94, 1fr);
 }
 
-.header.columns-94, .body.columns-94 {
+.data-table .accordion.columns-94 {
+  width: 2350%;
+}
+
+.header.columns-94,
+.body.columns-94 {
   width: 2350%;
 }
 
@@ -18015,7 +18476,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(95, 1fr);
 }
 
-.header.columns-95, .body.columns-95 {
+.data-table .accordion.columns-95 {
+  width: 2400%;
+}
+
+.header.columns-95,
+.body.columns-95 {
   width: 2400%;
 }
 
@@ -18028,7 +18494,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(96, 1fr);
 }
 
-.header.columns-96, .body.columns-96 {
+.data-table .accordion.columns-96 {
+  width: 2400%;
+}
+
+.header.columns-96,
+.body.columns-96 {
   width: 2400%;
 }
 
@@ -18041,7 +18512,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(97, 1fr);
 }
 
-.header.columns-97, .body.columns-97 {
+.data-table .accordion.columns-97 {
+  width: 2450%;
+}
+
+.header.columns-97,
+.body.columns-97 {
   width: 2450%;
 }
 
@@ -18054,7 +18530,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(98, 1fr);
 }
 
-.header.columns-98, .body.columns-98 {
+.data-table .accordion.columns-98 {
+  width: 2450%;
+}
+
+.header.columns-98,
+.body.columns-98 {
   width: 2450%;
 }
 
@@ -18067,7 +18548,12 @@ body:has(.query-msg) {
   grid-template-columns: repeat(99, 1fr);
 }
 
-.header.columns-99, .body.columns-99 {
+.data-table .accordion.columns-99 {
+  width: 2500%;
+}
+
+.header.columns-99,
+.body.columns-99 {
   width: 2500%;
 }
 
@@ -18080,8 +18566,26 @@ body:has(.query-msg) {
   grid-template-columns: repeat(100, 1fr);
 }
 
-.header.columns-100, .body.columns-100 {
+.data-table .accordion.columns-100 {
   width: 2500%;
+}
+
+.header.columns-100,
+.body.columns-100 {
+  width: 2500%;
+}
+
+.accordion-item:last-of-type {
+  border-radius: var(--bs-accordion-inner-border-radius) var(--bs-accordion-inner-border-radius) 0 0;
+  border-color: #000;
+}
+
+.data-table .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
+
+.data-table .accordion .accordion-item .accordion-header .accordion-button:focus {
+  box-shadow: none;
 }
 
 .data-table .header,

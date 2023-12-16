@@ -9,6 +9,7 @@
 
     abstract class CRUDAbstract implements CRUDInterface {
         public int $startIndex;
+        public bool $isView;
         protected array $tables;
         protected array $views;
         protected int $limitQuery;
@@ -24,6 +25,7 @@
                 $this->limitQuery = (int) $_ENV['maxRows'];
                 $this->tables = array();
                 $this->views = array();
+                $this->isView = false;
             } catch (DatabaseException $e) {
                 die($e->show());
             }
@@ -47,7 +49,7 @@
 
         public function delete($table = 0) : array {return [];}
 
-        public function select($columns = '*', $conditions = [], $isView = false, $table_or_view = 0) : array {
+        public function select($columns = '*', $conditions = [], $table_or_view = 0) : array {
             try {
                 if (empty($columns)) throw new DatabaseException('No se especificó ninguna columna');
 
@@ -61,7 +63,7 @@
 
                 $query = $this->database->prepare(
                     "SELECT {$columns} FROM `{$_ENV['DB']}`.`" .
-                    ($isView ? $this->views[$table_or_view] : $this->tables[$table_or_view]) . "`" .
+                    ($this->isView ? $this->views[$table_or_view] : $this->tables[$table_or_view]) . "`" .
                     (!empty($conditions) ?
                     " WHERE " . rtrim(
                         array_reduce($conditions, function($carry, $item) {
@@ -96,6 +98,12 @@
             }
         }
 
+        /**
+         * Obtienes el valor de un atributo de la clase
+         *
+         * @param string $property
+         * @return mixed
+         */
         public function __get($property) : mixed {
             if (property_exists($this, $property)) {
                 return $this->$property;
@@ -179,8 +187,18 @@
          * @param int $limitQuery
          * @return void
          */
-        public function setLimitQuery(int $limitQuery) {
+        public function setLimitQuery($limitQuery) {
             $this->limitQuery = $limitQuery;
+        }
+
+        /**
+         * Cambia el valor de isView de la clase
+         *
+         * @param bool $isView
+         * @return void
+         */
+        public function setIsView($isView) {
+            $this->isView = $isView;
         }
     }
 ?>
