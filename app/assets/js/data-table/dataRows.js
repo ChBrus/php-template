@@ -1,14 +1,30 @@
-import { headerTable, bodyTable, headerCols, loadingLayout } from "./consts.js";
+import * as fetchResponse from '../fetch/response.js';
+import { Page } from '../fetch/consts.js';
+import { localLocation, globalLocation, headerTable, bodyTable, headerCols, loadingLayout } from './consts.js';
 
 const dataRow = document.createElement('div');
 
-export function initDataRow(data) {
+export async function setDataToTable(pageNumber = null, isPrev = null) {
+   pageNumber === null ? Page.__destroy() : null;
+
+    let response = await fetchResponse.getSelect(globalLocation ?? localLocation);  
+
+    if (response.status === 500 && isPrev !== null) {
+        console.log(response.response);
+        return;
+    }
+
+    console.log(response.test);
+    initDataRow(response);
+}
+
+function initDataRow(data) {
     dataRow.classList.add('dataRow');
 
     const headerColumns = Object.entries(data.response[0]).map((entry) => entry[0]),
         dataRows = getDataRows(data, headerColumns);
 
-    bodyTable.removeChild(loadingLayout);
+    bodyTable.contains(loadingLayout) ? bodyTable.removeChild(loadingLayout) : null;
 
     headerCols.forEach((column, index) => {
         column.textContent = headerColumns[index];

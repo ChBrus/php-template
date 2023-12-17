@@ -1,4 +1,8 @@
 export const dataTable = document.querySelector('.data-table') ?? document.getElementById('data-table'),
+    tableToolBar = dataTable.querySelector('.table-toolbar'),
+    prevTableBtn = tableToolBar.querySelector('.prev'),
+    pageTableNumber = tableToolBar.querySelector('.page-number'),
+    nextTableBtn = tableToolBar.querySelector('.next'),
     headerTable = dataTable.querySelector('.header') ?? dataTable.getElementById('header'),
     headerCols = headerTable.querySelectorAll('.h-col'),
     bodyTable = dataTable.querySelector('.body') ?? dataTable.getElementById('body'),

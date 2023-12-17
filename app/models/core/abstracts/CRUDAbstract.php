@@ -78,6 +78,7 @@
                 if ($response === false) throw new DatabaseException("Something happened");
 
                 $result = $query;
+                $query = null;
 
                 return [
                     "status"=> 200,
@@ -98,12 +99,36 @@
             }
         }
 
-        /**
-         * Obtienes el valor de un atributo de la clase
-         *
-         * @param string $property
-         * @return mixed
-         */
+        public function getRows($table_or_view = 0) : array {
+            try {
+                $query = $this->database->prepare(
+                    "SELECT COUNT(*) FROM `{$_ENV['DB']}`.`" .
+                    ($this->isView ? $this->views[$table_or_view] : $this->tables[$table_or_view]) .
+                    "`;"
+                );
+
+                $response = $query->execute();
+
+                if ($response === false) throw new DatabaseException("Something happened");
+
+                $maxData = $query->fetchColumn();
+                
+                $maxData = ceil($maxData / $this->limitQuery);
+
+                setcookie('maxPages', $maxData, time() + 60*60*24,'/');
+
+                return [
+                    "status" => 200,
+                    "response" => true
+                ];
+            } catch (DatabaseException $e) {
+                return [
+                    "status"=> 500,
+                    "response" => $e->show()
+                ];
+            }
+        }
+
         public function __get($property) : mixed {
             if (property_exists($this, $property)) {
                 return $this->$property;

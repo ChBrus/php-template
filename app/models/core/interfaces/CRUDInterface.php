@@ -40,6 +40,14 @@
         public function delete($table = 0) : array;
 
         /**
+         * Obtiene la cantidad de filas que tiene la tabla a la que se hace referencia
+         *
+         * @param int $table_or_view
+         * @return array
+         */
+        public function getRows($table_or_view = 0) : array;
+
+        /**
          * Retorna alguna propiedad de la clase
          *
          * @param string $property
