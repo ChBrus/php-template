@@ -267,7 +267,7 @@ $RECYCLE.BIN/
 *.lnk
 
 ### Configuration to enable ###
-# .env
+.env
 # /app/phpunit.xml
 # /phpunit.xml
 # /test/
