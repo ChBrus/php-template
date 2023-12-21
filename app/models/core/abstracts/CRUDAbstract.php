@@ -3,13 +3,13 @@
 
     use Core\DB;
     use Core\Exception\DatabaseException;
-    use PDOException;
+    use Exception;
     use Core\Interfaces\CRUDInterface;
     use Tools\Env;
 
     abstract class CRUDAbstract implements CRUDInterface {
-        public int $startIndex;
-        public bool $isView;
+        protected int $startIndex;
+        protected bool $isView;
         protected array $tables;
         protected array $views;
         protected int $limitQuery;
@@ -33,14 +33,45 @@
 
         public function create($table = 0) : array {
             try {
+                $columnPointer = $this->getColumnPointer();
+                $column = $columnPointer['column'];
+                
+                $pointer = $columnPointer['pointer'];
+
                 $query = $this->database->prepare(
-                    "INSERT INTO `{$_ENV['DB']}`.`{$this->tables[$table]}`"
+                    "INSERT INTO `{$_ENV['DB']}`.`{$this->tables[$table]}`({$column})
+                    VALUES ({$pointer})"
                 );
-                return [];
-            } catch (DatabaseException $e) {
+
+                $array_pointer = explode(', ', $pointer);
+
+                for ($pointerIndex = 0; $pointerIndex < count($array_pointer); $pointerIndex++) {
+                    $typeMapping = [
+                        'integer' => DB::PARAM_INT,
+                        'boolean' => DB::PARAM_BOOL,
+                        'NULL' => DB::PARAM_NULL,
+                        'string' => DB::PARAM_STR
+                    ];
+
+                    $currentPointer = $array_pointer[$pointerIndex];
+                    $classPointer = str_replace(':', '', $currentPointer);
+                    $pointerType = gettype($this->$classPointer);
+
+                    $query->bindParam($currentPointer, $this->$classPointer, $typeMapping[$pointerType] ?? DB::PARAM_STR);
+                }
+
+                $query->execute();
+
+                if ($query === false) throw new DatabaseException('Algo ha pasado al momento de ejecutar la petición al servidor');
+
+                return [
+                    "status" => 200,
+                    "response" => true
+                ];
+            } catch(Exception $e) {
                 return [
                     "status" => 500,
-                    "response" => $e->show()
+                    "response" => $e->getMessage()
                 ];
             }
         }
@@ -75,7 +106,7 @@
 
                 $response = $query->execute();
 
-                if ($response === false) throw new DatabaseException("Something happened");
+                if ($response === false) throw new DatabaseException('Algo ha pasado al momento de ejecutar la petición al servidor');
 
                 $result = $query;
                 $query = null;
@@ -84,17 +115,10 @@
                     "status"=> 200,
                     "response"=> $result
                 ];
-            } catch (DatabaseException $e) {
+            } catch(Exception $e) {
                 return [
                     "status" => 500,
-                    "response" => $e->show()
-                ];
-            } catch(PDOException $e) {
-                $pdoException = new DatabaseException($e->getMessage());
-
-                return [
-                    "status" => 500,
-                    "response" => $pdoException->show()
+                    "response" => $e->getMessage()
                 ];
             }
         }
@@ -121,10 +145,10 @@
                     "status" => 200,
                     "response" => true
                 ];
-            } catch (DatabaseException $e) {
+            } catch(Exception $e) {
                 return [
-                    "status"=> 500,
-                    "response" => $e->show()
+                    "status" => 500,
+                    "response" => $e->getMessage()
                 ];
             }
         }
@@ -141,7 +165,7 @@
          *
          * @return array
          */
-        public function getAttributes() : array {
+        public function getAttributes() {
             $jsonObject = json_encode($this);
 
             $jsonDecode = json_decode($jsonObject, true);
@@ -150,12 +174,25 @@
         }
 
         /**
-         * Acompañado de @method array getAttributes() puedes obtener un JSON del arreglo dado
+         * Obtiene la columna y el puntero para usar en la petición SQL
          *
-         * @return string
+         * @return array
          */
-        public function getJSONObject() : string {
-            return json_encode($this->getAttributes());
+        private function getColumnPointer() {
+            $user_array = array_keys($this->getAttributes());
+
+            $user_array_column = array_map(function($value) {
+                return "`{$value}`";
+            }, $user_array);
+
+            $user_array_pointer = array_map(function($value) {
+                return ":{$value}";
+            }, $user_array);
+
+            return [
+                'column' => implode(', ', $user_array_column),
+                'pointer' => implode(', ', $user_array_pointer)
+            ];
         }
 
         /**
@@ -224,6 +261,16 @@
          */
         public function setIsView($isView) {
             $this->isView = $isView;
+        }
+
+        /**
+         * Pone valor a la variable startIndex
+         *
+         * @param int | string $page
+         * @return void
+         */
+        public function setStartIndex($page) {
+            $this->startIndex = ((int) $page) * $this->limitQuery;
         }
     }
 ?>

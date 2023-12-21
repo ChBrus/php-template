@@ -1,0 +1,17 @@
+.dialog-alert::backdrop {
+    opacity: .75;
+}
+
+.dialog-alert {
+    position: absolute;
+    width: auto;
+    height: auto;
+    display: flex;
+    left: 50%;
+    top: 50%;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: transparent;
+    transform: translate(-50%, -50%);
+}

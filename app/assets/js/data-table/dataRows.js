@@ -1,20 +1,32 @@
 import * as fetchResponse from '../fetch/response.js';
 import { Page } from '../fetch/consts.js';
 import { localLocation, globalLocation, headerTable, bodyTable, headerCols, loadingLayout } from './consts.js';
+import { Dialog } from "./dialog.js";
 
 const dataRow = document.createElement('div');
 
-export async function setDataToTable(pageNumber = null, isPrev = null) {
+export async function setDataToTable(pageNumber = null) {
    pageNumber === null ? Page.__destroy() : null;
 
     let response = await fetchResponse.getSelect(globalLocation ?? localLocation);  
 
-    if (response.status === 500 && isPrev !== null) {
-        console.log(response.response);
+    if (response.status === 500) {
+        const dialog = new Dialog(),
+            alert = response.response;
+
+        dialog.appendToBody();
+
+        dialog.alertInsert(alert);
+
+        dialog.showModal();
+        dialog.startErrorIcon();
+
+        loadingLayout.removeChild(loadingLayout.querySelector('.spinner-border'));
+        loadingLayout.appendChild(dialog.tableIcon);
+
         return;
     }
 
-    console.log(response.test);
     initDataRow(response);
 }
 

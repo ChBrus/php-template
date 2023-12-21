@@ -35,7 +35,9 @@
         public function show()
         {
             $this->alert->setAttribute(MsgProperties::header, $this->alertHeader);
-            return htmlentities($this->alert->dangerMsg());
+            $this->alert->setAttribute(MsgProperties::location, '');
+
+            return $this->alert->dangerMsg();
         }
 
         /**

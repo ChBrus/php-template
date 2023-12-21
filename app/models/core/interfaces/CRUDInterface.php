@@ -3,8 +3,9 @@
 
     interface CRUDInterface {
         /**
-         * Método para hacer peticiones de incersión en una tabla de la base de datos
+         * Undocumented function
          *
+         * @param integer $table
          * @return array
          */
         public function create($table = 0) : array;

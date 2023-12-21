@@ -4,11 +4,14 @@
     use Core\Abstracts\CRUDAbstract;
 
     class User extends CRUDAbstract {
-        public $id;
-        public $name;
-        public $last_name;
+        protected int $id;
+        public string $name;
+        public string $last_name;
 
-        public function __construct() {
+        public function __construct($name = '', $last_name = '') {
+            $this->name = $name;
+            $this->last_name = $last_name;
+
             parent::__construct();
         }
     }

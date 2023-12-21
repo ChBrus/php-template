@@ -1,7 +1,5 @@
 .data-table {
     display: flex;
-    width: auto;
-    height: 100%;
     flex-direction: column;
     justify-content: center;
     padding: 0.5rem;
@@ -40,13 +38,22 @@
     }
 }
 
-.accordion-item:last-of-type {
+.data-table .accordion-item:last-of-type {
     border-radius: var(--bs-accordion-inner-border-radius) var(--bs-accordion-inner-border-radius) 0 0;
     border-color: $black;
 }
 
 .data-table .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+    color: $data-table-toolbar-color-active;
+    background: $data-table-toolbar-active;
     box-shadow: none;
+}
+
+$toolbar-helper: unquote("#{$data-table-toolbar-color-active}");
+$toolbar-helper: str-slice($toolbar-helper, 2);
+
+.data-table .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23#{$toolbar-helper}'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
 }
 
 .data-table .accordion .accordion-item .accordion-header .accordion-button:focus {
@@ -59,6 +66,7 @@
 }
 
 .data-table .header {
+    border-top: none;
     border-bottom: none;
 }
 
@@ -95,6 +103,12 @@
     display: grid;
     place-items: center;
     height: 100%;
+    padding: 5rem;
+}
+
+.data-table .body .loading .table-error-icon {
+    color: $danger;
+    animation: table-error-icon .75s linear infinite;
 }
 
 .data-table .body .dataRow {
@@ -114,3 +128,5 @@
 .data-table .body .dataRow .d-col:last-child {
     border-right: none;
 }
+
+@import '../animations/table';

@@ -16725,7 +16725,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-body:has(.query-msg) {
+body:has(.query-msg):not(:has(.dialog-alert .query-msg)) {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16790,8 +16790,6 @@ body:has(.query-msg) {
 }
 .data-table {
   display: flex;
-  width: auto;
-  height: 100%;
   flex-direction: column;
   justify-content: center;
   padding: 0.5rem;
@@ -18575,13 +18573,19 @@ body:has(.query-msg) {
   width: 2500%;
 }
 
-.accordion-item:last-of-type {
+.data-table .accordion-item:last-of-type {
   border-radius: var(--bs-accordion-inner-border-radius) var(--bs-accordion-inner-border-radius) 0 0;
   border-color: #000;
 }
 
 .data-table .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
+  color: #fff;
+  background: #000;
   box-shadow: none;
+}
+
+.data-table .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
 }
 
 .data-table .accordion .accordion-item .accordion-header .accordion-button:focus {
@@ -18594,6 +18598,7 @@ body:has(.query-msg) {
 }
 
 .data-table .header {
+  border-top: none;
   border-bottom: none;
 }
 
@@ -18630,6 +18635,12 @@ body:has(.query-msg) {
   display: grid;
   place-items: center;
   height: 100%;
+  padding: 5rem;
+}
+
+.data-table .body .loading .table-error-icon {
+  color: #dc3545;
+  animation: table-error-icon 0.75s linear infinite;
 }
 
 .data-table .body .dataRow {
@@ -18648,6 +18659,41 @@ body:has(.query-msg) {
 
 .data-table .body .dataRow .d-col:last-child {
   border-right: none;
+}
+
+@keyframes table-error-icon {
+  0% {
+    scale: 1;
+  }
+  25% {
+    scale: 1.75;
+  }
+  50% {
+    scale: 1.5;
+  }
+  75% {
+    scale: 1.75;
+  }
+  100% {
+    scale: 1;
+  }
+}
+.dialog-alert::backdrop {
+  opacity: 0.75;
+}
+
+.dialog-alert {
+  position: absolute;
+  width: auto;
+  height: auto;
+  display: flex;
+  left: 50%;
+  top: 50%;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  transform: translate(-50%, -50%);
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

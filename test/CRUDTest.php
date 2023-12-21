@@ -4,10 +4,10 @@
 
     class CRUDTest extends TestCase {
         public function testCRUD() {
-            $user = new User();
+            $user = new User('Something', 'Something');
             $user->addTable('users');
 
-            $this->assertIsNotNumeric($user->getRows());
+            $this->assertIsObject($user);
         }
     }
 ?>

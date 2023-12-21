@@ -9,11 +9,11 @@
     <div class="accordion columns-<?= $columns ?>" id="tableOptions">
         <div class="accordion-item">
             <h2 class="accordion-header">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#optionsList" aria-expanded="true" aria-controls="optionsList">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#optionsList" aria-expanded="false" aria-controls="optionsList">
                     Opciones
                 </button>
             </h2>
-            <div id="optionsList" class="accordion-collapse collapse show" data-bs-parent="#tableOptions">
+            <div id="optionsList" class="accordion-collapse collapse" data-bs-parent="#tableOptions">
                 <div class="accordion-body">
                     <?php
                         ob_start();
