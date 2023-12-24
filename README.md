@@ -48,7 +48,7 @@ Sin embargo, mantén comentada la línea ### Configuration to enable ###.
 Además, para la configuración, crea un archivo llamado .env y añade la siguiente información:
 ```
 # Project data
-ProjectName="php-builder"
+ProjectName="php-template"
 
 # Tables
 maxRows="50"
