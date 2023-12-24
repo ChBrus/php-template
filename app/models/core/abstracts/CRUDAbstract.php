@@ -4,10 +4,10 @@
     use Core\DB;
     use Core\Exception\DatabaseException;
     use Exception;
-    use Core\Interfaces\CRUDInterface;
+    use Core\Interfaces\{CRUDInterface, BaseInterface};
     use Tools\Env;
 
-    abstract class CRUDAbstract implements CRUDInterface {
+    abstract class CRUDAbstract implements CRUDInterface, BaseInterface {
         protected int $startIndex;
         protected bool $isView;
         protected array $tables;
@@ -26,8 +26,13 @@
                 $this->tables = array();
                 $this->views = array();
                 $this->isView = false;
-            } catch (DatabaseException $e) {
-                die($e->show());
+            } catch(Exception $e) {
+                die(
+                    json_encode([
+                        "status" => 500,
+                        "response" => $e->getMessage()
+                    ])
+                );
             }
         }
 
@@ -57,7 +62,7 @@
                     $classPointer = str_replace(':', '', $currentPointer);
                     $pointerType = gettype($this->$classPointer);
 
-                    $query->bindParam($currentPointer, $this->$classPointer, $typeMapping[$pointerType] ?? DB::PARAM_STR);
+                    $query->bindValue($currentPointer, $this->$classPointer, $typeMapping[$pointerType] ?? DB::PARAM_STR);
                 }
 
                 $query->execute();

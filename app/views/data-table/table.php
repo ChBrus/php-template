@@ -15,11 +15,15 @@
             </h2>
             <div id="optionsList" class="accordion-collapse collapse" data-bs-parent="#tableOptions">
                 <div class="accordion-body">
-                    <?php
-                        ob_start();
-                        include_once './table-options.php';
-                    ?>
-                    <?= ob_get_clean() ?>
+                    <div class="d-flex flex-column">
+                        <div class="btn-toolbar table-toolbar" role="toolbar">
+                            <div class="btn-group me-2" role="group" aria-label="First group">
+                                <button type="button" class="btn btn-gray prev">Anterior</button>
+                                <button type="button" class="btn btn-gray active page-number">...</button>
+                                <button type="button" class="btn btn-gray next">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

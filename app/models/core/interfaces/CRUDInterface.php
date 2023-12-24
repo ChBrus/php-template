@@ -47,13 +47,5 @@
          * @return array
          */
         public function getRows($table_or_view = 0) : array;
-
-        /**
-         * Retorna alguna propiedad de la clase
-         *
-         * @param string $property
-         * @return mixed
-         */
-        public function __get($property) : mixed;
     }
 ?>

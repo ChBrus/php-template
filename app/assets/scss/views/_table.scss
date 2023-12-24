@@ -10,7 +10,7 @@
     display: grid;
 }
 
-@for $cols from 1 through $total-table-cols {
+@for $cols from 1 through $data-table-cols {
     .header.columns-#{$cols} {
         grid-template-columns: repeat($cols, 1fr);
         font-weight: 500;
