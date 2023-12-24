@@ -4,8 +4,8 @@
 
 .dialog-alert {
     position: absolute;
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
     display: flex;
     left: 50%;
     top: 50%;
@@ -14,4 +14,8 @@
     border: none;
     background: transparent;
     transform: translate(-50%, -50%);
+}
+
+.dialog-alert::-webkit-scrollbar {
+    display: none;
 }

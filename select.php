@@ -31,7 +31,7 @@
 
         $lastResponse = $response->fetchAll(DB::FETCH_ASSOC);
 
-        if (empty($lastResponse)) throw new DatabaseException(bold("Estado de base de datos:") . " No se encontró ningún dato en la tabla " . bold($user->__get('tables')[0]));
+        if (empty($lastResponse)) throw new DatabaseException(bold("Estado de base de datos:") . " No se encontró ningún dato en la tabla " . bold($user->__get('tables')[0]), 501);
 
         echo json_encode([
             "status" => $status,
@@ -41,7 +41,7 @@
         $pdoException = new DatabaseException($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
 
         echo json_encode([
-            'status'=> 500,
+            'status'=> $e->getCode() > 500 ? $e->getCode() : 500,
             'response' => $pdoException->show()
         ]);
     }

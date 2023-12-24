@@ -18684,8 +18684,8 @@ body:has(.query-msg):not(:has(.dialog-alert .query-msg)) {
 
 .dialog-alert {
   position: absolute;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
   display: flex;
   left: 50%;
   top: 50%;
@@ -18694,6 +18694,10 @@ body:has(.query-msg):not(:has(.dialog-alert .query-msg)) {
   border: none;
   background: transparent;
   transform: translate(-50%, -50%);
+}
+
+.dialog-alert::-webkit-scrollbar {
+  display: none;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */

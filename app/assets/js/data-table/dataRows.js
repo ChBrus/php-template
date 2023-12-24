@@ -10,7 +10,7 @@ export async function setDataToTable(pageNumber = null) {
 
     let response = await fetchResponse.getSelect(globalLocation ?? localLocation);  
 
-    if (response.status === 500) {
+    if (response.status >= 500) {
         const dialog = new Dialog(),
             alert = response.response;
 
@@ -19,7 +19,7 @@ export async function setDataToTable(pageNumber = null) {
         dialog.alertInsert(alert);
 
         dialog.showModal();
-        dialog.startErrorIcon();
+        dialog.startErrorIcon(response.status);
 
         loadingLayout.removeChild(loadingLayout.querySelector('.spinner-border'));
         loadingLayout.appendChild(dialog.tableIcon);

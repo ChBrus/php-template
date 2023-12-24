@@ -17,10 +17,19 @@ export class Dialog {
     }
 
     startEvents() {
-        this.alertBtn.addEventListener('click',
-        () => {
+        this.clickAlertEvent = () => {
             this.close();
-        });
+        };
+
+        this.alertBtn.addEventListener('click', this.clickAlertEvent);
+
+        this.keyUpAlertEvent = (keyEvent) => {
+            if (keyEvent.code === 'Enter' || keyEvent.code === 'Space') {
+                this.close();
+            }
+        };
+
+        document.addEventListener('keyup', this.keyUpAlertEvent);
     }
 
     appendToBody() {
@@ -34,11 +43,23 @@ export class Dialog {
     close() {
         this.dialog.close();
         document.body.removeChild(this.dialog);
+        document.removeEventListener('click', this.clickAlertEvent);
+        document.removeEventListener('keyup', this.keyUpAlertEvent);
     }
 
-    startErrorIcon() {
+    startErrorIcon(status) {
         this.tableIcon.classList.add('bi');
-        this.tableIcon.classList.add('bi-exclamation-triangle-fill');
+        switch(status) {
+            case 500:
+                this.tableIcon.classList.add('bi-exclamation-triangle-fill');
+            break;
+            case 501:
+                this.tableIcon.classList.add('bi-question-diamond-fill');
+            break;
+            default:
+                this.tableIcon.classList.add('bi-exclamation-triangle-fill');
+
+        }
         this.tableIcon.classList.add('table-error-icon');
     }
 }
