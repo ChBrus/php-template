@@ -2,10 +2,7 @@
     $columns = (int) $_POST['columns'];
     $maxRows = (int) $_POST['maxRows'];
 ?>
-<div class="data-table" id="data-table"
-<?php if (isset($_POST['globalLocation'])): ?> global-location="<?= $_POST['globalLocation'] ?>" <?php endif; ?>
-<?php if (isset($_POST['localLocation'])): ?> local-location="<?= $_POST['localLocation'] ?>" <?php endif; ?>
->
+<div class="data-table" id="data-table" dataFile="<?= $_POST['dataFile'] ?>">
     <div class="accordion columns-<?= $columns ?>" id="tableOptions">
         <div class="accordion-item">
             <h2 class="accordion-header">

@@ -1,9 +1,9 @@
 import { Data, Page } from "./consts.js";
 
-export async function getSelect(locationURL, dataToSend = {}) {
+export async function getResponse(dataFile, dataToSend = {}) {
     Page.__update();
     let page = Page.__get();
-    const response = await fetch(locationURL + 'select.php', Data.POST({
+    const response = await fetch(dataFile + '.php', Data.POST({
         password: 'javascript-async-fetch',
         page: page,
         data: dataToSend

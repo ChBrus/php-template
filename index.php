@@ -17,7 +17,7 @@
     <?= view('data-table/table', [
         'columns' => 3,
         'maxRows' => $_ENV['maxRows'],
-        'globalLocation' => PageBuilder::getProjectURL(),
+        'dataFile' => bridgeConnection() . 'table-test',
     ]) ?>
     <?= script('data-table/index', true) ?>
 </body>

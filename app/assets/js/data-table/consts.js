@@ -7,5 +7,15 @@ export const dataTable = document.querySelector('.data-table') ?? document.getEl
     headerCols = headerTable.querySelectorAll('.h-col'),
     bodyTable = dataTable.querySelector('.body') ?? dataTable.querySelector('#body'),
     loadingLayout = bodyTable.querySelector('.loading'),
-    globalLocation = dataTable.getAttribute('global-location'),
-    localLocation = dataTable.getAttribute('local-location');
+    dataFileURL = {
+        __get: () => {return dataTable.getAttribute('dataFile') ?? ''},
+        __destroy: () => {
+            const url = dataFileURL.__get();
+
+            connectionURL = url.substring(0, 41);
+
+            dataTable.setAttribute('dataFile', url.substring(41));
+        }
+    };
+
+export let connectionURL = null;

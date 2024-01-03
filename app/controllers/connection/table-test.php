@@ -1,13 +1,15 @@
 <?php
-    require_once './vendor/autoload.php';
+    require_once '../../../vendor/autoload.php';
 
     use Core\{DB, User};
     use Core\Exception\DatabaseException;
-    use Tools\JSON;
+    use Build\PageBuilder;
+    use Tools\{JSON, Env};
 
+    Env::getEnv();
     JSON::decode();
 
-    if ($_POST['password'] !== 'javascript-async-fetch') header('location: ./');
+    if ($_POST['password'] !== 'javascript-async-fetch') header('location: ' . PageBuilder::getProjectURL());
 
     try {
         $user = new User();

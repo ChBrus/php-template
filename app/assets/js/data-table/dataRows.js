@@ -1,14 +1,22 @@
 import * as fetchResponse from '../fetch/response.js';
 import { Page } from '../fetch/consts.js';
-import { localLocation, globalLocation, headerTable, bodyTable, headerCols, loadingLayout } from './consts.js';
+import { dataFileURL, connectionURL, headerTable, bodyTable, headerCols, loadingLayout } from './consts.js';
 import { Dialog } from "./dialog.js";
 
 const dataRow = document.createElement('div');
 
 export async function setDataToTable(pageNumber = null) {
-   pageNumber === null ? Page.__destroy() : null;
+   if (pageNumber === null) {
+        Page.__destroy();
+        dataFileURL.__destroy();
+    }
 
-    let response = await fetchResponse.getSelect(globalLocation ?? localLocation);  
+    try {
+        
+    } catch (error) {
+        
+    }
+    let response = await fetchResponse.getResponse(connectionURL + dataFileURL.__get());
 
     if (response.status >= 500) {
         const dialog = new Dialog(),

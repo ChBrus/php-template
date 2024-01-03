@@ -26,7 +26,8 @@
         "files": [
             "app/controllers/helper/view.php",
             "app/controllers/helper/script.php",
-            "app/controllers/helper/htmlTags.php"
+            "app/controllers/helper/htmlTags.php",
+            "app/controllers/helper/bridgeConnection.php"
         ]
     },
     "authors": [
