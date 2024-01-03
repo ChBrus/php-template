@@ -6,36 +6,33 @@ import { Dialog } from "./dialog.js";
 const dataRow = document.createElement('div');
 
 export async function setDataToTable(pageNumber = null) {
-   if (pageNumber === null) {
-        Page.__destroy();
-        dataFileURL.__destroy();
-    }
-
     try {
-        
+        if (pageNumber === null) {
+            Page.__destroy();
+            dataFileURL.__destroy();
+        }
+
+        let response = await fetchResponse.getResponse(connectionURL + dataFileURL.__get());
+
+        if (response.status >= 500) {
+            throw new Error(response.response);
+        }
+
+        initDataRow(response);
     } catch (error) {
-        
-    }
-    let response = await fetchResponse.getResponse(connectionURL + dataFileURL.__get());
-
-    if (response.status >= 500) {
         const dialog = new Dialog(),
-            alert = response.response;
-
-        dialog.appendToBody();
-
-        dialog.alertInsert(alert);
-
-        dialog.showModal();
-        dialog.startErrorIcon(response.status);
-
-        loadingLayout.removeChild(loadingLayout.querySelector('.spinner-border'));
-        loadingLayout.appendChild(dialog.tableIcon);
-
-        return;
+                alert = error.message;
+    
+            dialog.appendToBody();
+    
+            dialog.alertInsert(alert);
+    
+            dialog.showModal();
+            dialog.startErrorIcon(response.status);
+    
+            loadingLayout.removeChild(loadingLayout.querySelector('.spinner-border'));
+            loadingLayout.appendChild(dialog.tableIcon);
     }
-
-    initDataRow(response);
 }
 
 function initDataRow(data) {

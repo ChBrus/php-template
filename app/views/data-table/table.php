@@ -1,8 +1,15 @@
 <?php
+    require_once '../../../vendor/autoload.php';
+
+    use Build\PageBuilder;
+    use Tools\Env;
+
+    Env::getEnv();
+
     $columns = (int) $_POST['columns'];
     $maxRows = (int) $_POST['maxRows'];
 ?>
-<div class="data-table" id="data-table" dataFile="<?= $_POST['dataFile'] ?>">
+<div class="data-table" id="data-table" dataFile="<?= $_POST['dataFile'] ?? PageBuilder::getProjectURL() . 'app/controllers/connection/null' ?>">
     <div class="accordion columns-<?= $columns ?>" id="tableOptions">
         <div class="accordion-item">
             <h2 class="accordion-header">
