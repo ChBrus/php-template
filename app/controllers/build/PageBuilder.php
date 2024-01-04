@@ -60,6 +60,19 @@
         }
 
         /**
+         * Construye el script para usar JQuery
+         *
+         * @return mixed
+         */
+        public static function buildJQuery() {
+            ob_start();
+            ?>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin></script>
+            <?php
+            return ob_get_clean();
+        }
+
+        /**
          * Imprime en la página cualquier componente dado y le enviamos datos por medio de un método POST
          *
          * @param string $file

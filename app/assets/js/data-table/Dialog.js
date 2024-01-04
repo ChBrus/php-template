@@ -18,7 +18,9 @@ export class Dialog {
 
     startEvents() {
         this.clickAlertEvent = () => {
-            this.close();
+            try {
+                this.close();
+            } catch (error) {}
         };
 
         this.alertBtn.addEventListener('click', this.clickAlertEvent);
