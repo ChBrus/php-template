@@ -7,6 +7,7 @@ export const dataTable = document.querySelector('.data-table') ?? document.getEl
     headerCols = headerTable.querySelectorAll('.h-col'),
     bodyTable = dataTable.querySelector('.body') ?? dataTable.querySelector('#body'),
     loadingLayout = bodyTable.querySelector('.loading'),
+    maxRows = tableToolBar.querySelector('.max-rows'),
     dataFileURL = {
         __get: () => {return dataTable.getAttribute('dataFile') ?? ''},
         __destroy: () => {

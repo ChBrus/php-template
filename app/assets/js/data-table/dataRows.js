@@ -1,6 +1,6 @@
 import * as fetchResponse from '../fetch/response.js';
 import { Page } from '../fetch/consts.js';
-import { dataFileURL, connectionURL, headerTable, bodyTable, headerCols, loadingLayout } from './consts.js';
+import { dataFileURL, connectionURL, headerTable, bodyTable, headerCols, loadingLayout, maxRows } from './consts.js';
 import { Dialog } from "./dialog.js";
 
 const dataRow = document.createElement('div');
@@ -12,7 +12,13 @@ export async function setDataToTable(pageNumber = null) {
             dataFileURL.__destroy();
         }
 
-        let response = await fetchResponse.getResponse(connectionURL + dataFileURL.__get());
+        Page.__update();
+        let page = Page.__get();
+
+        let response = await fetchResponse.getResponse(connectionURL + dataFileURL.__get(), {
+            page: page,
+            maxRows: parseInt(maxRows.value)
+        });
 
         if (response.status >= 500) {
             throw new Error(response.response);

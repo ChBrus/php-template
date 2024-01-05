@@ -112,6 +112,9 @@
          */
         public static function getProjectURL() {
             $projectURL = '/' . $_ENV['ProjectName'] . '/';
+
+            if (empty($_ENV['ProjectName'])) $projectURL = '/';
+
             return $projectURL;
         }
 

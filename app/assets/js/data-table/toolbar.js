@@ -35,7 +35,7 @@ function changePage(isPrev) {
     setPageNumber();
 }
 
-function setLoadingLayout() {
+export function setLoadingLayout() {
     Object.values(bodyTable.children).forEach(rowData => {
         bodyTable.removeChild(rowData);
     });
@@ -46,6 +46,6 @@ function setLoadingLayout() {
 /**
  * Pone el número de la página
  */
-function setPageNumber() {
+export function setPageNumber() {
     pageTableNumber.textContent = (parseInt(Page.__get()) + 1);
 }

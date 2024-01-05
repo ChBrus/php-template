@@ -1,7 +1,7 @@
 <?php
     namespace Core\Abstracts;
 
-    use Core\DB;
+    use Core\{DB, Response};
     use Core\Exception\DatabaseException;
     use Exception;
     use Core\Interfaces\{CRUDInterface, BaseInterface};
@@ -9,9 +9,7 @@
 
     abstract class CRUDAbstract implements CRUDInterface, BaseInterface {
         protected int $startIndex;
-        protected bool $isView;
-        protected array $tables;
-        protected array $views;
+        protected string $table_or_view;
         protected int $limitQuery;
         private DB $database;
 
@@ -23,9 +21,7 @@
 
                 $this->database = new DB();
                 $this->limitQuery = (int) $_ENV['maxRows'];
-                $this->tables = array();
-                $this->views = array();
-                $this->isView = false;
+                $this->tables = '';
             } catch(Exception $e) {
                 die(
                     json_encode([
@@ -36,15 +32,15 @@
             }
         }
 
-        public function create($table = 0) : array {
+        public function create($columns = null) : Response {
             try {
-                $columnPointer = $this->getColumnPointer();
+                $columnPointer = $this->getColumnPointer($columns);
                 $column = $columnPointer['column'];
-                
+
                 $pointer = $columnPointer['pointer'];
 
                 $query = $this->database->prepare(
-                    "INSERT INTO `{$_ENV['DB']}`.`{$this->tables[$table]}`({$column})
+                    "INSERT INTO `{$_ENV['DB']}`.`{$this->table_or_view}`({$column})
                     VALUES ({$pointer})"
                 );
 
@@ -69,37 +65,30 @@
 
                 if ($query === false) throw new DatabaseException('Algo ha pasado al momento de ejecutar la petición al servidor');
 
-                return [
-                    "status" => 200,
-                    "response" => true
-                ];
+                return new Response(200, true);
             } catch(Exception $e) {
-                return [
-                    "status" => 500,
-                    "response" => $e->getMessage()
-                ];
+                return new Response(500, $e->getMessage());
             }
         }
 
-        public function update($table = 0) : array {return [];}
+        public function update() : Response {return new Response(500, 'Unaccessable function');}
 
-        public function delete($table = 0) : array {return [];}
+        public function delete() : Response {return new Response(500, 'Unaccessable function');}
 
-        public function select($columns = '*', $conditions = [], $table_or_view = 0) : array {
+        public function select($columns = '*', $conditions = []) : Response {
             try {
                 if (empty($columns)) throw new DatabaseException('No se especificó ninguna columna');
 
                 if ($columns !== '*') {
                     $columns_array = explode(', ', $columns);
-                    $attributes_array = array_keys($this->getAttributes());
+                    $attributes_array = array_keys($this->__toArray());
                     $array_diff_columns_attributes = array_diff($columns_array, $attributes_array);
                 }
 
                 if (!empty($array_diff_columns_attributes)) throw new DatabaseException('No existe la columna / las columnas: ' . implode(', ', $array_diff_columns_attributes));
 
                 $query = $this->database->prepare(
-                    "SELECT {$columns} FROM `{$_ENV['DB']}`.`" .
-                    ($this->isView ? $this->views[$table_or_view] : $this->tables[$table_or_view]) . "`" .
+                    "SELECT {$columns} FROM `{$_ENV['DB']}`.`{$this->table_or_view}`" .
                     (!empty($conditions) ?
                     " WHERE " . rtrim(
                         array_reduce($conditions, function($carry, $item) {
@@ -116,24 +105,16 @@
                 $result = $query;
                 $query = null;
 
-                return [
-                    "status"=> 200,
-                    "response"=> $result
-                ];
+                return new Response(200, $result);
             } catch(Exception $e) {
-                return [
-                    "status" => 500,
-                    "response" => $e->getMessage()
-                ];
+                return new Response(500, $e->getMessage());
             }
         }
 
-        public function getRows($table_or_view = 0) : array {
+        public function getRows() : Response {
             try {
                 $query = $this->database->prepare(
-                    "SELECT COUNT(*) FROM `{$_ENV['DB']}`.`" .
-                    ($this->isView ? $this->views[$table_or_view] : $this->tables[$table_or_view]) .
-                    "`;"
+                    "SELECT COUNT(*) FROM `{$_ENV['DB']}`.`{$this->table_or_view}`;"
                 );
 
                 $response = $query->execute();
@@ -146,15 +127,9 @@
 
                 setcookie('maxPages', $maxData, time() + 60*60*24,'/');
 
-                return [
-                    "status" => 200,
-                    "response" => true
-                ];
+                return new Response(200, true);
             } catch(Exception $e) {
-                return [
-                    "status" => 500,
-                    "response" => $e->getMessage()
-                ];
+                return new Response(500, $e->getMessage());
             }
         }
 
@@ -165,13 +140,25 @@
             return null;
         }
 
+        public function __toString() {
+            return json_encode($this);
+        }
+
         /**
          * Obtiene los atributos del objeto en un arreglo asociativo
          *
          * @return array
          */
         public function getAttributes() {
-            $jsonObject = json_encode($this);
+            $jsonObject = $this->__toString();
+
+            $jsonDecode = json_decode($jsonObject, true);
+
+            return $jsonDecode;
+        }
+
+        public function __toArray() {
+            $jsonObject = $this->__toString();
 
             $jsonDecode = json_decode($jsonObject, true);
 
@@ -181,10 +168,19 @@
         /**
          * Obtiene la columna y el puntero para usar en la petición SQL
          *
+         * @param string|null $columns
          * @return array
          */
-        private function getColumnPointer() {
-            $user_array = array_keys($this->getAttributes());
+        private function getColumnPointer($columns = null) {
+            $user_array = array_keys($this->__toArray());
+
+            if (!empty($columns)) {
+                try {
+                    $user_array = explode(', ', $columns);
+                } catch (Exception $e) {
+                    $user_array = explode(',', $columns);
+                }
+            }
 
             $user_array_column = array_map(function($value) {
                 return "`{$value}`";
@@ -203,49 +199,20 @@
         /**
          * Añade una tabla a la lista de tablas que tiene acceso la clase
          *
-         * @param string $table
+         * @param string $name
          * @return void
          */
-        public function addTable($table) {
-            array_push($this->tables, $table);
+        public function addTableOrView($name) {
+            $this->table_or_view = $name;
         }
 
         /**
          * Elimina una tabla de la lista de tablas que tiene acceso la clase
          *
-         * @param string $table
          * @return void
          */
-        public function dropTable($table) {
-            define('table', $table);
-            
-            $this->tables = array_filter($this->tables, function($table) {
-                return $table !== table ? $table : null;
-            });
-        }
-
-        /**
-         * Añade una tabla a la lista de tablas que tiene acceso la clase
-         *
-         * @param string $view
-         * @return void
-         */
-        public function addView($view) {
-            array_push($this->views, $view);
-        }
-
-        /**
-         * Elimina una tabla de la lista de tablas que tiene acceso la clase
-         *
-         * @param string $view
-         * @return void
-         */
-        public function dropView($view) {
-            define('view', $view);
-            
-            $this->views = array_filter($this->views, function($view) {
-                return $view !== view ? $view : null;
-            });
+        public function dropTableOrView() {
+            $this->table_or_view = '';
         }
 
         /**

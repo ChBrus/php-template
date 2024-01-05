@@ -1,14 +1,17 @@
 <?php
     namespace Core\Interfaces;
 
+    use Core\Response;
+
     interface CRUDInterface {
         /**
-         * Undocumented function
+         * Crea una nueva entidad en la base de datos basándose
+         * en los atributos de la clase que heredó este método
          *
-         * @param integer $table
-         * @return array
+         * @param string|null $columns
+         * @return Response
          */
-        public function create($table = 0) : array;
+        public function create($columns = null) : Response;
 
         /**
          * Método para hacer peticiones de datos que quiera de una tabla de la base de datos
@@ -22,30 +25,30 @@
          * "last_name = 'Apellido'"
          * ]
          * @param int $table_or_view
-         * @return array
+         * @return Response
          */
-        public function select($columns = '*', $conditions = [], $table_or_view = 0) : array;
+        public function select($columns = '*', $conditions = []) : Response;
 
         /**
          * Método para hacer peticiones de actualizaciones de datos en una tabla de la base de datos
          *
-         * @return array
+         * @return Response
          */
-        public function update($table = 0) : array;
+        public function update() : Response;
 
         /**
          * Método para hacer peticiones de eliminación de datos en una tabla de la base de datos
          *
-         * @return array
+         * @return Response
          */
-        public function delete($table = 0) : array;
+        public function delete() : Response;
 
         /**
          * Obtiene la cantidad de filas que tiene la tabla a la que se hace referencia
          *
          * @param int $table_or_view
-         * @return array
+         * @return Response
          */
-        public function getRows($table_or_view = 0) : array;
+        public function getRows() : Response;
     }
 ?>

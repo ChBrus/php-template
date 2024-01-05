@@ -1,7 +1,7 @@
 <?php
     require_once '../../../vendor/autoload.php';
 
-    use Core\{DB, User};
+    use Core\{DB, Response, User};
     use Core\Exception\DatabaseException;
     use Build\PageBuilder;
     use Tools\{JSON, Env};
@@ -13,31 +13,28 @@
 
     try {
         $user = new User();
-        $user->addTable('users');
-        $user->setStartIndex($_POST['page']);
-    
+        $user->addTableOrView('users');
+
+        if (isset($_POST['data']['maxRows'])) $user->setLimitQuery($_POST['data']['maxRows']);
+
+        $user->setStartIndex($_POST['data']['page']);
+
         # User
-        list(
-            "status" => $status,
-            "response" => $response
-        ) = $user->select();
-    
+        $userResponse = $user->select();
+
         # Count
-        list(
-            "status" => $countStatus,
-            "response" => $countResponse
-        ) = $user->getRows();
+        $countResponse = $user->getRows();
 
-        if ($status === 500) throw new DatabaseException($response);
-        else if ($countStatus === 500) throw new DatabaseException($countResponse);
+        if ($userResponse->status === 500) throw new DatabaseException($userResponse->response);
+        else if ($countResponse->status === 500) throw new DatabaseException($countResponse->response);
 
-        $lastResponse = $response->fetchAll(DB::FETCH_ASSOC);
+        $lastResponse = $userResponse->response->fetchAll(DB::FETCH_ASSOC);
 
-        if (empty($lastResponse)) throw new DatabaseException(bold("Estado de base de datos:") . " No se encontró ningún dato en la tabla " . bold($user->__get('tables')[0]), 501);
+        if (empty($lastResponse)) throw new DatabaseException(bold("Estado de base de datos:") . " No se encontró ningún dato en la tabla " . bold($user->__get('table_or_view')), 501);
 
         echo json_encode([
-            "status" => $status,
-            "response" => $lastResponse
+            'status' => $userResponse->status,
+            'response' => $lastResponse
         ]);
     } catch (Exception $e) {
         $pdoException = new DatabaseException($e->getMessage(), (int) $e->getCode(), $e->getPrevious());

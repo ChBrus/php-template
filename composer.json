@@ -24,6 +24,7 @@
             "Enums\\Msg\\": "app/models/enums/msg/"
         },
         "files": [
+            "app/config.php",
             "app/controllers/helper/view.php",
             "app/controllers/helper/script.php",
             "app/controllers/helper/htmlTags.php",

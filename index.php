@@ -15,25 +15,11 @@
     <?= PageBuilder::buildJQuery() ?>
 </head>
 <body>
-    <div class="btn-toolbar" role="toolbar" aria-label="jquery-test">
-        <div class="btn-group" role="group" aria-label="jquery-test-btn-group">
-        <button type="button" class="btn btn-blue">
-                JavaScript
-            </button>
-            <button type="button" class="btn btn-blue">
-                PHP
-            </button>
-            <button type="button" class="btn btn-blue">
-                CSS
-            </button>
-            <button type="button" class="btn btn-blue">
-                HTML
-            </button>
-        </div>
-    </div>
-    <div class="testing-ajax">
-
-    </div>
-    <?= script('jquery-test/index', true) ?>
+    <?= view('data-table/table', [
+        'columns' => 3,
+        'maxRows' => 100,
+        'dataFile' => bridgeConnection('table-test')
+    ]) ?>
+    <?= script('data-table/index', true) ?>
 </body>
 </html>
