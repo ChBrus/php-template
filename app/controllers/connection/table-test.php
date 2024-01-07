@@ -28,20 +28,21 @@
         if ($userResponse->status === 500) throw new DatabaseException($userResponse->response);
         else if ($countResponse->status === 500) throw new DatabaseException($countResponse->response);
 
-        $lastResponse = $userResponse->response->fetchAll(DB::FETCH_ASSOC);
+        $lastResponse = new Response(
+            $userResponse->status,
+            $userResponse->response->fetchAll(DB::FETCH_ASSOC)
+        );
 
-        if (empty($lastResponse)) throw new DatabaseException(bold("Estado de base de datos:") . " No se encontró ningún dato en la tabla " . bold($user->__get('table_or_view')), 501);
+        if (empty($lastResponse->response)) throw new DatabaseException(bold("Estado de base de datos:") . " No se encontró ningún dato en la tabla " . bold($user->__get('table_or_view')), 501);
 
-        echo json_encode([
-            'status' => $userResponse->status,
-            'response' => $lastResponse
-        ]);
+        echo $lastResponse->__toString();
     } catch (Exception $e) {
         $pdoException = new DatabaseException($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
+        $errorResponse = new Response(
+            $e->getCode() > 500 ? $e->getCode() : 500,
+            $pdoException->show()
+        );
 
-        echo json_encode([
-            'status'=> $e->getCode() > 500 ? $e->getCode() : 500,
-            'response' => $pdoException->show()
-        ]);
+        echo $errorResponse->__toString();
     }
 ?>

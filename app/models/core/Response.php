@@ -2,16 +2,18 @@
     namespace Core;
 
     use Core\Interfaces\BaseInterface;
+    use PDOStatement;
+    use Exception;
 
     class Response implements BaseInterface {
         public int $status;
-        public mixed $response;
+        public string | PDOStatement | bool | array $response;
 
         /**
          * Construye el objeto Response
          *
          * @param int $status
-         * @param mixed $response
+         * @param string | PDOStatement | bool $response
          */
         public function __construct($status, $response) {
             $this->status = $status;
@@ -28,6 +30,12 @@
 
         public function __toString() {
             return json_encode($this);
+        }
+
+        public function __set($property, $value) : void {
+            if (property_exists($this, $property)) {
+                $this->$property = $value;
+            }
         }
 
         public function __get($property) : mixed {

@@ -133,6 +133,12 @@
             }
         }
 
+        public function __set($property, $value) : void {
+            if (property_exists($this, $property)) {
+                $this->$property = $value;
+            }
+        }
+
         public function __get($property) : mixed {
             if (property_exists($this, $property)) {
                 return $this->$property;
@@ -142,19 +148,6 @@
 
         public function __toString() {
             return json_encode($this);
-        }
-
-        /**
-         * Obtiene los atributos del objeto en un arreglo asociativo
-         *
-         * @return array
-         */
-        public function getAttributes() {
-            $jsonObject = $this->__toString();
-
-            $jsonDecode = json_decode($jsonObject, true);
-
-            return $jsonDecode;
         }
 
         public function __toArray() {

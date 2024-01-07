@@ -17,7 +17,6 @@
 <body>
     <?= view('data-table/table', [
         'columns' => 3,
-        'maxRows' => 100,
         'dataFile' => bridgeConnection('table-test')
     ]) ?>
     <?= script('data-table/index', true) ?>

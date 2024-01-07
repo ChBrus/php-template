@@ -6,6 +6,8 @@ import { Dialog } from "./dialog.js";
 const dataRow = document.createElement('div');
 
 export async function setDataToTable(pageNumber = null) {
+    let status = 0;
+
     try {
         if (pageNumber === null) {
             Page.__destroy();
@@ -21,6 +23,7 @@ export async function setDataToTable(pageNumber = null) {
         });
 
         if (response.status >= 500) {
+            status = response.status;
             throw new Error(response.response);
         }
 
@@ -28,14 +31,14 @@ export async function setDataToTable(pageNumber = null) {
     } catch (error) {
         const dialog = new Dialog(),
                 alert = error.message;
-    
+
             dialog.appendToBody();
-    
+
             dialog.alertInsert(alert);
-    
+
             dialog.showModal();
-            dialog.startErrorIcon(response.status);
-    
+            dialog.startErrorIcon(status);
+
             loadingLayout.removeChild(loadingLayout.querySelector('.spinner-border'));
             loadingLayout.appendChild(dialog.tableIcon);
     }
