@@ -12,6 +12,12 @@
         protected string $table_or_view;
         protected int $limitQuery;
         private DB $database;
+        private const TYPE_MAPPING = [
+            'integer' => DB::PARAM_INT,
+            'boolean' => DB::PARAM_BOOL,
+            'NULL' => DB::PARAM_NULL,
+            'string' => DB::PARAM_STR
+        ];
 
         public function __construct() {
             try {
@@ -21,14 +27,10 @@
 
                 $this->database = new DB();
                 $this->limitQuery = (int) $_ENV['maxRows'];
-                $this->tables = '';
+                $this->table_or_view = '';
             } catch(Exception $e) {
-                die(
-                    json_encode([
-                        "status" => 500,
-                        "response" => $e->getMessage()
-                    ])
-                );
+                $error = new Response(500, $e->getMessage());
+                die($error->__toString());
             }
         }
 
@@ -47,18 +49,11 @@
                 $array_pointer = explode(', ', $pointer);
 
                 for ($pointerIndex = 0; $pointerIndex < count($array_pointer); $pointerIndex++) {
-                    $typeMapping = [
-                        'integer' => DB::PARAM_INT,
-                        'boolean' => DB::PARAM_BOOL,
-                        'NULL' => DB::PARAM_NULL,
-                        'string' => DB::PARAM_STR
-                    ];
-
                     $currentPointer = $array_pointer[$pointerIndex];
                     $classPointer = str_replace(':', '', $currentPointer);
                     $pointerType = gettype($this->$classPointer);
 
-                    $query->bindValue($currentPointer, $this->$classPointer, $typeMapping[$pointerType] ?? DB::PARAM_STR);
+                    $query->bindValue($currentPointer, $this->$classPointer, self::TYPE_MAPPING[$pointerType] ?? DB::PARAM_STR);
                 }
 
                 $query->execute();
@@ -71,7 +66,52 @@
             }
         }
 
-        public function update() : Response {return new Response(500, 'Unaccessable function');}
+        public function update($columns = null, $conditions = []) : Response {
+            try {
+                # Columns and pointers config
+                list(
+                    'column' => $column,
+                    'pointer' => $pointers
+                ) = array_map(fn($value) => explode(', ', $value) , $this->getColumnPointer($columns));
+
+                $queryString = "UPDATE `{$_ENV['DB']}`.`{$this->table_or_view}`
+                SET ";
+
+                for ($columnIndex = 0; $columnIndex < count($column); $columnIndex++) {
+                    $queryString .= "{$column[$columnIndex]} = {$pointers[$columnIndex]}";
+
+                    if ($columnIndex !== count($column) - 1) $queryString .= ", ";
+                }
+
+                $queryString .= (!empty($conditions) ?
+                " WHERE" . rtrim(
+                    array_reduce($conditions, function($carry, $item) {
+                        return $carry . " (" . $item . ") AND";
+                    }), ' AND'
+                ) . ';' : ';');
+
+                $query = $this->database->prepare($queryString);
+
+                foreach ($pointers as $pointer) {
+                    $classPointer = str_replace(':', '', $pointer);
+                    $pointerType = gettype($this->$classPointer);
+
+                    $query->bindValue($pointer, $this->$classPointer, self::TYPE_MAPPING[$pointerType] ?? DB::PARAM_STR);
+                }
+
+                echo '<pre>';
+                var_dump(new Response(200, [$column, $pointers, $queryString]));
+                echo '</pre>';
+
+                $query->execute();
+
+                if ($query === false) throw new DatabaseException('Algo ha pasado al momento de ejecutar la petición al servidor');
+
+                return new Response(200, [$column, $pointers, $queryString]);
+            } catch (Exception $e) {
+                return new Response(500, $e->getMessage());
+            }
+        }
 
         public function delete() : Response {return new Response(500, 'Unaccessable function');}
 
@@ -90,7 +130,7 @@
                 $query = $this->database->prepare(
                     "SELECT {$columns} FROM `{$_ENV['DB']}`.`{$this->table_or_view}`" .
                     (!empty($conditions) ?
-                    " WHERE " . rtrim(
+                    " WHERE" . rtrim(
                         array_reduce($conditions, function($carry, $item) {
                             return $carry . " (" . $item . ") AND";
                         }), ' AND'
@@ -168,11 +208,8 @@
             $user_array = array_keys($this->__toArray());
 
             if (!empty($columns)) {
-                try {
-                    $user_array = explode(', ', $columns);
-                } catch (Exception $e) {
-                    $user_array = explode(',', $columns);
-                }
+                $user_array = str_replace(' ', '', $columns); // Quitamos espacios en blanco
+                $user_array = explode(',', $user_array); // Transformamos a array
             }
 
             $user_array_column = array_map(function($value) {
@@ -190,21 +227,21 @@
         }
 
         /**
-         * Añade una tabla a la lista de tablas que tiene acceso la clase
+         * Agregas un valor a la propiedad table_or_view
          *
-         * @param string $name
+         * @param string $table_or_view
          * @return void
          */
-        public function addTableOrView($name) {
-            $this->table_or_view = $name;
+        public function addFrom($table_or_view) {
+            $this->table_or_view = $table_or_view;
         }
 
         /**
-         * Elimina una tabla de la lista de tablas que tiene acceso la clase
+         * Eliminas el valor de la propiedad table_or_view
          *
          * @return void
          */
-        public function dropTableOrView() {
+        public function dropFrom() {
             $this->table_or_view = '';
         }
 
@@ -216,16 +253,6 @@
          */
         public function setLimitQuery($limitQuery) {
             $this->limitQuery = $limitQuery;
-        }
-
-        /**
-         * Cambia el valor de isView de la clase
-         *
-         * @param bool $isView
-         * @return void
-         */
-        public function setIsView($isView) {
-            $this->isView = $isView;
         }
 
         /**

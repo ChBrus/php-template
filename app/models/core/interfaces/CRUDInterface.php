@@ -32,9 +32,11 @@
         /**
          * Método para hacer peticiones de actualizaciones de datos en una tabla de la base de datos
          *
+         * @param string|null $columns
+         * @param array $conditions
          * @return Response
          */
-        public function update() : Response;
+        public function update($columns = null, $conditions = []) : Response;
 
         /**
          * Método para hacer peticiones de eliminación de datos en una tabla de la base de datos

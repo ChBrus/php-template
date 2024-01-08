@@ -13,7 +13,7 @@
          * Construye el objeto Response
          *
          * @param int $status
-         * @param string | PDOStatement | bool $response
+         * @param string | PDOStatement | bool | array $response
          */
         public function __construct($status, $response) {
             $this->status = $status;

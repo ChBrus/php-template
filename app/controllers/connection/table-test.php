@@ -13,7 +13,7 @@
 
     try {
         $user = new User();
-        $user->addTableOrView('users');
+        $user->addFrom('users');
 
         if (isset($_POST['data']['maxRows'])) $user->setLimitQuery($_POST['data']['maxRows']);
 
