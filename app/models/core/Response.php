@@ -4,16 +4,17 @@
     use Core\Interfaces\BaseInterface;
     use PDOStatement;
     use Exception;
+    use Doctrine\DBAL\Result;
 
     class Response implements BaseInterface {
         public int $status;
-        public string | PDOStatement | bool | array $response;
+        public string | PDOStatement | Result | bool | array $response;
 
         /**
          * Construye el objeto Response
          *
          * @param int $status
-         * @param string | PDOStatement | bool | array $response
+         * @param string | PDOStatement | Result | bool | array $response
          */
         public function __construct($status, $response = true) {
             $this->status = $status;

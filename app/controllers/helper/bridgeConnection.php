@@ -8,6 +8,11 @@
      * @return string
      */
     function bridgeConnection($fileName) {
-        return CONNECTION_PATH . $fileName;
+        $path = CONNECTION_PATH;
+
+        if (file_exists($path . $fileName)) $path .= $fileName;
+        else $path .= 'null'; 
+
+        return $path;
     }
 ?>
