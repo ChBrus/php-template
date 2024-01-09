@@ -1,5 +1,5 @@
 <?php
-    use Build\PageBuilder;
+    use Tools\Env;
 
     /**
      * Autocompleta la ruta a donde se encuentrar los middles de las conexiones
@@ -9,10 +9,21 @@
      */
     function bridgeConnection($fileName) {
         $path = CONNECTION_PATH;
+        $originalPath = str_replace('\\', '/', Env::getEnvFile()) . '/..';
 
-        if (file_exists($path . $fileName)) $path .= $fileName;
-        else $path .= 'null'; 
+        if (file_exists($originalPath . $path . $fileName . '.php')) $path .= $fileName;
+        else $path .= 'null';
 
         return $path;
+    }
+
+    /**
+     * Obtienes la cantidad de carácteres que tiene la ruta
+     * a la conexión
+     *
+     * @return int
+     */
+    function getLengthConnection() {
+        return strlen(CONNECTION_PATH);
     }
 ?>

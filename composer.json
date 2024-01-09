@@ -1,5 +1,5 @@
 {
-    "name": "chbrus/php-builder",
+    "name": "chbrus/php-template",
     "description": "Este es un pequeño proyecto para ayudarme a construir páginas más fácil con PHP",
     "type": "project",
     "require": {
