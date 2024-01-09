@@ -4,13 +4,14 @@
     use Core\{DB, Response};
     use Core\Exception\DatabaseException;
     use Exception;
-    use Core\Interfaces\{CRUDInterface, BaseInterface};
+    use Core\Interfaces\CRUDInterface;
+    use Core\Abstracts\BaseAbstract;
     use Tools\Env;
 
-    abstract class CRUDAbstract implements CRUDInterface, BaseInterface {
-        protected int $startIndex;
+    abstract class CRUDAbstract extends BaseAbstract implements CRUDInterface {
+        protected int $firstResult;
+        protected int $maxResults;
         protected string $table_or_view;
-        protected int $limitQuery;
         private DB $database;
         private const TYPE_MAPPING = [
             'integer' => DB::PARAM_INT,
@@ -23,14 +24,19 @@
             try {
                 Env::getEnv();
 
-                if (!isset($_ENV)) throw new DatabaseException('Las variables de entorno no cargaron', 16);
+                if (!isset($_ENV)) throw new DatabaseException('Las variables de entorno no cargaron');
 
                 $this->database = new DB();
-                $this->limitQuery = (int) $_ENV['maxRows'];
+                $this->maxResults = (int) $_ENV['maxRows'];
                 $this->table_or_view = '';
             } catch(Exception $e) {
-                $error = new Response(500, $e->getMessage());
-                die($error->__toString());
+                $pdoException = new DatabaseException($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
+                $errorResponse = new Response(
+                    $e->getCode() > 500 ? $e->getCode() : 500,
+                    $pdoException->show()
+                );
+
+                die($errorResponse->__toString());
             }
         }
 
@@ -60,7 +66,7 @@
 
                 if ($query === false) throw new DatabaseException('Algo ha pasado al momento de ejecutar la petición al servidor');
 
-                return new Response(200, true);
+                return new Response(200);
             } catch(Exception $e) {
                 return new Response(500, $e->getMessage());
             }
@@ -107,7 +113,7 @@
 
                 if ($query === false) throw new DatabaseException('Algo ha pasado al momento de ejecutar la petición al servidor');
 
-                return new Response(200, [$column, $pointers, $queryString]);
+                return new Response(200);
             } catch (Exception $e) {
                 return new Response(500, $e->getMessage());
             }
@@ -125,17 +131,17 @@
                     $array_diff_columns_attributes = array_diff($columns_array, $attributes_array);
                 }
 
-                if (!empty($array_diff_columns_attributes)) throw new DatabaseException('No existe la columna / las columnas: ' . implode(', ', $array_diff_columns_attributes));
+                if (!empty($array_diff_columns_attributes)) throw new DatabaseException('No hemos podido hacer la petición al servidor, inténtalo de nuevo');
 
                 $query = $this->database->prepare(
                     "SELECT {$columns} FROM `{$_ENV['DB']}`.`{$this->table_or_view}`" .
                     (!empty($conditions) ?
-                    " WHERE" . rtrim(
-                        array_reduce($conditions, function($carry, $item) {
-                            return $carry . " (" . $item . ") AND";
-                        }), ' AND'
-                    ) : '') .
-                    "LIMIT {$this->startIndex},{$this->limitQuery};"
+                    " WHERE" .
+                    rtrim(array_reduce(
+                        $conditions,
+                        fn($carry, $item) => $carry . " (" . $item . ") AND"),
+                        ' AND') : '') .
+                    "LIMIT {$this->firstResult},{$this->maxResults};"
                 );
 
                 $response = $query->execute();
@@ -163,39 +169,14 @@
 
                 $maxData = $query->fetchColumn();
                 
-                $maxData = ceil($maxData / $this->limitQuery);
+                $maxData = ceil($maxData / $this->maxResults);
 
                 setcookie('maxPages', $maxData, time() + 60*60*24,'/');
 
-                return new Response(200, true);
+                return new Response(200);
             } catch(Exception $e) {
                 return new Response(500, $e->getMessage());
             }
-        }
-
-        public function __set($property, $value) : void {
-            if (property_exists($this, $property)) {
-                $this->$property = $value;
-            }
-        }
-
-        public function __get($property) : mixed {
-            if (property_exists($this, $property)) {
-                return $this->$property;
-            }
-            return null;
-        }
-
-        public function __toString() {
-            return json_encode($this);
-        }
-
-        public function __toArray() {
-            $jsonObject = $this->__toString();
-
-            $jsonDecode = json_decode($jsonObject, true);
-
-            return $jsonDecode;
         }
 
         /**
@@ -212,13 +193,9 @@
                 $user_array = explode(',', $user_array); // Transformamos a array
             }
 
-            $user_array_column = array_map(function($value) {
-                return "`{$value}`";
-            }, $user_array);
+            $user_array_column = array_map(fn($value) => "`{$value}`", $user_array);
 
-            $user_array_pointer = array_map(function($value) {
-                return ":{$value}";
-            }, $user_array);
+            $user_array_pointer = array_map(fn($value) => ":{$value}", $user_array);
 
             return [
                 'column' => implode(', ', $user_array_column),
@@ -248,21 +225,21 @@
         /**
          * Cambia el limite de datos que nos llevamos de cualquier tabla/vista
          *
-         * @param int $limitQuery
+         * @param int $maxResults
          * @return void
          */
-        public function setLimitQuery($limitQuery) {
-            $this->limitQuery = $limitQuery;
+        public function setMaxResults($maxResults) {
+            $this->maxResults = $maxResults;
         }
 
         /**
-         * Pone valor a la variable startIndex
+         * Pone un valor inicial de a partir de cual fila, obtenemos datos
          *
-         * @param int | string $page
+         * @param int | string $page_number
          * @return void
          */
-        public function setStartIndex($page) {
-            $this->startIndex = ((int) $page) * $this->limitQuery;
+        public function setFirstResult($page_number) {
+            $this->firstResult = ((int) $page_number) * $this->maxResults;
         }
     }
 ?>

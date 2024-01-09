@@ -15,7 +15,7 @@
          * @param int $status
          * @param string | PDOStatement | bool | array $response
          */
-        public function __construct($status, $response) {
+        public function __construct($status, $response = true) {
             $this->status = $status;
             $this->response = $response;
         }

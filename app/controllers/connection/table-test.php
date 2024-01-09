@@ -15,9 +15,9 @@
         $user = new User();
         $user->addFrom('users');
 
-        if (isset($_POST['data']['maxRows'])) $user->setLimitQuery($_POST['data']['maxRows']);
+        if (isset($_POST['data']['maxRows'])) $user->setMaxResults($_POST['data']['maxRows']);
 
-        $user->setStartIndex($_POST['data']['page']);
+        $user->setFirstResult($_POST['data']['page']);
 
         # User
         $userResponse = $user->select();
