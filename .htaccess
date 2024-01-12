@@ -3,7 +3,7 @@ Options -MultiViews
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /php-builder/
+    RewriteBase /php-template/
 
     RewriteRule /(vendor|app)/ - [F,L]
 </IfModule>
