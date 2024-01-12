@@ -1,10 +1,10 @@
-Options All -Indexes
-Options -MultiViews
-
+# Fundamental rules of the project
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /php-template/
 
+    Options All -Indexes
+    Options -MultiViews
     RewriteRule /(vendor|app)/ - [F,L]
 </IfModule>
 
