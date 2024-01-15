@@ -1,16 +1,18 @@
 <?php
     require_once '../../../vendor/autoload.php';
 
-    use Build\PageBuilder;
-    use Tools\Env;
+    use Build\{PageBuilder, Table};
 
-    Env::getEnv();
+    $table = new Table(...$_POST);
 
-    $columns = (int) $_POST['columns'];
-    $maxRows = (int) ($_POST['maxRows'] ?? $_ENV['maxRows']);
+    $columns = $table->__get('columns');
+    $dataFile = $table->__get('dataFile');
+    $maxRows = $table->__get('maxRows');
+    $stripped = $table->__get('stripped') ? ' table-strip' : '';
+    $options = $table->__get('options');
 ?>
-<section class="data-table data-striped" id="data-table" dataFile="<?= $_POST['dataFile'] ?? PageBuilder::getProjectURL() . 'app/controllers/connection/null' ?>">
-    <?php if (!isset($_POST['options']) || (isset($_POST['options']) && boolval($_POST['options']))): ?>
+<section class="data-table<?= $stripped ?>" id="data-table" data-file="<?= $dataFile ?>" data-length=<?= getLengthConnection() ?>>
+    <?php if ($options): ?>
         <article class="accordion columns-<?= $columns ?>" id="tableOptions">
             <div class="accordion-item">
                 <h2 class="accordion-header">

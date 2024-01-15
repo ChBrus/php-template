@@ -41,6 +41,7 @@
 .data-table .accordion-item:last-of-type {
     border-radius: var(--bs-accordion-inner-border-radius) var(--bs-accordion-inner-border-radius) 0 0;
     border-color: $black;
+    border-bottom: none;
 }
 
 .data-table .accordion .accordion-item .accordion-header .accordion-button:not(.collapsed) {
@@ -66,8 +67,11 @@ $toolbar-helper: str-slice($toolbar-helper, 2);
 }
 
 .data-table .header {
-    border-top: none;
     border-bottom: none;
+}
+
+.data-table:not(:has(.accordion)) .header {
+    border-radius: 1rem 1rem 0 0;
 }
 
 .data-table .header .h-col {

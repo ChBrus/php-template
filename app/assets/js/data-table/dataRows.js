@@ -1,40 +1,22 @@
-import * as fetchResponse from '../fetch/response.js';
-import { Page } from '../fetch/consts.js';
-import { dataFileURL, connectionURL, headerTable, bodyTable, headerCols, loadingLayout, maxRows } from './consts.js';
+import { Page, dataFileURL, connectionURL } from '../fetch/consts.js';
+import { headerTable, bodyTable, headerCols, loadingLayout } from './consts.js';
 import { Dialog } from "./dialog.js";
 
 const dataRow = document.createElement('div');
 
-export async function setDataToTable(pageNumber = null) {
-    let status = 0;
-
+export async function setDataToTable(response, status, pageNumber = null) {
     try {
-        if (pageNumber === null) {
-            Page.__destroy();
-            dataFileURL.__destroy();
-        }
-
-        Page.__update();
-        let page = Page.__get();
-
-        let response = await fetchResponse.getResponse(connectionURL + dataFileURL.__get(), {
-            page: page,
-            maxRows: parseInt(maxRows.value)
-        });
-
-        if (response.status >= 500) {
-            status = response.status;
-            throw new Error(response.response);
+        if (status >= 400) {
+            throw new Error(response);
         }
 
         initDataRow(response);
     } catch (error) {
-        const dialog = new Dialog(),
-                alert = error.message;
+        const dialog = new Dialog();
 
             dialog.appendToBody();
 
-            dialog.alertInsert(alert);
+            dialog.alertInsert(response);
 
             dialog.showModal();
             dialog.startErrorIcon(status);
@@ -47,7 +29,7 @@ export async function setDataToTable(pageNumber = null) {
 function initDataRow(data) {
     dataRow.classList.add('dataRow');
 
-    const headerColumns = Object.entries(data.response[0]).map((entry) => entry[0]),
+    const headerColumns = Object.entries(data[0]).map((entry) => entry[0]),
         dataRows = getDataRows(data, headerColumns);
 
     bodyTable.contains(loadingLayout) ? bodyTable.removeChild(loadingLayout) : null;
@@ -70,9 +52,9 @@ function initDataRow(data) {
 function getDataRows(data, headerColumns) {
     const dataRows = [];
 
-    for (let i = 0; i < data.response.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         let dataRowElements = getDataRowElements(),
-            dataFormatted = Object.values(data.response[i]);
+            dataFormatted = Object.values(data[i]);
 
         for (let j = 0; j < dataFormatted.length; j++) {
             dataRowElements[j].textContent = dataFormatted[j];

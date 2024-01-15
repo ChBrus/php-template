@@ -1,9 +1,14 @@
 <?php
     require_once './vendor/autoload.php';
-    use Build\{PageBuilder};
+    use Build\{PageBuilder, Table};
     use Tools\Env;
 
     Env::getEnv();
+
+    $table = new Table(
+        columns: 3,
+        dataFile: 'prueba'
+    );
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -15,10 +20,7 @@
     <?= PageBuilder::buildJQuery() ?>
 </head>
 <body>
-    <?= view('data-table/table', [
-        'columns' => 3,
-        'dataFile' => bridgeConnection('table-test')
-    ]) ?>
-    <?= script('data-table/index', true) ?>
+    <?= $table->build() ?>
+    <?= script('fetch/index', true) ?>
 </body>
 </html>
