@@ -1,9 +1,10 @@
-import { getResponse } from "./ajax.js";
+import { getResponse } from "./asyncFetch.js";
 import { setDataToTable } from "../data-table/dataRows.js";
 
-getResponse(document.querySelector('.data-table'), {},
-(data, status) => {
-    data = JSON.parse(data)
+document.addEventListener('DOMContentLoaded',
+async () => {
+    let request = await getResponse(document.querySelector('.data-table'), {msg: 'waos'}, 'GET')
 
-    setDataToTable(data.response, data.status)
+    console.log(request)
+    // setDataToTable(request.response, request.status)
 })

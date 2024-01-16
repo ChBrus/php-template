@@ -1,7 +1,7 @@
-export const Data = {
-    POST: (postData) => {
+export const METHOD_REQUEST = {
+    METHOD: (postData, method) => {
         return {
-            method: 'POST',
+            method: method,
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -22,7 +22,7 @@ export const Data = {
             headers: {
                 'Content-Type': 'application/json'
             },
-            url: globalLocation + fileName + '.php' + '?' + params.toString()
+            url: connectionURL + fileName + '?' + params.toString()
         };  
     }
 },
@@ -50,6 +50,12 @@ dataFileURL = {
 
         tag.setAttribute('data-file', url.substring(dataFileURL.__getLength(tag)));
     }
+},
+pageNumberConf = {
+    __set: value => {
+        pageNumber = value;
+    }
 };
 
-export let connectionURL;
+export let connectionURL,
+    pageNumber;

@@ -4,5 +4,5 @@
 
     Env::getEnv();
 
-    define('CONNECTION_PATH', PageBuilder::getProjectURL() . 'app/controllers/connection/')
+    define('CONNECTION_PATH', PageBuilder::getProjectURL() . 'api/')
 ?>

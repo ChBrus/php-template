@@ -6,6 +6,14 @@
     Options All -Indexes
     Options -MultiViews
     RewriteRule /(vendor|app)/ - [F,L]
+
+    # Redirigir desde /api/ a /app/controllers/connection/
+    RewriteRule ^api/(.*)$ app/controllers/connection/$1 [L]
+
+    # Resto de las reglas (si es necesario)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^(.*)$ $1.php [L]
 </IfModule>
 
 DirectoryIndex index.php

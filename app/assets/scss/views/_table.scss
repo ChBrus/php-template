@@ -70,6 +70,16 @@ $toolbar-helper: str-slice($toolbar-helper, 2);
     border-bottom: none;
 }
 
+.accordion-collapse .accordion-body {
+    position: relative;
+    min-height: 20vh;
+}
+
+.accordion-body .table-toolbar {
+    position: absolute;
+    left: 1rem;
+}
+
 .data-table:not(:has(.accordion)) .header {
     border-radius: 1rem 1rem 0 0;
 }

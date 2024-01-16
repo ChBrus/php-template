@@ -4,7 +4,7 @@ import { Dialog } from "./dialog.js";
 
 const dataRow = document.createElement('div');
 
-export async function setDataToTable(response, status, pageNumber = null) {
+export async function setDataToTable(response, status) {
     try {
         if (status >= 400) {
             throw new Error(response);

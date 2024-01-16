@@ -6,8 +6,9 @@
     Env::getEnv();
 
     $table = new Table(
-        columns: 3,
-        dataFile: 'prueba'
+        columns: 10,
+        dataFile: 'test-table',
+        options: true
     );
 ?>
 <!DOCTYPE html>

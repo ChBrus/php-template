@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Si no es un directorio y no es un archivo existente
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Redirige las solicitudes de /api/{cualquier cosa} a /api/null.php
+RewriteRule ^(.+?)/?$ null.php [L,QSA]

@@ -1,15 +1,11 @@
 <?php
     require_once '../../../vendor/autoload.php';
 
-    use Build\{PageBuilder, Table};
-
-    $table = new Table(...$_POST);
-
-    $columns = $table->__get('columns');
-    $dataFile = $table->__get('dataFile');
-    $maxRows = $table->__get('maxRows');
-    $stripped = $table->__get('stripped') ? ' table-strip' : '';
-    $options = $table->__get('options');
+    $columns = (int) $_POST['columns'];
+    $dataFile = $_POST['dataFile'];
+    $maxRows = (int) $_POST['maxRows'];
+    $stripped = boolval($_POST['stripped']) ? ' table-strip' : '';
+    $options = boolval($_POST['options']);
 ?>
 <section class="data-table<?= $stripped ?>" id="data-table" data-file="<?= $dataFile ?>" data-length=<?= getLengthConnection() ?>>
     <?php if ($options): ?>
@@ -21,13 +17,15 @@
                     </button>
                 </h2>
                 <div id="optionsList" class="accordion-collapse collapse" data-bs-parent="#tableOptions">
-                    <div class="accordion-body table-toolbar">
-                        <input type="number" class="btn btn-gray max-rows" value="<?= $maxRows ?>"/>
-                        <div class="btn-toolbar" role="toolbar">
-                            <div class="btn-group me-2" role="group" aria-label="First group">
-                                <button type="button" class="btn btn-gray prev">Anterior</button>
-                                <button type="button" class="btn btn-gray active page-number">...</button>
-                                <button type="button" class="btn btn-gray next">Siguiente</button>
+                    <div class="accordion-body">
+                        <div class="table-toolbar">
+                            <input type="number" class="btn btn-gray max-rows" value="<?= $maxRows ?>"/>
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group me-2" role="group" aria-label="First group">
+                                    <button type="button" class="btn btn-gray prev">Anterior</button>
+                                    <button type="button" class="btn btn-gray active page-number">...</button>
+                                    <button type="button" class="btn btn-gray next">Siguiente</button>
+                                </div>
                             </div>
                         </div>
                     </div>

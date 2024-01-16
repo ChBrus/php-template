@@ -9,10 +9,8 @@
      */
     function bridgeConnection($fileName) {
         $path = CONNECTION_PATH;
-        $originalPath = str_replace('\\', '/', Env::getEnvFile()) . '/..';
 
-        if (file_exists($originalPath . $path . $fileName . '.php')) $path .= $fileName;
-        else $path .= 'null';
+        $path .= $fileName;
 
         return $path;
     }

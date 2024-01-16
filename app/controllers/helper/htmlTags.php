@@ -3,5 +3,5 @@
 
     <b class="text-printed"><?= $text ?></b>
 
-<?php return ob_get_clean();
+<?php return htmlspecialchars(ob_get_clean());
 } ?>
