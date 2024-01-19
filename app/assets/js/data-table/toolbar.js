@@ -1,11 +1,16 @@
-import { bodyTable, loadingLayout, prevTableBtn, pageTableNumber, nextTableBtn } from "./consts.js";
+import { bodyTable, loadingLayout, tableToolBar } from "./consts.js";
 import { Page } from '../fetch/consts.js';
 import { setDataToTable } from "./dataRows.js";
 import { getCookie } from "../cookies/index.js";
 
 export function initToolbar() {
-    prevTableBtn.addEventListener('click', () => changePage(true));
-    nextTableBtn.addEventListener('click', () => changePage(false));
+    try {
+        const prevTableBtn = tableToolBar.querySelector('.prev'),
+            nextTableBtn = tableToolBar.querySelector('.next');
+
+        prevTableBtn.addEventListener('click', () => changePage(true));
+        nextTableBtn.addEventListener('click', () => changePage(false));
+    } catch (error) {}
 
     document.addEventListener('keyup', (keyEvent) => {
         if (keyEvent.key === 'ArrowLeft') changePage(true);
@@ -47,5 +52,9 @@ export function setLoadingLayout() {
  * Pone el número de la página
  */
 export function setPageNumber() {
-    pageTableNumber.textContent = (parseInt(Page.__get()) + 1);
+    try {
+        const pageTableNumber = tableToolBar.querySelector('.page-number');
+
+        pageTableNumber.textContent = (parseInt(Page.__get()) + 1);
+    } catch (error) {}
 }

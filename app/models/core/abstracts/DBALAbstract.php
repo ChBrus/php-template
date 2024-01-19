@@ -24,6 +24,7 @@
 
                 $this->conn = new DBAL();
                 $this->maxResults = (int) $_ENV['maxRows'];
+                $this->firstResult = 0;
             } catch(Exception $e) {
                 $pdoException = new DatabaseException($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
                 $errorResponse = new Response(

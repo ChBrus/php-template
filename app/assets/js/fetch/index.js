@@ -1,10 +1,16 @@
 import { getResponse } from "./asyncFetch.js";
 import { setDataToTable } from "../data-table/dataRows.js";
+import { initToolbar } from "../data-table/toolbar.js";
 
 document.addEventListener('DOMContentLoaded',
 async () => {
-    let request = await getResponse(document.querySelector('.data-table'), {msg: 'waos'}, 'GET')
+    let request = await getResponse({
+        tag: document.querySelector('.data-table'),
+        queryParams: {
+        },
+        method: 'GET'
+    })
 
-    console.log(request)
-    // setDataToTable(request.response, request.status)
+    setDataToTable(request.response, request.status)
+    initToolbar();
 })

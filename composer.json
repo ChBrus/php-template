@@ -19,7 +19,6 @@
             "Core\\Interfaces\\": "app/models/core/interfaces/",
             "Build\\": "app/controllers/build/",
             "Tools\\": "app/controllers/tools/",
-            "Tools\\Commands\\": "app/controllers/tools/commands",
             "Enums\\": "app/models/enums/",
             "Enums\\DB\\": "app/models/enums/database/",
             "Enums\\Msg\\": "app/models/enums/msg/"

@@ -8,22 +8,13 @@ export const METHOD_REQUEST = {
             body: JSON.stringify(postData)
         };
     },
-    GET: (fileName, queryParams) => {
-        // Crear un objeto URLSearchParams para construir los parámetros de la consulta
-        const params = new URLSearchParams();
-
-        // Agregar los parámetros a la URLSearchParams
-        for (const [key, value] of Object.entries(queryParams)) {
-            params.append(key, value);
-        }
-
+    GET: () => {
         return {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-            url: connectionURL + fileName + '?' + params.toString()
-        };  
+            }
+        };
     }
 },
 Page = {
