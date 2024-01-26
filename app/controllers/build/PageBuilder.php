@@ -114,6 +114,7 @@
             $projectURL = '/' . $_ENV['ProjectName'] . '/';
 
             if (empty($_ENV['ProjectName'])) $projectURL = '/';
+            else if (boolval($_ENV['ProjectIsRoot'])) $projectURL = '/';
 
             return $projectURL;
         }
