@@ -6,7 +6,7 @@
     Env::getEnv();
 
     $table = new Table(
-        columns: 10,
+        columns: 3,
         dataFile: 'test-table',
         options: true
     );
@@ -22,6 +22,6 @@
 </head>
 <body>
     <?= $table->build() ?>
-    <?= script('fetch/index', true) ?>
+    <?= script('php-template/fetch/index', true) ?>
 </body>
 </html>

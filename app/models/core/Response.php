@@ -17,7 +17,8 @@
          * @param string | PDOStatement | Result | bool | array $response
          */
         public function __construct($status, $response = true) {
-            $this->status = $status;
+            $this->status = $status >= 400 && $status < 600 ? $status : ($status < 400 ? $status : 500);
+            $this->status = $this->status === 0 ? 500 : $this->status;
             $this->response = $response;
         }
 
@@ -46,4 +47,3 @@
             return null;
         }
     }
-?>

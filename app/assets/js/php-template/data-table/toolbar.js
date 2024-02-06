@@ -1,7 +1,8 @@
 import { bodyTable, loadingLayout, tableToolBar } from "./consts.js";
 import { Page } from '../fetch/consts.js';
+import { getResponse } from "../fetch/asyncFetch.js";
 import { setDataToTable } from "./dataRows.js";
-import { getCookie } from "../cookies/index.js";
+import { getCookie } from "../../cookies/index.js";
 
 export function initToolbar() {
     try {
@@ -24,7 +25,7 @@ export function initToolbar() {
  * Cambia la página de la tabla
  * @param {boolean} isPrev
  */
-function changePage(isPrev) {
+async function changePage(isPrev) {
     let currentPage = parseInt(Page.__get()),
         maxPages = parseInt(getCookie('maxPages'));
 
@@ -36,7 +37,13 @@ function changePage(isPrev) {
     Page.__set(currentPage);
 
     setLoadingLayout();
-    setDataToTable(currentPage);
+
+    let request = await getResponse({
+        file: '/api/test-table',
+        method: 'GET'
+    });
+
+    setDataToTable(request.response, request.status);
     setPageNumber();
 }
 

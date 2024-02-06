@@ -1,4 +1,3 @@
-import { Page, dataFileURL, connectionURL } from '../fetch/consts.js';
 import { headerTable, bodyTable, headerCols, loadingLayout } from './consts.js';
 import { Dialog } from "./dialog.js";
 

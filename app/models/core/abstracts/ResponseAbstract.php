@@ -1,6 +1,7 @@
 <?php
     namespace Core\Abstracts;
 
+    use Build\PageBuilder;
     use Core\Abstracts\BaseAbstract;
     use Core\Exception\DatabaseException;
     use Core\Response;
@@ -10,6 +11,11 @@
     abstract class ResponseAbstract extends BaseAbstract {
         public static function getResponse() {
             try {
+                if ($_SERVER['CONTENT_TYPE'] !== 'application/json') {
+                    header('Location: ' . PageBuilder::getProjectURL());
+                    exit();
+                }
+
                 JSON::decode();
 
                 match ($_SERVER['REQUEST_METHOD']) {
@@ -29,21 +35,21 @@
             }
         }
 
-        public static function GET() {echo self::messageError()->__toString();}
+        public static function GET() {echo self::ERROR();}
 
-        public static function POST() {echo self::messageError()->__toString();}
+        public static function POST() {echo self::ERROR();}
 
-        public static function PUT() {echo self::messageError()->__toString();}
+        public static function PUT() {echo self::ERROR();}
 
-        public static function PATCH() {echo self::messageError()->__toString();}
+        public static function PATCH() {echo self::ERROR();}
         
-        public static function DELETE() {echo self::messageError()->__toString();}
+        public static function DELETE() {echo self::ERROR();}
 
-        public static function ERROR() {echo self::messageError()->__toString();}
+        public static function ERROR() {return self::messageError()->__toString();}
 
         public static function messageError() {
             $error = new DatabaseException(bold('Estado: ') . 'No existe ninguna funcionalidad que se parezca a la solicitada');
-            $response = new Response(500, $error->show());
+            $response = new Response(404, $error->show());
 
             return $response;
         }

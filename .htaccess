@@ -1,4 +1,3 @@
-# Fundamental rules of the project
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /php-template/
@@ -8,20 +7,15 @@
     RewriteRule /(vendor|app)/ - [F,L]
 
     # Redirigir desde /api/ a /app/controllers/connection/
-    RewriteRule ^api/(.*)$ app/controllers/connection/$1 [L]
-
-    # Resto de las reglas (si es necesario)
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME}.php -f
-    RewriteRule ^(.*)$ $1.php [L]
+    RewriteRule ^api/(.*)$ /app/controllers/connection/$1 [L]
 </IfModule>
 
 DirectoryIndex index.php
 
 # Protect the htaccess file
 <Files .htaccess>
-Order Allow,Deny
-Deny from all
+    Order Allow,Deny
+    Deny from all
 </Files>
 
 # Protect secret files, like .gitignore
