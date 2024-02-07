@@ -19,13 +19,26 @@
                 <div id="optionsList" class="accordion-collapse collapse" data-bs-parent="#tableOptions">
                     <div class="accordion-body">
                         <div class="table-toolbar">
-                            <input type="number" class="btn btn-gray max-rows" value="<?= $maxRows ?>"/>
-                            <div class="btn-toolbar" role="toolbar">
-                                <div class="btn-group me-2" role="group" aria-label="First group">
-                                    <button type="button" class="btn btn-gray prev">Anterior</button>
-                                    <button type="button" class="btn btn-gray active page-number">...</button>
-                                    <button type="button" class="btn btn-gray next">Siguiente</button>
+                            <div class="d-flex flex-row gap-2 toolbar-item">
+                                <input type="number" class="btn btn-gray max-rows" value="<?= $maxRows ?>"/>
+                                <div class="btn-toolbar" role="toolbar">
+                                    <div class="btn-group me-2" role="group" aria-label="First group">
+                                        <button type="button" class="btn btn-gray prev">Anterior</button>
+                                        <button type="button" class="btn btn-gray active page-number">...</button>
+                                        <button type="button" class="btn btn-gray next">Siguiente</button>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="toolbar-item">
+                                <form class="d-flex gap-2 search-form" role="search">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                    <div class="select-container">
+                                        <select class="form-select" name="columna" id="columna" aria-label="Seleccione una columna">
+                                            <option selected disabled>Columna</option>
+                                        </select>
+                                    </div>
+                                    <input class="form-control me-2" type="search" id="search-control" placeholder="Search" aria-label="Search">
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -18604,12 +18604,26 @@ body:has(.query-msg):not(:has(.dialog-alert .query-msg)) {
 
 .accordion-collapse .accordion-body {
   position: relative;
-  min-height: 20vh;
+  min-height: 15vh;
 }
 
 .accordion-body .table-toolbar {
-  position: absolute;
-  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.table-toolbar .toolbar-item .max-rows {
+  width: 5em;
+}
+
+.table-toolbar .toolbar-item .max-rows::-webkit-inner-spin-button,
+.table-toolbar .toolbar-item .max-rows::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.search-form .form-select {
+  max-width: 10em;
 }
 
 .data-table:not(:has(.accordion)) .header {

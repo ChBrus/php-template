@@ -1,4 +1,5 @@
-import { METHOD_REQUEST, Page, dataFileURL, connectionURL, pageNumberConf } from "./consts.js"
+import { METHOD_REQUEST, Page, dataFileURL, connectionURL, pageNumberConf } from "./consts.js";
+import { Dialog } from '../data-table/Dialog.js';
 
 export async function getResponse({
     tag = null,
@@ -33,10 +34,8 @@ export async function getResponse({
         let response
 
         if (method === 'GET') {
-            response = await GET(url, {
-                data: queryParams,
-                page: Page.__get()
-            })
+            queryParams.page = Page.__get()
+            response = await GET(url, queryParams)
         } else {
             response = await fetch(url.type === 'tag-url' ? `${connectionURL + url.body}` : `${url.body}`, METHOD_REQUEST.METHOD(queryParams, method))
         }
@@ -46,17 +45,26 @@ export async function getResponse({
         let data = await response.text()
 
         try {
-            data = JSON.parse(data);
-            
+            data = JSON.parse(data)
+
             return {
                 status: data.status,
                 response: data.response
             };
         } catch (error) {
-            return data;
+            return {
+                status: 500,
+                response: data
+            };
         }
     } catch (error) {
-        
+        const dialog = new Dialog()
+
+        dialog.appendToBody()
+        await dialog.build(error.message).then(data => {
+            dialog.alertInsert(data.response)
+        })
+        dialog.showModal()
     }
 }
 

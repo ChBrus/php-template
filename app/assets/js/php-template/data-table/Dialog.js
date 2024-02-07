@@ -1,3 +1,5 @@
+import { getResponse } from '../fetch/asyncFetch.js';
+
 export class Dialog {
     constructor() {
         this.dialog = document.createElement('dialog');
@@ -5,6 +7,26 @@ export class Dialog {
 
         // Dialog config
         this.dialog.classList.add('dialog-alert');
+    }
+
+    async build(msg) {
+        let request;
+
+        await getResponse({
+            file: '/views/message/danger-msg',
+            queryParams: {
+                header: 'Mensaje de prueba',
+                msg: `<b>Estado: </b> ${msg}`,
+                icon: '<i class="bi bi-exclamation-circle-fill"></i>',
+                location: ''
+            },
+            method: 'POST',
+            init: true
+        }).then(data => {
+            request = data
+        })
+
+        return request
     }
 
     alertInsert(alert) {

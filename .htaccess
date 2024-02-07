@@ -1,3 +1,4 @@
+# Fundamental rules of the project
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /php-template/
@@ -8,6 +9,9 @@
 
     # Redirigir desde /api/ a /app/controllers/connection/
     RewriteRule ^api/(.*)$ /app/controllers/connection/$1 [L]
+
+    # Redirigir desde /views/ a /app/views/
+    RewriteRule ^views/(.*)$ /app/views/$1 [L]
 </IfModule>
 
 DirectoryIndex index.php

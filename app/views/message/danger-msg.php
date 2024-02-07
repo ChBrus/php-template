@@ -1,6 +1,13 @@
-<?php if (isset($_POST['webpage-styles'])): ?>
+<?php
+    require_once '../../../vendor/autoload.php';
+
+    use Tools\JSON;
+
+    if ($_SERVER['CONTENT_TYPE'] === 'application/json') JSON::decode();
+?>
+<?php if (isset($_POST['head'])): ?>
     <head>
-        <?= $_POST['webpage-styles']['header'] ?>
+        <?= $_POST['head'] ?>
         <title>¡Alerta!</title>
     </head>
     <body>
@@ -22,7 +29,7 @@
         </button>
     <?php endif; ?>
 </div>
-<?php if (isset($_POST['webpage-styles'])): ?>
-        <?= $_POST['webpage-styles']['script'] ?>
+<?php if (isset($_POST['script'])): ?>
+        <?= $_POST['script'] ?>
     </body>
 <?php endif; ?>

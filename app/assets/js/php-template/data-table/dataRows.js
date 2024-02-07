@@ -1,28 +1,39 @@
-import { headerTable, bodyTable, headerCols, loadingLayout } from './consts.js';
-import { Dialog } from "./dialog.js";
+import { headerTable, bodyTable, headerCols, loadingLayout, searchColumn, selectContainer } from './consts.js';
+import { Dialog } from "./Dialog.js";
+import { initToolbar } from './toolbar.js';
 
 const dataRow = document.createElement('div');
 
-export async function setDataToTable(response, status) {
-    try {
-        if (status >= 400) {
-            throw new Error(response);
+export async function setDataToTable(callback, params, search = false) {
+    await callback({
+        file: params.file,
+        method: params.method,
+        queryParams: params.queryParams,
+        init: params.init
+    })
+    .then(data => {
+        if (data.status >= 400) {
+            throw new Error(JSON.stringify(data));
         }
 
-        initDataRow(response);
-    } catch (error) {
-        const dialog = new Dialog();
+        initDataRow(data.response);
 
-            dialog.appendToBody();
+        if (search === false) initToolbar(callback, params);
+    })
+    .catch(error => {
+        const dialog = new Dialog(),
+            data = JSON.parse(error.message);
 
-            dialog.alertInsert(response);
+        dialog.appendToBody();
 
-            dialog.showModal();
-            dialog.startErrorIcon(status);
+        dialog.alertInsert(data.response);
 
-            loadingLayout.removeChild(loadingLayout.querySelector('.spinner-border'));
-            loadingLayout.appendChild(dialog.tableIcon);
-    }
+        dialog.showModal();
+        dialog.startErrorIcon(data.status);
+
+        loadingLayout.removeChild(loadingLayout.querySelector('.spinner-border'));
+        loadingLayout.appendChild(dialog.tableIcon);
+    });
 }
 
 function initDataRow(data) {
@@ -33,9 +44,25 @@ function initDataRow(data) {
 
     bodyTable.contains(loadingLayout) ? bodyTable.removeChild(loadingLayout) : null;
 
+    const selectColumn = searchColumn.cloneNode(),
+        defaultColumn = searchColumn.children[0].cloneNode();
+
+    selectContainer.querySelector('.form-select').remove();
+    defaultColumn.textContent = 'Columna';
+    selectColumn.appendChild(defaultColumn);
+
     headerCols.forEach((column, index) => {
         column.textContent = headerColumns[index];
+
+        const option = document.createElement('option');
+        option.value = headerColumns[index];
+        option.text = headerColumns[index].toUpperCase();
+
+        selectColumn.appendChild(option);
     });
+
+    selectContainer.appendChild(selectColumn);
+
     dataRows.forEach(
     (columns) => {
         const dataRowHelp = dataRow.cloneNode();

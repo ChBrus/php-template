@@ -1,31 +1,69 @@
-import { bodyTable, loadingLayout, tableToolBar } from "./consts.js";
+import { bodyTable, loadingLayout, tableToolBar, searchControl, selectContainer } from "./consts.js";
 import { Page } from '../fetch/consts.js';
-import { getResponse } from "../fetch/asyncFetch.js";
 import { setDataToTable } from "./dataRows.js";
-import { getCookie } from "../../cookies/index.js";
+import { getCookie, setCookie } from "../../cookies/index.js";
 
-export function initToolbar() {
+export function initToolbar(callback, params) {
+    const searchForm = document.querySelector('.search-form .btn[type="submit"]'),
+        maxRows = tableToolBar.querySelector('.toolbar-item .max-rows');
+
     try {
         const prevTableBtn = tableToolBar.querySelector('.prev'),
             nextTableBtn = tableToolBar.querySelector('.next');
 
-        prevTableBtn.addEventListener('click', () => changePage(true));
-        nextTableBtn.addEventListener('click', () => changePage(false));
+        prevTableBtn.addEventListener('click', () => changePage(true, callback, params));
+        nextTableBtn.addEventListener('click', () => changePage(false, callback, params));
     } catch (error) {}
 
+    searchForm.addEventListener('click', event => search(event, callback, params));
+
     document.addEventListener('keyup', (keyEvent) => {
-        if (keyEvent.key === 'ArrowLeft') changePage(true);
-        else if (keyEvent.key === 'ArrowRight') changePage (false);
+        if (keyEvent.key === 'ArrowLeft') changePage(true, callback, params);
+        else if (keyEvent.key === 'ArrowRight') changePage (false, callback, params);
     });
 
+    maxRows.addEventListener('change', () => {
+        setCookie('maxRows', maxRows.value);
+
+        setLoadingLayout();
+        setDataToTable(callback, {
+            file: params.file,
+            method: params.method,
+            queryParams: params.queryParams,
+            init: false
+        }, true);
+
+        setPageNumber();
+    });
+
+    setCookie('maxRows', '', Date.now());
     setPageNumber();
+}
+
+async function search(event, callback, params) {
+    event.preventDefault();
+
+    setLoadingLayout();
+    setDataToTable(callback, {
+        file: params.file,
+        method: params.method,
+        queryParams: {
+            type: 'search',
+            columna: selectContainer.querySelector('.form-select').value,
+            searchVal: searchControl.value
+        },
+        init: false
+    }, true);
+
+    Page.__set(0);
 }
 
 /**
  * Cambia la página de la tabla
- * @param {boolean} isPrev
+ * @param {boolean|string} isPrev
+ * @param {Function} callback
  */
-async function changePage(isPrev) {
+async function changePage(isPrev, callback, params) {
     let currentPage = parseInt(Page.__get()),
         maxPages = parseInt(getCookie('maxPages'));
 
@@ -37,13 +75,11 @@ async function changePage(isPrev) {
     Page.__set(currentPage);
 
     setLoadingLayout();
-
-    let request = await getResponse({
-        file: '/api/test-table',
-        method: 'GET'
+    setDataToTable(callback, {
+        file: params.file,
+        method: params.method,
+        init: false
     });
-
-    setDataToTable(request.response, request.status);
     setPageNumber();
 }
 

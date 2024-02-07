@@ -10,7 +10,7 @@
         protected string $header;
         private bool $icon;
         private string $location;
-        private bool $buildStyles;
+        private bool|array $buildStyles;
 
         /**
          * Message es una clase para crear alertas con mensajes personalizados
@@ -67,11 +67,12 @@
                 $data['location'] = $this->location;
             } if (strlen($this->location) === 0) {
                 $data['location'] = 'null';
-            } if ($this->buildStyles) {
-                $data['webpage-styles'] = [
-                    'header' => PageBuilder::buildCustomBootstrap(),
-                    'script' => script('message/index', true)
-                ];
+            } if (is_bool($this->buildStyles) && $this->buildStyles) {
+                $data['head'] = PageBuilder::buildCustomBootstrap();
+                $data['script'] = script('message/index', true);
+            } if (is_array($this->buildStyles)) {
+                if ($this->buildStyles[0]) $data['head'] = PageBuilder::buildCustomBootstrap();
+                else if ($this->buildStyles[1]) $data['script'] = script('message/index', true);
             }
 
             return match($type) {

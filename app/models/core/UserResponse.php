@@ -12,7 +12,33 @@
             try {
                 $user = new User();
 
+                if (isset($_COOKIE['maxRows'])) {
+                    $user->setMaxResults($_COOKIE['maxRows']);
+                }
+
                 $user->setFirstResult($_GET['page']);
+
+                if (isset($_GET['type'])) {
+                    echo match($_GET['type']) {
+                        'search' => self::search(
+                            object: $user,
+                            table: 'users'
+                        ),
+                        default => self::GETAll($user)
+                    };
+                } else {
+                    echo self::GETAll($user);
+                }
+            } catch (Exception $e) {
+                $error = new DatabaseException($e->getMessage(), $e->getCode(), $e->getPrevious());
+                $errorResponse = new Response($e->getCode(), $error->show());
+
+                die($errorResponse->__toString());
+            }
+        }
+
+        private static function GETAll($user) {
+            try {
                 $query = $user->getQueryBuilder();
 
                 $queryResponse = $query
@@ -25,41 +51,20 @@
 
                 if ($user->__get('firstResult') === 0) {
                     self::count(
-                        user: $user,
+                        object: $user,
                         table: 'users'
                     );
                 }
 
                 $response = new Response(200, $queryResponse->fetchAll());
 
-                echo $response->__toString();
+                return $response->__toString();
             } catch (Exception $e) {
                 $error = new DatabaseException($e->getMessage(), $e->getCode(), $e->getPrevious());
+                $error->configAlert('header', '[ERROR] Petición al servidor');
                 $errorResponse = new Response($e->getCode(), $error->show());
 
-                die($errorResponse->__toString());
+                return $errorResponse->__toString();
             }
-        }
-
-        /**
-         * Cuenta la cantidad de ítems en una tabla
-         *
-         * @param string $table
-         * @param User $user
-         * @return void
-         */
-        private static function count($table, $user) {
-            $queryBuilder = $user->getQueryBuilder();
-
-            $query = $queryBuilder
-                ->select('COUNT(*)')
-                ->from($table)
-                ->executeQuery()
-            ;
-
-            $maxData = $query->fetchOne();
-            $maxData = ceil($maxData / $user->__get('maxResults'));
-
-            setcookie('maxPages', $maxData, time() + 60*60*24,'/');
         }
     }

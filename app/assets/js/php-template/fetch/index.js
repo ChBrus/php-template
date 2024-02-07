@@ -4,12 +4,9 @@ import { initToolbar } from "../data-table/toolbar.js";
 
 document.addEventListener('DOMContentLoaded',
 async () => {
-    let request = await getResponse({
+    setDataToTable(getResponse, {
         file: '/api/test-table',
         method: 'GET',
         init: true
     })
-
-    setDataToTable(request.response, request.status)
-    initToolbar();
 })

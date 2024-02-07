@@ -58,11 +58,11 @@
         /**
          * Configura los atributos de la alerta
          *
-         * @param MsgProperties $propertyName
+         * @param MsgProperties|string $propertyName
          * @param mixed $value
          * @return void
          */
-        public function configAlert(MsgProperties $propertyName, $value) {
+        public function configAlert($propertyName, $value) {
             $this->alert->setAttribute($propertyName, $value);
         }
 
