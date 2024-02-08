@@ -4,7 +4,7 @@ import { initToolbar } from './toolbar.js';
 
 const dataRow = document.createElement('div');
 
-export async function setDataToTable(callback, params, search = false) {
+export async function setDataToTable(callback, params) {
     await callback({
         file: params.file,
         method: params.method,
@@ -16,17 +16,20 @@ export async function setDataToTable(callback, params, search = false) {
             throw new Error(JSON.stringify(data));
         }
 
+        if (params.search === false) initToolbar(callback, params);
         initDataRow(data.response);
-
-        if (search === false) initToolbar(callback, params);
     })
-    .catch(error => {
+    .catch(async error => {
+        console.log(error)
         const dialog = new Dialog(),
             data = JSON.parse(error.message);
 
         dialog.appendToBody();
 
-        dialog.alertInsert(data.response);
+        await dialog.build(data.response)
+        .then(data => {
+            dialog.alertInsert(data.response);
+        })
 
         dialog.showModal();
         dialog.startErrorIcon(data.status);
@@ -39,6 +42,10 @@ export async function setDataToTable(callback, params, search = false) {
 function initDataRow(data) {
     dataRow.classList.add('dataRow');
 
+    if (data.length === 0) throw new Error(JSON.stringify({
+        status: 404,
+        response: 'No hay datos insertados en esta página'
+    }))
     const headerColumns = Object.entries(data[0]).map((entry) => entry[0]),
         dataRows = getDataRows(data, headerColumns);
 

@@ -7,6 +7,7 @@ async () => {
     setDataToTable(getResponse, {
         file: '/api/test-table',
         method: 'GET',
-        init: true
+        init: true,
+        search: false
     })
 })

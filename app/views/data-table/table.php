@@ -20,6 +20,9 @@
                     <div class="accordion-body">
                         <div class="table-toolbar">
                             <div class="d-flex flex-row gap-2 toolbar-item">
+                                <button type="button" class="btn btn-gray btn-reload" id="reload">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                </button>
                                 <input type="number" class="btn btn-gray max-rows" value="<?= $maxRows ?>"/>
                                 <div class="btn-toolbar" role="toolbar">
                                     <div class="btn-group me-2" role="group" aria-label="First group">

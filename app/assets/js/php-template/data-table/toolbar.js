@@ -4,39 +4,41 @@ import { setDataToTable } from "./dataRows.js";
 import { getCookie, setCookie } from "../../cookies/index.js";
 
 export function initToolbar(callback, params) {
-    const searchForm = document.querySelector('.search-form .btn[type="submit"]'),
-        maxRows = tableToolBar.querySelector('.toolbar-item .max-rows');
-
     try {
         const prevTableBtn = tableToolBar.querySelector('.prev'),
-            nextTableBtn = tableToolBar.querySelector('.next');
+            nextTableBtn = tableToolBar.querySelector('.next'),
+            searchForm = document.querySelector('.search-form .btn[type="submit"]'),
+            maxRows = tableToolBar.querySelector('.toolbar-item .max-rows'),
+            reload = tableToolBar.querySelector('.toolbar-item .btn-reload');;
 
         prevTableBtn.addEventListener('click', () => changePage(true, callback, params));
         nextTableBtn.addEventListener('click', () => changePage(false, callback, params));
-    } catch (error) {}
 
-    searchForm.addEventListener('click', event => search(event, callback, params));
+        searchForm.addEventListener('click', event => search(event, callback, params));
+
+        reload.addEventListener('click', () => {
+            setCookie('maxRows', maxRows.value, 1);
+
+            setLoadingLayout();
+            Page.__set(0);
+            setPageNumber();
+            setDataToTable(callback, {
+                file: params.file,
+                method: params.method,
+                queryParams: params.queryParams,
+                init: false,
+                search: true
+            });
+            localStorage.setItem('search', true);
+        })
+    } catch (error) {}
 
     document.addEventListener('keyup', (keyEvent) => {
         if (keyEvent.key === 'ArrowLeft') changePage(true, callback, params);
         else if (keyEvent.key === 'ArrowRight') changePage (false, callback, params);
     });
 
-    maxRows.addEventListener('change', () => {
-        setCookie('maxRows', maxRows.value);
-
-        setLoadingLayout();
-        setDataToTable(callback, {
-            file: params.file,
-            method: params.method,
-            queryParams: params.queryParams,
-            init: false
-        }, true);
-
-        setPageNumber();
-    });
-
-    setCookie('maxRows', '', Date.now());
+    setCookie('maxRows', null, 0);
     setPageNumber();
 }
 
@@ -78,7 +80,8 @@ async function changePage(isPrev, callback, params) {
     setDataToTable(callback, {
         file: params.file,
         method: params.method,
-        init: false
+        init: false,
+        search: params.init ? localStorage.getItem('search') : false
     });
     setPageNumber();
 }

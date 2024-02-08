@@ -51,7 +51,7 @@
          * @return void
          */
         public function setMaxResults($maxResults) {
-            $this->maxResults = $maxResults;
+            $this->maxResults = (int) $maxResults;
         }
 
         /**

@@ -15,7 +15,7 @@ export class Dialog {
         await getResponse({
             file: '/views/message/danger-msg',
             queryParams: {
-                header: 'Mensaje de prueba',
+                header: '[ERROR] Petición al servidor',
                 msg: `<b>Estado: </b> ${msg}`,
                 icon: '<i class="bi bi-exclamation-circle-fill"></i>',
                 location: ''

@@ -60,9 +60,7 @@
 
                 return $response->__toString();
             } catch (Exception $e) {
-                $error = new DatabaseException($e->getMessage(), $e->getCode(), $e->getPrevious());
-                $error->configAlert('header', '[ERROR] Petición al servidor');
-                $errorResponse = new Response($e->getCode(), $error->show());
+                $errorResponse = new Response($e->getCode(), $e->getMessage());
 
                 return $errorResponse->__toString();
             }

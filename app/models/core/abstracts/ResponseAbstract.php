@@ -27,9 +27,9 @@
                     default => static::ERROR()
                 };
             } catch (Exception $e) {
-                $exception = new DatabaseException(bold('Estado: ') . 'Ocurrió un error en el envío de la petición al servidor', $e->getCode(), $e->getPrevious());
+                $exception = new DatabaseException('Ocurrió un error en el envío de la petición al servidor', $e->getCode(), $e->getPrevious());
 
-                $error = new Response($e->getCode(), $exception->show());
+                $error = new Response($e->getCode(), $exception->getMessage());
 
                 die ($error->__toString());
             }
@@ -48,8 +48,8 @@
         public static function ERROR() {return self::messageError()->__toString();}
 
         public static function messageError() {
-            $error = new DatabaseException(bold('Estado: ') . 'No existe ninguna funcionalidad que se parezca a la solicitada');
-            $response = new Response(404, $error->show());
+            $error = new DatabaseException('No existe ninguna funcionalidad que se parezca a la solicitada');
+            $response = new Response(404, $error->getMessage());
 
             return $response;
         }
@@ -73,7 +73,7 @@
             $maxData = $query->fetchOne();
             $maxData = ceil($maxData / $object->__get('maxResults'));
 
-            setcookie('maxPages', $maxData, time() + 60*60*24,'/');
+            setcookie('maxPages', $maxData, time() + 60*60*24, '/');
         }
 
         /**
@@ -87,6 +87,8 @@
             try {
                 $queryBuilder = $object->getQueryBuilder();
 
+                if ($_GET['columna'] === 'Columna') throw new Exception('La columna insertada no se reconoce en la base de datos');
+
                 $queryResponse = $queryBuilder
                     ->select('*')
                     ->from($table)
@@ -95,13 +97,10 @@
                 ;
 
                 $response = new Response(200, $queryResponse->fetchAllAssociative());
-                // $response = new Response(200, $queryResponse->getSQL());
 
                 return $response->__toString();
             } catch (Exception $e) {
-                $error = new DatabaseException($e->getMessage(), $e->getCode(), $e->getPrevious());
-                $error->configAlert('header', '[ERROR] Petición al servidor');
-                $errorResponse = new Response($e->getCode(), $error->show());
+                $errorResponse = new Response($e->getCode(), $e->getMessage());
 
                 return $errorResponse->__toString();
             }
