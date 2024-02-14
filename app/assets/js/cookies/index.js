@@ -15,3 +15,7 @@ export function getCookie(name) {
     }
     return null;
 }
+
+export function getDecodedCookie(name) {
+    return decodeURIComponent(getCookie(name));
+}

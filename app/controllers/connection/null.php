@@ -8,14 +8,11 @@
     try {
         Env::getEnv();
 
-        throw new DatabaseException(
-            bold("Estado: ") . 'No se especificó el archivo de peticiones. Intentelo más tarde',
-            404);
+        throw new DatabaseException('No se especificó el archivo de peticiones. Intentelo más tarde', 404);
     } catch (Exception $e) {
-        $pdoException = new DatabaseException($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
         $errorResponse = new Response(
             $e->getCode(),
-            $pdoException->show()
+            $e->getMessage()
         );
 
         echo $errorResponse->__toString();
