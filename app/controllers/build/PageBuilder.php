@@ -6,14 +6,13 @@
      */
     class PageBuilder {
         /**
-         * Ayuda a implementar cualquier script deseado
+         * Construye la etiqueta <script> para incluir un script en la página.
          *
          * @param string $scriptName
-         * El nombre del script - Incluyendo la subcarpeta en la que está.
+         * El nombre del script, incluyendo la subcarpeta.
          * @param boolean $isModule
-         * Verificar si es un module script lo que se desea
+         * Un booleano para verificar si es un script de módulo.
          * @return string
-         * El script implementado
          */
         public static function buildScript(string $scriptName, bool $isModule = false) {
             ob_start();
@@ -24,7 +23,7 @@
         }
 
         /**
-         * Construye el bootstrap personalizado por el desarrollador
+         * Construye las etiquetas <link> y <script> para incluir Bootstrap personalizado.
          *
          * @return string
          */
@@ -39,16 +38,16 @@
         }
 
         /**
-         * Imprime una imagen en pantalla
+         * Construye la etiqueta <img> para mostrar una imagen en la página.
          *
          * @param string $location
-         * Ubicación de la imagen, en la cual debes de basarte como ubicación principal la carpeta app/assets/img
+         * La ubicación de la imagen.
          * @param string $alt
-         * El nombre que aparecerá en tu imagen cuando no cargue
+         * El texto alternativo de la imagen.
          * @param string $width
-         * El ancho de tu imagen dado con cantidad y el tipo de magnitud CSS juntos
+         * El ancho de la imagen en formato CSS.
          * @param string $height
-         * El alto de tu imagen dado con cantidad y el tipo de magnitud CSS juntos
+         * El alto de la imagen en formato CSS.
          * @return string
          */
         public static function builImage(string $location, $alt = 'img-built', $width = '100px', $height = '100px') {
@@ -60,7 +59,7 @@
         }
 
         /**
-         * Construye el script para usar JQuery
+         * Construye la etiqueta <script> para incluir jQuery desde la CDN.
          *
          * @return mixed
          */
@@ -73,12 +72,12 @@
         }
 
         /**
-         * Imprime en la página cualquier componente dado y le enviamos datos por medio de un método POST
+         * Imprime en la página un componente y envía datos mediante un método POST.
          *
          * @param string $file
-         * El archivo o componente al que vamos a imprimir en la página
+         * El archivo o componente que se imprimirá en la página.
          * @param array $data
-         * Los datos que se le van a enviar
+         * Los datos que se enviarán.
          * @return string
          */
         public static function view($file, $data = []) {
@@ -106,7 +105,7 @@
         }
 
         /**
-         * Obtiene la URL en el que se corre el proyecto
+         * Obtiene la URL en la que se ejecuta el proyecto.
          *
          * @return string
          */
@@ -120,7 +119,7 @@
         }
 
         /**
-         * Obtiene la URL absoluta en el que se corre el proyecto
+         * Obtiene la URL absoluta en la que se ejecuta el proyecto.
          *
          * @return string
          */

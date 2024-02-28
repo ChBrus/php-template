@@ -1,15 +1,17 @@
 # PHP-Template
 Este proyecto tiene como objetivo proporcionar una estructura base que sirva de apoyo en la realización de proyectos durante mis prácticas profesionales.
 ## Índice
-- [Empezar](#Empezar)
+- [Primeros pasos](#Primeros-pasos)
     - [Requerimientos](#Requerimientos)
     - [Instalación](#Instalación)
+	- [Configuración](#Configuración)
 - [Estructura](#Estructura)
 	- [App](#App)
 	- [Vendor](#Vendor)
 	- [Test](#Test)
+- [Builders](#Builders)
 
-## Empezar
+## Primeros pasos
 Para comenzar a utilizar este proyecto, primero verifica si cumples con los requisitos mencionados y luego continúa con el proceso de instalación.
 ### Requerimientos
 Asegúrate de cumplir con los siguientes requisitos antes de usar PHP-Builder:
@@ -28,7 +30,7 @@ git clone https://github.com/ChBrus/php-template.git [nombre-carpeta]
 ```
 Dónde `[nombre-carpeta]` va a ser el nombre del proyecto que harás con PHP-Template. Después de la instalación, elimina la carpeta `.git/` con el siguiente comando:
 ```bash
-rm -r ./[nombre-carpeta]/.git/
+rm -rf ./[nombre-carpeta]/.git/
 ```
 No olvides que tienes que poner el nombre de la carpeta que pusiste anteriormente.
 
@@ -42,7 +44,7 @@ Ejecuta el siguiente comando en la terminal para instalar todas las dependencias
 ```bash
 composer install
 ```
-#### Paso 3: Configuración
+### Configuración
 Para comenzar con la configuración, tienes que tener en cuenta que hay 3 archivos a abrir para poder configurar tu proyecto.
 
 ##### .gitignore
@@ -109,13 +111,13 @@ Esta carpeta alberga todos los recursos esenciales para el funcionamiento de la 
 #### 1. **Assets**
 Los recursos consumidos por el frontend, como imágenes, scripts JavaScript, estilos CSS y scripts SCSS. Puedes compilar los archivos SCSS utilizando [`Sass`](https://sass-lang.com/) para obtener archivos CSS.
 
-#### 2. **Controladores**
+#### 2. **Controllers**
 Estos actúan como intermediarios entre el backend y el frontend, facilitando la transferencia de datos desde la base de datos a la interfaz visible del usuario.
 
-#### 3. **Modelos**
+#### 3. **Models**
 Componentes exclusivos del backend, donde se almacenan los scripts principales para obtener datos fundamentales y establecer conexiones con la base de datos.
 
-#### 4. **Vistas**
+#### 4. **Views**
 Aquí se guardan las páginas como fragmentos de código específicos para las diferentes secciones de la página que invocan las vistas.
 
 ### Vendor
@@ -128,3 +130,21 @@ Para ejecutar todos los scripts para hacer tus tests tienes que ir a la carpeta 
 ```bash
 vendor/phpunit/phpunit/phpunit
 ```
+
+## Builders
+En el proyecto, podrás notar que existen varias carpetas dentro de las carpetas principales, por ejemplo, `controllers`. En este caso, necesitarás saber acerca de los siguientes archivos útiles dentro de los controladores de tu proyecto.
+
+### PageBuilder
+La clase `PageBuilder` proporciona métodos estáticos para construir componentes y assets en las páginas web.
+
+| Nombre de la función          | Parámetros                                   | Lo que hace                                               |
+| ---------------------------- | -------------------------------------------- | --------------------------------------------------------- |
+| `buildScript`                | `$scriptName, $isModule = false`             | Construye la etiqueta `<script>` para incluir un script en la página.                |
+| `buildCustomBootstrap`       |  | Construye las etiquetas `<link>` y `<script>` para incluir Bootstrap personalizado. |
+| `buildImage`                 | `$location`<br>`$alt = 'img-built'`<br>`$width = '100px', $height = '100px'` | Construye la etiqueta `<img>` para mostrar una imagen en la página.               |
+| `buildJQuery`                |  | Construye la etiqueta `<script>` para incluir jQuery desde la CDN.                |
+| `view`                       | `$file`<br> `$data = []`                          | Imprime en la página un componente y envía datos mediante un método POST.       |
+| `getProjectURL`              |  | Obtiene la URL en la que se ejecuta el proyecto.                           |
+| `getAbsoluteProjectURL`      |  | Obtiene la URL absoluta en la que se ejecuta el proyecto.                    |
+
+La clase se encuentra en el espacio de nombres `Build` y forma parte de las utilidades proporcionadas por la estructura del proyecto.
