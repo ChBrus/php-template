@@ -20,7 +20,6 @@ export async function setDataToTable(callback, params) {
         initDataRow(data.response);
     })
     .catch(async error => {
-        console.log(error)
         const dialog = new Dialog(),
             data = JSON.parse(error.message);
 

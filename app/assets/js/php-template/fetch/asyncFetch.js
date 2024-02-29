@@ -1,4 +1,5 @@
 import { METHOD_REQUEST, Page, dataFileURL, connectionURL, pageNumberConf } from "./consts.js";
+import { getDecodedCookie } from "../../cookies/index.js";
 import { Dialog } from '../data-table/Dialog.js';
 
 export async function getResponse({
@@ -24,7 +25,7 @@ export async function getResponse({
         } else {
             url = {
                 type: 'file-url',
-                body: file
+                body: getDecodedCookie('projectName') + file
             }
         }
 
@@ -60,11 +61,16 @@ export async function getResponse({
     } catch (error) {
         const dialog = new Dialog()
 
-        dialog.appendToBody()
-        await dialog.build(error.message).then(data => {
-            dialog.alertInsert(data.response)
-        })
-        dialog.showModal()
+        // dialog.appendToBody()
+        // await dialog.build(error.message).then(data => {
+        //     dialog.alertInsert(data.response)
+        // })
+        // dialog.showModal()
+
+        return {
+            status: 500,
+            response: 'No hubo datos retornados'
+        };
     }
 }
 

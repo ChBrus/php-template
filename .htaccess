@@ -8,10 +8,10 @@
     RewriteRule /(vendor|app)/ - [F,L]
 
     # Redirigir desde /api/ a /app/controllers/connection/
-    RewriteRule ^api/(.*)$ /app/controllers/connection/$1 [L]
+    RewriteRule ^api/(.*)$ app/controllers/connection/$1 [L]
 
     # Redirigir desde /views/ a /app/views/
-    RewriteRule ^views/(.*)$ /app/views/$1 [L]
+    RewriteRule ^views/(.*)$ app/views/$1 [L]
 </IfModule>
 
 DirectoryIndex index.php

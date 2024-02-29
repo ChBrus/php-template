@@ -7,7 +7,11 @@
     $stripped = boolval($_POST['stripped']) ? ' table-strip' : '';
     $options = boolval($_POST['options']);
 ?>
-<section class="data-table<?= $stripped ?>" id="data-table" data-file="<?= $dataFile ?>" data-length=<?= getLengthConnection() ?>>
+<section class="data-table<?= $stripped ?>" id="data-table"
+    <?php if (!empty($dataFile)): ?>
+        data-file="<?= $dataFile ?>" data-length=<?= getLengthConnection() ?>
+    <?php endif; ?>
+>
     <?php if ($options): ?>
         <article class="accordion columns-<?= $columns ?>" id="tableOptions">
             <div class="accordion-item">

@@ -7,7 +7,6 @@
 
     $table = new Table(
         columns: 3,
-        dataFile: 'test-table',
         options: true
     );
 ?>

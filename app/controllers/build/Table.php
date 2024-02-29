@@ -21,13 +21,13 @@
          */
         public function __construct(
             $columns,
-            $dataFile,
+            $dataFile = '',
             $maxRows = null,
             $stripped = false,
             $options = false
         ) {
             $this->columns = $columns;
-            $this->dataFile = bridgeConnection($dataFile);
+            $this->dataFile = empty($dataFile) ? '' : bridgeConnection($dataFile);
             $this->maxRows = isset($maxRows) ? $maxRows : $_ENV['maxRows'];
             $this->stripped = $stripped;
             $this->options = $options;
