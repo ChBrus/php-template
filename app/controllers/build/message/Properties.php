@@ -1,5 +1,5 @@
 <?php
-    namespace Enums\Msg;
+    namespace Build\Message;
 
     enum Properties {
         case msg;
@@ -7,6 +7,7 @@
         case icon;
         case location;
         case buildStyles;
+        case buildScripts;
 
         public function getValue() {
             return match($this) {
@@ -15,7 +16,7 @@
                 self::icon => 'icon',
                 self::location => 'location',
                 self::buildStyles => 'buildStyles',
+                self::buildScripts => 'buildScripts',
             };
         }
     }
-?>

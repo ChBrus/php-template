@@ -1,5 +1,5 @@
 <?php
-    namespace Core;
+    namespace User;
 
     use Core\Abstracts\DBALAbstract;
 

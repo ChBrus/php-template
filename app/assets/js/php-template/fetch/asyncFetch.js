@@ -61,12 +61,6 @@ export async function getResponse({
     } catch (error) {
         const dialog = new Dialog()
 
-        // dialog.appendToBody()
-        // await dialog.build(error.message).then(data => {
-        //     dialog.alertInsert(data.response)
-        // })
-        // dialog.showModal()
-
         return {
             status: 500,
             response: 'No hubo datos retornados'

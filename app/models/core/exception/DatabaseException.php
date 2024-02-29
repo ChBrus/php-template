@@ -3,9 +3,7 @@
 
     use PDOException;
     use Throwable;
-    use Build\Message;
-    use Enums\Msg\Properties as MsgProperties;
-    use Enums\DB\Properties;
+    use Build\Message\{Message, Properties};
 
     class DatabaseException extends PDOException
     {
@@ -34,36 +32,10 @@
          */
         public function show()
         {
-            $this->alert->setAttribute(MsgProperties::header, $this->alertHeader);
-            $this->alert->setAttribute(MsgProperties::location, '');
+            $this->alert->setAttribute(Properties::header, $this->alertHeader);
+            $this->alert->setAttribute(Properties::location, '');
 
             return $this->alert->dangerMsg();
-        }
-
-        /**
-         * Pone un valor a una propiedad de la clase
-         *
-         * @param Properties $propertyName
-         * @param mixed $value
-         * @return void
-         */
-        public function setAttribute(Properties $propertyName, $value) {
-            $name = $propertyName->getValue();
-
-            if (property_exists($this, $name)) {
-                $this->$name = $value;
-            }
-        }
-
-        /**
-         * Configura los atributos de la alerta
-         *
-         * @param MsgProperties|string $propertyName
-         * @param mixed $value
-         * @return void
-         */
-        public function configAlert($propertyName, $value) {
-            $this->alert->setAttribute($propertyName, $value);
         }
 
         /**

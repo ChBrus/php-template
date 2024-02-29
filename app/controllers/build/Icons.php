@@ -1,5 +1,5 @@
 <?php
-    namespace Enums;
+    namespace Build;
 
     enum Icons {
         case Danger;

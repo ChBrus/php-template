@@ -1,14 +1,9 @@
 <?php
     require_once './vendor/autoload.php';
-    use Build\{PageBuilder, Table};
+    use Build\PageBuilder;
     use Tools\Env;
 
     Env::getEnv();
-
-    $table = new Table(
-        columns: 3,
-        options: true
-    );
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -20,7 +15,6 @@
     <?= PageBuilder::buildJQuery() ?>
 </head>
 <body>
-    <?= $table->build() ?>
-    <?= script('php-template/fetch/index', true) ?>
+    
 </body>
 </html>

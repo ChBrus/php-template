@@ -1,10 +1,10 @@
 <?php
-    namespace Core;
+    namespace User;
 
     use Core\Abstracts\ResponseAbstract;
     use Core\Exception\DatabaseException;
-    use Core\User;
     use Core\Response;
+    use User\User;
     use Exception;
 
     class UserResponse extends ResponseAbstract {

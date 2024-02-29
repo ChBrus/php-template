@@ -1,16 +1,16 @@
 <?php
-    namespace Build;
+    namespace Build\Message;
 
-    use Enums\Msg\{Type, Properties};
-    use Enums\Icons;
-    use Build\PageBuilder;
+    use Build\Message\{Properties, Type};
+    use Build\{PageBuilder, Icons};
 
     class Message {
         protected string $msg;
         protected string $header;
         private bool $icon;
         private string $location;
-        private bool|array $buildStyles;
+        private bool $buildStyles;
+        private bool $buildScripts;
 
         /**
          * Message es una clase para crear alertas con mensajes personalizados
@@ -26,6 +26,7 @@
             $this->icon = true;
             $this->location = PageBuilder::getProjectURL();
             $this->buildStyles = false;
+            $this->buildScripts = false;
         }
 
         /**
@@ -67,12 +68,10 @@
                 $data['location'] = $this->location;
             } if (strlen($this->location) === 0) {
                 $data['location'] = 'null';
-            } if (is_bool($this->buildStyles) && $this->buildStyles) {
+            } if ($this->buildStyles) {
                 $data['head'] = PageBuilder::buildCustomBootstrap();
-                $data['script'] = script('message/index', true);
-            } if (is_array($this->buildStyles)) {
-                if ($this->buildStyles[0]) $data['head'] = PageBuilder::buildCustomBootstrap();
-                else if ($this->buildStyles[1]) $data['script'] = script('message/index', true);
+            } if ($this->buildScripts) {
+                $data['script'] = script('php-template/message/index', true);
             }
 
             return match($type) {
@@ -98,4 +97,3 @@
             }
         }
     }
-?>

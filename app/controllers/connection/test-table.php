@@ -1,6 +1,6 @@
 <?php
     require_once '../../../vendor/autoload.php';
 
-    use Core\UserResponse;
+    use User\UserResponse;
 
     UserResponse::getResponse();

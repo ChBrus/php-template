@@ -18,10 +18,9 @@
             "Core\\Exception\\": "app/models/core/exception/",
             "Core\\Interfaces\\": "app/models/core/interfaces/",
             "Build\\": "app/controllers/build/",
+            "Build\\Message\\": "app/controllers/build/message/",
             "Tools\\": "app/controllers/tools/",
-            "Enums\\": "app/models/enums/",
-            "Enums\\DB\\": "app/models/enums/database/",
-            "Enums\\Msg\\": "app/models/enums/msg/"
+            "User\\": "app/models/user/"
         },
         "files": [
             "app/config.php",

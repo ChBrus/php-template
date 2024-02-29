@@ -1,9 +1,13 @@
 <?php
     require_once '../../../vendor/autoload.php';
 
+    use Tools\Env;
+
+    Env::getEnv();
+
     $columns = (int) $_POST['columns'];
     $dataFile = $_POST['dataFile'];
-    $maxRows = (int) $_POST['maxRows'];
+    $maxRows = (int) $_ENV['maxRows'];
     $stripped = boolval($_POST['stripped']) ? ' table-strip' : '';
     $options = boolval($_POST['options']);
 ?>
