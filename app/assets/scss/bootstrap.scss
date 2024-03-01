@@ -1,10 +1,13 @@
 @import '../../../vendor/twbs/bootstrap/scss/functions';
 @import '../../../vendor/twbs/bootstrap/scss/mixins';
+@import './font/montserrat';
 @import './variables';
-@import './default-styles';
 
 // Bootstrap functions
 @import '../../../vendor/twbs/bootstrap/scss/bootstrap.scss';
+
+// Default styles
+@import './default-styles';
 
 // Views
 @import './views/alert';

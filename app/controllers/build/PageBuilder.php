@@ -42,6 +42,8 @@
          *
          * @param string $location
          * La ubicación de la imagen.
+         * @param string $class
+         * La clase que tendrá la imagen.
          * @param string $alt
          * El texto alternativo de la imagen.
          * @param string $width
@@ -50,10 +52,10 @@
          * El alto de la imagen en formato CSS.
          * @return string
          */
-        public static function builImage(string $location, $alt = 'img-built', $width = '100px', $height = '100px') {
+        public static function builImage($location, $class = "img-built", $alt = 'img-built', $width = '100px', $height = '100px') {
             ob_start();
             ?>
-                <img src="<?= self::getProjectURL() . 'app/assets/img/' . $location ?>" alt="<?= $alt ?>" width="<?= $width ?>" height="<?= $height ?>">
+                <img class="<?= $class ?>" src="<?= self::getProjectURL() . 'app/assets/img/' . $location ?>" alt="<?= $alt ?>" width="<?= $width ?>" height="<?= $height ?>">
             <?php
             return ob_get_clean();
         }
