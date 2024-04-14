@@ -1,6 +1,8 @@
 <?php
     namespace Build;
 
+    use Tools\Env;
+
     /**
      * Una clase para construir distintos componentes o assets en las páginas
      */
@@ -30,6 +32,8 @@
         public static function buildCustomBootstrap() {
             ob_start();
             ?>
+                <link rel="shortcut icon" href="<?= self::getFavicon() ?>" type="image/png" sizes="32x32">
+                <link rel="shortcut icon" href="<?= self::getFavicon() ?>" type="image/png" sizes="64x64">
                 <link rel="stylesheet" href="<?= self::getProjectURL() ?>app/assets/css/bootstrap.css">
                 <link rel="stylesheet" href="<?= self::getProjectURL() ?>vendor/twbs/bootstrap-icons/font/bootstrap-icons.css">
                 <script src="<?= self::getProjectURL() ?>vendor/twbs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -114,8 +118,9 @@
         public static function getProjectURL() {
             $projectURL = '/' . $_ENV['ProjectName'] . '/';
 
-            if (empty($_ENV['ProjectName'])) $projectURL = '/';
-            else if (boolval($_ENV['ProjectIsRoot'])) $projectURL = '/';
+            if (empty($_ENV['ProjectName']) || boolval($_ENV['ProjectRoot'])) {
+                $projectURL = '/';
+            }
 
             return $projectURL;
         }
@@ -127,6 +132,21 @@
          */
         public static function getAbsoluteProjectURL() {
             return $_SERVER['HTTP_HOST'] . self::getProjectURL();
+        }
+
+        private static function getFavicon() {
+            $urlBase = str_replace('\\', '/', Env::getEnvFile());
+            $url = substr($urlBase, 0, strpos($urlBase, '/controllers/'));
+            $url .= self::getProjectURL();
+            $url .= 'assets/img/';
+            $url = str_replace('/', '\\', $url);
+            $files = scandir($url);
+
+            foreach ($files as $file) {
+                if (strpos($file, 'favicon.ico') !== false) {
+                    return self::getProjectURL() . 'app/assets/img/' . $file;
+                }
+            }
         }
     }
 ?>
