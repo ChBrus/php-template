@@ -7,10 +7,9 @@
     class Message {
         protected string $msg;
         protected string $header;
-        private bool $icon;
+        protected string $btn_description;
+        private bool $is_btn, $is_icon, $buildStyles, $buildScripts;
         private string $location;
-        private bool $buildStyles;
-        private bool $buildScripts;
 
         /**
          * Message es una clase para crear alertas con mensajes personalizados
@@ -23,8 +22,9 @@
         public function __construct($msg, $header = "") {
             $this->msg = $msg;
             $this->header = $header;
-            $this->icon = true;
             $this->location = PageBuilder::getProjectURL();
+            $this->is_btn = true;
+            $this->is_icon = true;
             $this->buildStyles = false;
             $this->buildScripts = false;
         }
@@ -49,6 +49,10 @@
             return $this->msg(Type::Success, $icon);
         }
 
+        public function customizeMsg(Icons $icon = Icons::Config, $color) {
+            return $this->msg(Type::Customize, $icon, $color);
+        }
+
         /**
          * Una función para imprimir un mensaje, sea de peligro o de éxito en alguna acción
          *
@@ -56,27 +60,70 @@
          * @param Icons $icon
          * @return string
          */
-        private function msg(Type $type, Icons $icon) {
+        private function msg(Type $type, Icons $icon, $color = '') {
             $data = [
                 'msg' => $this->msg
             ];
 
-            if (strlen($this->header) !== 0) {
-                $data['header'] = $this->header;
-            } if ($this->icon) {
-                $data['icon'] = $icon->print();
-                $data['location'] = $this->location;
-            } if (strlen($this->location) === 0) {
-                $data['location'] = 'null';
-            } if ($this->buildStyles) {
-                $data['head'] = PageBuilder::buildCustomBootstrap();
-            } if ($this->buildScripts) {
-                $data['script'] = script('php-template/message/index', true);
-            }
+            $data = array_merge($data, match(true) {
+                strlen($this->header) !== 0 => [
+                    ['header'] => $this->header
+                ],
+                $this->is_btn => [
+                    ['is_btn'] => true
+                ],
+                $this->is_btn && $this->is_icon => [
+                    ['icon'] => $icon->print(),
+                    ['location'] => $this->location
+                ],
+                $this->is_btn && strlen($this->location) === 0 => [
+                    ['location'] => null
+                ],
+                $this->is_btn && !empty($this->btn_description) => [
+                    ['btn_description'] => $this->btn_description
+                ],
+                $this->buildStyles => [
+                    ['head'] => PageBuilder::buildCustomBootstrap()
+                ],
+                $this->buildScripts => [
+                    ['script'] => script('php-template/message/index', true)
+                ],
+                $type === Type::Customize => [
+                    ['color'] => $color
+                ],
+                default => []
+            });
+
+            if (strlen($this->header) !== 0) $data = array_merge($data, [
+                ['header'] => $this->header
+            ]);
+            if ($this->is_btn) $data = array_merge($data, [
+                ['is_btn'] => true
+            ]);
+            if ($this->is_btn && $this->is_icon) $data = array_merge($data, [
+                ['icon'] => $icon->print(),
+                ['location'] => $this->location
+            ]);
+            if ($this->is_btn && strlen($this->location) === 0) $data = array_merge($data, [
+                ['location'] => null
+            ]);
+            if ($this->is_btn && !empty($this->btn_description)) $data = array_merge($data, [
+                ['btn_description'] => $this->btn_description
+            ]);
+            if ($this->buildStyles) $data = array_merge($data, [
+                ['head'] => PageBuilder::buildCustomBootstrap()
+            ]);
+            if ($this->buildScripts) $data = array_merge($data, [
+                ['script'] => script('php-template/message/index', true)
+            ]);
+            if ($type === Type::Customize) $data = array_merge($data, [
+                ['color'] => $color
+            ]);
 
             return match($type) {
                 Type::Danger => view('message/danger-msg', $data),
-                Type::Success => view('message/success-msg', $data)
+                Type::Success => view('message/success-msg', $data),
+                Type::Customize => view('message/customize-msg', $data)
             };
         }
 

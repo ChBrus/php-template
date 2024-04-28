@@ -36,11 +36,8 @@
 
                 $this->connection = DriverManager::getConnection($this->getParamsConnection());
             } catch (Exception $e) {
-                $pdoException = new DatabaseException($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
-                $errorResponse = new Response(
-                    $e->getCode() > 500 ? $e->getCode() : 500,
-                    $pdoException->show()
-                );
+                $errorResponse = new Response($e->getCode(), $e->getMessage());
+                $errorResponse->setAlert('Estatus: ' . $e->getMessage(), 'Error de conexión a la base de datos');
 
                 die($errorResponse->__toString());
             }

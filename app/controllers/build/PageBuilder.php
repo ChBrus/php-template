@@ -134,10 +134,29 @@
             return $_SERVER['HTTP_HOST'] . self::getProjectURL();
         }
 
+        /**
+         * Devuelve la actual URL.
+         *
+         * @return string
+         */
+        public static function getCurrentURL() {
+            $host = $_SERVER['HTTP_HOST'];
+            $uri = $_SERVER['REQUEST_URI'];
+            return self::getProtocol() . $host . $uri;
+        }
+
+        /**
+         * Regresa el protocolo usado en el proyecto
+         *
+         * @return string
+         */
+        public static function getProtocol() {
+            return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . '://';
+        }
+
         private static function getFavicon() {
             $urlBase = str_replace('\\', '/', Env::getEnvFile());
-            $url = substr($urlBase, 0, strpos($urlBase, '/controllers/'));
-            $url .= self::getProjectURL();
+            $url = substr($urlBase, 0, strpos($urlBase, 'controllers/'));
             $url .= 'assets/img/';
             $url = str_replace('/', '\\', $url);
             $files = scandir($url);

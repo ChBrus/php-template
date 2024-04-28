@@ -4,4 +4,5 @@
     enum Type {
         case Danger;
         case Success;
+        case Customize;
     }

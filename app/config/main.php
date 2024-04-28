@@ -6,8 +6,6 @@ use Tools\Env;
 Env::getEnv();
 
 define('API_PATH', PageBuilder::getProjectURL() . 'api/');
+define('PROJECT_URL', PageBuilder::getProtocol() . PageBuilder::getAbsoluteProjectURL());
 
-match (boolval($_ENV['ProjectRoot'])) {
-    false => setcookie('projectName', '/' . $_ENV['ProjectName'] . '/', time() + (60*60*24), '/'),
-    true => setcookie('projectName', '/', time() + (60*60*24), '/')
-};
+initProjectName();

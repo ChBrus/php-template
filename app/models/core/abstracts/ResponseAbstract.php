@@ -9,7 +9,7 @@
     use Tools\JSON;
 
     abstract class ResponseAbstract extends BaseAbstract {
-        public static function getResponse() {
+        public static final function getResponse() {
             try {
                 if ($_SERVER['CONTENT_TYPE'] !== 'application/json') {
                     header('Location: ' . PageBuilder::getProjectURL());
@@ -61,7 +61,7 @@
          * @param \Core\Abstracts\DBALAbstract $object
          * @return void
          */
-        protected static function count($table, $object) {
+        protected static final function count($table, $object) {
             $queryBuilder = $object->getQueryBuilder();
 
             $query = $queryBuilder
@@ -77,13 +77,13 @@
         }
 
         /**
-         * Cuenta la cantidad de ítems en una tabla
+         * Busca ciertos valores de una columna de la tabla
          *
          * @param string $table
          * @param \Core\Abstracts\DBALAbstract $object
          * @return string
          */
-        protected static function search($table, $object) {
+        protected static final function search($table, $object) {
             try {
                 $queryBuilder = $object->getQueryBuilder();
 
@@ -101,6 +101,7 @@
                 return $response->__toString();
             } catch (Exception $e) {
                 $errorResponse = new Response($e->getCode(), $e->getMessage());
+                $errorResponse->setAlert('Estatus: ' . $e->getMessage(), 'La función de búsqueda tuvo unos problemas');
 
                 return $errorResponse->__toString();
             }

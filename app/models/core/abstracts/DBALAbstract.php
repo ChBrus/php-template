@@ -26,11 +26,8 @@
                 $this->maxResults = (int) $_ENV['maxRows'];
                 $this->firstResult = 0;
             } catch(Exception $e) {
-                $pdoException = new DatabaseException($e->getMessage(), (int) $e->getCode(), $e->getPrevious());
-                $errorResponse = new Response(
-                    $e->getCode() > 500 ? $e->getCode() : 500,
-                    $pdoException->show()
-                );
+                $errorResponse = new Response($e->getCode(), $e->getMessage());
+                $errorResponse->setAlert($errorResponse->response);
 
                 die($errorResponse->__toString());
             }
@@ -64,4 +61,3 @@
             $this->firstResult = ((int) $page_number) * $this->maxResults;
         }
     }
-?>

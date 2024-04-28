@@ -1,9 +1,6 @@
 <?php
     require_once './vendor/autoload.php';
     use Build\PageBuilder;
-    use Tools\Env;
-
-    Env::getEnv();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -11,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= PageBuilder::buildCustomBootstrap() ?>
-    <title>Ejemplo proyecto</title>
+    <title>Home</title>
     <?= PageBuilder::buildJQuery() ?>
 </head>
 <body>
